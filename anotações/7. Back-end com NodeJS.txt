@@ -46,3 +46,23 @@ pasta node_modules e desativar a monitoração de alterações do mesmo
 
 Assim o comando para iniciar o servidor fica com esta composição
   yarn ts-node-dev --transpileOnly --ignore-watch node_modules src/server.ts
+
+--> EditorConfig
+O EditorConfig é uma ferramenta simples mais com uma funcionalidade incrivel
+Ele padroniza configurações para quando abrir a API em outro IDE, editor de código ou em
+outro computador para as configurações ficarem igual, para utilizar basta instalar a
+extenção EditorConfig for VS Code no lado, depois clicar com o botão direiro na guia
+e criar o arquivo .editorconfig e realizar as configurações abaixo
+	root = true
+
+		[*]
+		indent_style = tab #TIPO DE RECUO
+		indent_size = 2 #TAMANHO DO RECUO
+		charset = utf-8 #TIPO DE CARACTER
+		trim_trailing_whitespace = true #REMOVER ESPAÇOS EM BRANCO NO FINAL DA LINHA
+		insert_final_newline = true #CRIAR UMA LINHA EM BRANCO NO FINAL DO ARQUIVO
+		end_of_line = crlf #TIPO DE ENTER (WINDOWS OU LINUX)
+
+Tem dos comandos que força o programa a executar a padronização
+  Reindent Lines (Atalho pessoal: Alt + E)
+  Reindent Selected Lines
