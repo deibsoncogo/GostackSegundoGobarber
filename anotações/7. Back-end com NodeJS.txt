@@ -61,8 +61,64 @@ e criar o arquivo .editorconfig e realizar as configurações abaixo
 		charset = utf-8 #TIPO DE CARACTER
 		trim_trailing_whitespace = true #REMOVER ESPAÇOS EM BRANCO NO FINAL DA LINHA
 		insert_final_newline = true #CRIAR UMA LINHA EM BRANCO NO FINAL DO ARQUIVO
-		end_of_line = crlf #TIPO DE ENTER (WINDOWS OU LINUX)
+		end_of_line = lf #TIPO DE ENTER (WINDOWS OU LINUX)
 
 Tem dos comandos que força o programa a executar a padronização
   Reindent Lines (Atalho pessoal: Alt + E)
   Reindent Selected Lines
+
+--> ESLint
+O Eslint é ferramenta que realiza padronizações de códigos
+Devemos instalar a extenção dele e também sua dependencia
+  yarn add eslint -D
+
+Depois de instalar devemos ativar as configurações abaixo para corrigir os códigos
+quando realizarmos o salvamento do arquivo
+	"[javascript]": {
+		"editor.codeActionsOnSave": {
+			source.fixAll.eslint": true,
+		}
+  },
+
+  "[javascriptreact]":{
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": true,
+		}
+  },
+
+  "[typescript]":{
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": true,
+		}
+  },
+
+  "[typescriptreact]":{
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": true,
+		}
+  },
+
+Para ele funcionar deve utilizar o comando abaixo e depois de executar o comando
+deveremos que responder algumas pergutas como
+  yarn eslint --init
+
+  How would you like to use ESLint? = To check syntax, find problems, and enforce code style
+  What type of modules does your project use? = JavaScript modules (import/export)
+  Which framework does your project use? = None of these
+  Does your project use TypeScript? = Yes
+  Where does your code run? = Node
+  How would you like to define a style for your project? = Use a popular style guide
+  Which style guide do you want to follow? = Airbnb: https://github.com/airbnb/javascript
+  What format do you want your config file to be in? = JSON
+
+Depois de responder as perguntas sera gerado uma lista de dependencias para instalar
+  yarn add @typescript-eslint/eslint-plugin@latest eslint-config-airbnb-base@latest eslint-plugin-import@^2.20.1 @typescript-eslint/parser@latest -D
+
+Para o NodeJS entender os arquivos do TypeScript temos a dependencia abaixo
+	yarn add eslint-import-resolver-typescript -D
+
+Para procurar erros de padronização em todos os arquivo execute o comando abaixo
+	yarn eslint .
+
+Para corrigir todos os erros de padronização pode utilizar o comando abaixo
+	yarn eslint . --fix
