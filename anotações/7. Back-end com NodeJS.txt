@@ -1,0 +1,48 @@
+Rocketseat Bootcamp GoStack - Nível 2
+
+------> 7. Primeiro projeto com Node.JS
+Nessa fase vamos aprender a configurar um projeto do total zero utilizando Node.js e
+TypeScript incluindo ferramentas como ts-node-dev, ESLint, Prettier, EditorConfig
+
+----> 1. Estrutura e padrões
+--> Configurando estrutura
+A primeira coisa a fazer é criar o arquivo package.json
+  yarn init -y
+
+Logo em seguida instalar as dependencias abaixo
+  yarn add express
+  yarn add typescript -D
+
+Agora criar os demais arquivos essenciais para a API
+  dist
+  src\server.ts
+  .gitignore
+  readme
+
+E por último criar o arquivo tsconfig.json para depois definir o local onde
+salvar os arquivos convertido e onde fica o arquivo main
+  yarn tsc --init
+  "outDir": "./dist",
+  "rootDir": "./src",
+
+Para rodar o servidor temos que converter o TypeScript em JavaScript e depois
+executar o arquivo main convertido
+  yarn tsc
+  node dist/server.js
+
+O melhor metodo para executar o servidor durante o processo de desenvolvimento é
+pela depencia abaixo, ele consegue executar o servidor sem converser o TypeScript para
+JavaScript e quando acontece uma alteração o servidor é atualizado
+  yarn add ts-node-dev -D
+  yarn ts-node-dev src/server.ts
+
+Quando digitamos algum comando errado o proprio IDE nos avisa, com isso podemos
+adicionar o comando abaixo desativa esta verificacao na execução do servidor
+  --transpileOnly
+
+Tambem adicionamos o comando abaixo para ignorar a converção dos arquivos na
+pasta node_modules e desativar a monitoração de alterações do mesmo
+  --ignore-watch node_modules
+
+Assim o comando para iniciar o servidor fica com esta composição
+  yarn ts-node-dev --transpileOnly --ignore-watch node_modules src/server.ts
