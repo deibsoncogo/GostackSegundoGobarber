@@ -117,8 +117,18 @@ Depois de responder as perguntas sera gerado uma lista de dependencias para inst
 Para o NodeJS entender os arquivos do TypeScript temos a dependencia abaixo
 	yarn add eslint-import-resolver-typescript -D
 
+Para criar exclução de verificação podemos criar o arquivo abaixo
+	.eslintignore
+
 Para procurar erros de padronização em todos os arquivo execute o comando abaixo
 	yarn eslint .
 
 Para corrigir todos os erros de padronização pode utilizar o comando abaixo
 	yarn eslint . --fix
+
+--> Prettier
+Este serve também para padronizar os códigos, para instalar utilize os comandos abaixo
+  yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+
+Para realizar as configurações dele teremos o arquivo abaixo
+	prettier.config.js
