@@ -167,3 +167,16 @@ Nesta aula iremos começar a agrupar em pastas todas as regras de serviços, rot
 migrations, database e outros salvando em pastas
 
 O Insomnia possui uma ferramenta chama de Timestamp que gera o data e hora atual
+
+--> Validando a data
+A dependencia abaixo é a mais recomendada para a manipulação de datas e horas
+  yarn add date-fns
+
+O comando abaixo arredonda as horas para cheia
+  startOfHour
+
+Este comando transforma uma data e hora de string para o formato de data e hora
+  parseISO
+
+Para realizar comparações temos o seguinte comando
+  isEqual
