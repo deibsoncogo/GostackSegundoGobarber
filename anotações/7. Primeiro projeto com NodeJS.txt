@@ -160,3 +160,10 @@ Breakpoints mostra todos breaks criado
 --> Layout da Aplicação
 Figma é uma ferramenta incrível para criar leiaute
 	https://www.figma.com/
+
+--> Cadastro de Agendamentos
+Está API ganhou o nome de GoBarber
+Nesta aula iremos começar a agrupar em pastas todas as regras de serviços, rotas,
+migrations, database e outros salvando em pastas
+
+O Insomnia possui uma ferramenta chama de Timestamp que gera o data e hora atual
