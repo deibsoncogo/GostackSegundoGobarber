@@ -19,6 +19,7 @@
 		"prettier"
 	],
 	"rules": {
+		"no-console": "off", // PERMITE UTILIZAR console.log
 		"prettier/prettier": "error",
 		"import/extensions": [
 			"error",
