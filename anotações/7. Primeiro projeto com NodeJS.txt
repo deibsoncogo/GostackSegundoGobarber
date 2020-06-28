@@ -40,7 +40,7 @@ Quando digitamos algum comando errado o proprio IDE nos avisa, com isso podemos
 adicionar o comando abaixo desativa esta verificacao na execução do servidor
   --transpileOnly
 
-Tambem adicionamos o comando abaixo para ignorar a converção dos arquivos na
+Também adicionamos o comando abaixo para ignorar a converção dos arquivos na
 pasta node_modules e desativar a monitoração de alterações do mesmo
   --ignore-watch node_modules
 
@@ -132,3 +132,26 @@ Este serve também para padronizar os códigos, para instalar utilize os comando
 
 Para realizar as configurações dele teremos o arquivo abaixo
 	prettier.config.js
+
+--> Debugando NodeJS
+A versão dublada do Visual Studio Code gera conflitos no debug
+Para criar clique em Run (Ctrl + Shift + D) e depois create a launch.json
+E para finalziar escolhemos como vamos querer executar a depuração por exemplo Node.JS
+Depois de criar o arquivo launch.json iremos alterar algumas configurações como
+	"request": "attach"
+	"protocol": "inspector"
+	"restart": true
+
+Request attach define que quando ativarmos o debug ele não vai reiniciar o servidor
+Protocol inspector faz a IDE se conectar com o servidor a partir do comando --inspect
+	yarn ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts
+
+Com a depuração conseguimos identificar com mais faciliadades os erros de execução
+Ao iniciar a depuração um menu flutuante aparece para nos auxiliar no que fazer
+Também podemos definir breakpoints (Ponto vermelho) em uma linha expecifica
+clicando no número dela, assim a depuração para na linha marcada para analisar
+
+Variables mostra os valores que todas as variaveis executada possui
+Watch permite uma busca filtrada de variaveis
+Call stack mostra todos os arquivos que já foram executado
+Breakpoints mostra todos breaks criado
