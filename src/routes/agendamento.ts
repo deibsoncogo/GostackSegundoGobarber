@@ -33,10 +33,11 @@ agendamentosRota.post('/', (request, response) => {
 	// REALIZA O SALVAMENTO NO BANCO DE DADOS TEMPORARIO SEM UM CONSTRUCTOR
 	// agendamentos.push(agendamento);
 
-	const agendamento = agendamentoRepositorio.create(
+	// UTILIZANDO O METODO DE OBJETO PARA MANIPULAR OS DADOS
+	const agendamento = agendamentoRepositorio.criar({
 		profissional,
-		dataConvertidaeArredondada,
-	);
+		data: dataConvertidaeArredondada,
+	});
 
 	// LISTA OS DADOS SALVO ACIMA
 	return response.json(agendamento);

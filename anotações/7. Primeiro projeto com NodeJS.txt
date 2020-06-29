@@ -199,3 +199,10 @@ A rota não deve ter a responsabilidade de executar tarefas e controlar dados
 Existe uma metodologia chamada de SOC (Separation os Concerns) traduzindo seria a
 separação de preoupações, que quer dizer que cada arquivo deve cuidar
 somente do mesmo tipo de coisa
+
+--> Trabalhando com dados
+Um DTO (Data Transfer Object) é a tranferência de informação entre arquivos
+Quando tiver mais de um dado para transferir devemos transformalos em objeto
+Alguns dados precisam ser ocultado do usuario pois ele será criado pelo sistema,
+para isso temos o comando abaixo do TypeScript
+	Omit<>

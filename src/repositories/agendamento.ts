@@ -2,6 +2,12 @@ import { isEqual } from 'date-fns';
 
 import AgendamentoModelo from '../models/agendamento';
 
+// CRIANDO TIPAGEM PARA O DTO DE CRIAR AGENDAMENTO
+interface CriarAgendamentoDTO {
+	profissional: string;
+	data: Date;
+}
+
 class Agendamento {
 	// VINCULANDO A TIPAGEM
 	private agendamentos: AgendamentoModelo[];
@@ -28,7 +34,7 @@ class Agendamento {
 		return resultadoBusca || null;
 	}
 
-	public create(profissional: string, data: Date): AgendamentoModelo {
+	public criar({ profissional, data }: CriarAgendamentoDTO): AgendamentoModelo {
 		// PERMITE A MINIPULACAO DOS DADOS ANTES DE SALVAR NO FORMATO DE OBJETO
 		// const agendamento = {
 		// 	id: uuid(),
@@ -36,7 +42,7 @@ class Agendamento {
 		// 	data: dataConvertidaeArredondada,
 		// };
 		// VINCULO DO MODELO COM O REPOSITORIO
-		const agendamento = new AgendamentoModelo(profissional, data);
+		const agendamento = new AgendamentoModelo({ profissional, data });
 
 		this.agendamentos.push(agendamento);
 

@@ -9,7 +9,8 @@ class Agendamento {
 	data: Date;
 
 	// ESTE METODO SERVE PARA CRIAR NOVAS INFORMACOES
-	constructor(profissional: string, data: Date) {
+	// Omit SERVE PARA FALAR QUE CERTO ITEM NAO E PREENCHIDO PELO USUARIO
+	constructor({ profissional, data }: Omit<Agendamento, 'id'>) {
 		// DEVEMOS DEFINIR UM VALOR DE INICIALIZACAO
 		this.id = uuid();
 		this.profissional = profissional;
