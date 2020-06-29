@@ -5,8 +5,15 @@ import AgendamentoRepositorio from '../repositories/agendamento';
 
 const agendamentosRota = Router();
 
-// VINCULO DO REPOSITORIO COM A ROTA
+// VINCULA O REPOSITORIO COM A ROTA
 const agendamentoRepositorio = new AgendamentoRepositorio();
+
+agendamentosRota.get('/', (request, response) => {
+	// UTILIZA O VINCULO CRIADO COM O REPOSITORIO
+	const agendamentos = agendamentoRepositorio.listarTodos();
+
+	return response.json(agendamentos);
+});
 
 agendamentosRota.post('/', (request, response) => {
 	// RECUPERA AS INFORMACOES NO request.body

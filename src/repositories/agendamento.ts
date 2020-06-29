@@ -13,6 +13,11 @@ class Agendamento {
 		this.agendamentos = [];
 	}
 
+	// RETORNAR TODOS AGENDAMENTOS CADASTRADO
+	public listarTodos(): AgendamentoModelo[] {
+		return this.agendamentos;
+	}
+
 	// VERIFICA SE JA EXISTE ESTE HORARIO CADASTRADO
 	public buscaHorario(data: Date): AgendamentoModelo | null {
 		const resultadoBusca = this.agendamentos.find(agendamento =>
