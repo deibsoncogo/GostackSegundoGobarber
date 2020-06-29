@@ -206,3 +206,24 @@ Quando tiver mais de um dado para transferir devemos transformalos em objeto
 Alguns dados precisam ser ocultado do usuario pois ele será criado pelo sistema,
 para isso temos o comando abaixo do TypeScript
 	Omit<>
+
+--> Services & SOLID
+Services são os arquivos responsaveis pelas regras de negócio (Definições no sistema)
+Devemos criar um arquivo para cada tipo de serviço e nomear este arquivo no futuro
+com as primeira letras em caixa alta (Maiúscula)
+
+Uma transformação de dado (Converção) não é uma regra de negócio
+
+O Dependency Inversion quer dizer que não devemos criar mais de um relacionamento com
+o repositório, pois ao criar estaremos na verdade criando mais um banco de dados, para
+ter acesso aos dados criamos um parametro com o constructor
+
+SOLID é um grupo de regras contendo está acima e muitas outras que aprenderemos
+	Single responsability principle: Cada arquivo com sua responsabilidade
+	Dependency invertion principle: Utilização de objetos
+
+Um software provisório (MVP) não precisa respeitar todas as regras, mais será
+dificil futuramente melhorar ele
+
+Removemos as regras de negócio da rota para atender a regra de não repetir regra de
+negócio (DRY), pois futuramente aquela regra pode ser acionada por mais de caminho

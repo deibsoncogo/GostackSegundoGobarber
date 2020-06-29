@@ -1,7 +1,8 @@
 import { Router } from 'express';
-import { startOfHour, parseISO } from 'date-fns';
+import { parseISO } from 'date-fns';
 
 import AgendamentoRepositorio from '../repositories/agendamento';
+import CriarAgendamentoServico from '../services/CriarAgendamento';
 
 const agendamentosRota = Router();
 
@@ -16,31 +17,29 @@ agendamentosRota.get('/', (request, response) => {
 });
 
 agendamentosRota.post('/', (request, response) => {
-	// RECUPERA AS INFORMACOES NO request.body
-	const { profissional, data } = request.body;
+	// BUSCA PELO TIPO DE ACAO DO throw (Error)
+	try {
+		// RECUPERA AS INFORMACOES NO request.body
+		const { profissional, data } = request.body;
 
-	// CONVERTE O FORMATO DO HORARIO E ARRENDONDA PARA HORA CHEIA
-	const dataConvertidaeArredondada = startOfHour(parseISO(data));
+		// CONVERTE O FORMATO DO HORARIO
+		const converterHorario = parseISO(data);
 
-	// ENVIA E TRAZ O RESUTLADO DA EXISTENCIA DESSE HORARIO
-	const horarioDuplicado = agendamentoRepositorio.buscaHorario(dataConvertidaeArredondada);
+		// VINCULO DO SERVICO COM A ROTA
+		const criarAgendamento = new CriarAgendamentoServico(agendamentoRepositorio);
 
-	// RETORNAR UMA MENSAGEM SE A VARIAVEL POR VERDADEIRA
-	if (horarioDuplicado) {
-		return response.status(400).json({ erro: 'Horário já reservado' });
+		// ENVIA OS DADOS PARA O SERVICO VINCULADO
+		const agendamento = criarAgendamento.execute({
+			profissional,
+			data: converterHorario,
+		});
+
+		// LISTA OS DADOS SALVO ACIMA
+		return response.json(agendamento);
+		// AO ENCONTRAR O TIPO INFORMADO (err) EXECUTA O COMANDO ABAIXO
+	} catch (err) {
+		return response.status(400).json({ error: err.message });
 	}
-
-	// REALIZA O SALVAMENTO NO BANCO DE DADOS TEMPORARIO SEM UM CONSTRUCTOR
-	// agendamentos.push(agendamento);
-
-	// UTILIZANDO O METODO DE OBJETO PARA MANIPULAR OS DADOS
-	const agendamento = agendamentoRepositorio.criar({
-		profissional,
-		data: dataConvertidaeArredondada,
-	});
-
-	// LISTA OS DADOS SALVO ACIMA
-	return response.json(agendamento);
 });
 
 export default agendamentosRota;
