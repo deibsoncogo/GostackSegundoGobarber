@@ -180,3 +180,9 @@ Este comando transforma uma data e hora de string para o formato de data e hora
 
 Para realizar comparações temos o seguinte comando
   isEqual
+
+--> Model de Agendamento
+O conceito de model ou entidade servem para criar inteface em modo global
+O metodo anterior funciona somente no arquivos criado a inteface
+O constructor serve para criar novos dados pois ele vincula oque está recebendo do
+request.body, compara com a tipagem acima e retornar para ser salvo

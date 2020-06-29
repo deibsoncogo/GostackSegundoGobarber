@@ -2,18 +2,13 @@ import { Router } from 'express';
 import { uuid } from 'uuidv4';
 import { startOfHour, parseISO, isEqual } from 'date-fns';
 
-const agendamentosRota = Router();
+import AgendamentoModelo from '../models/agendamento';
 
-// CRIACAO DA TIPAGEM DOS DADOS
-interface Agendamento {
-	id: string;
-	profissional: string;
-	data: Date;
-}
+const agendamentosRota = Router();
 
 // CRIA UM BANCO DE BADOS QUE RESETA AO REINICIAR O SERVIDOR
 // VINCULANDO A TIPAGEM
-const agendamentos: Agendamento[] = [];
+const agendamentos: AgendamentoModelo[] = [];
 
 agendamentosRota.post('/', (request, response) => {
 	// RECUPERA AS INFORMACOES NO request.body
@@ -32,12 +27,14 @@ agendamentosRota.post('/', (request, response) => {
 		return response.status(400).json({ erro: 'Horário já reservado' });
 	}
 
-	// PERMITE A MINIPULACAO DOS DADOS ANTES DE SALVAR
-	const agendamento = {
-		id: uuid(),
-		profissional,
-		data: dataConvertidaeArredondada,
-	};
+	// PERMITE A MINIPULACAO DOS DADOS ANTES DE SALVAR NO FORMATO DE OBJETO
+	// const agendamento = {
+	// 	id: uuid(),
+	// 	profissional,
+	// 	data: dataConvertidaeArredondada,
+	// };
+	// PERMITE A MINIPULACAO DOS DADOS ANTES DE SALVAR COM O CONSTRUCTOR
+	const agendamento = new AgendamentoModelo(profissional, dataConvertidaeArredondada);
 
 	// REALIZA O SALVAMENTO NO BANCO DE DADOS TEMPORARIO
 	agendamentos.push(agendamento);
