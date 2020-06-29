@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 // IMPORTACAO DAS ROTAS SECUNDARIAS
-import AgendamentosRotas from './agendamentos';
+import AgendamentosRotas from './agendamento';
 
 const rota = Router();
 

@@ -186,3 +186,9 @@ O conceito de model ou entidade servem para criar inteface em modo global
 O metodo anterior funciona somente no arquivos criado a inteface
 O constructor serve para criar novos dados pois ele vincula oque está recebendo do
 request.body, compara com a tipagem acima e retornar para ser salvo
+
+--> Criando repositórios
+Iremos utilizar os repositórios para executar todos os metodos de alterações
+Iremos salvar nele os metodos manual, os que não utilizamos um pronto
+Ele será a ligação entre as rotas com o banco de dados
+As minupulações com o banco de dados devemos deixar restrito ao repositório
