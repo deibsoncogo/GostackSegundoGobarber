@@ -1,0 +1,19 @@
+Rocketseat Bootcamp GoStack - Nível 2
+
+------> 8. Iniciando back-end do app
+Nessa etapa vamos continuar os aprendizados com Node.js aproveitando o projeto
+desenvolvido até agora para começar a trabalhar com conceitos de banco de dados,
+autenticação, autorização, etc.
+
+----> 1. Banco de dados
+--> Estratégias de abstração
+Para trabalhar com banco de dados pricisamos lidar com o drive nativo da linguagem
+gerando queries, para isso temos dependencias que facilita a criação
+
+O Knex.js utiliza JavaScript e depois ele converte para SQL
+O Object Relational Mapping (ORM) é o metodo mais facil para utilizar queries
+	Sequelize para JavaScript
+	TypeORM para TypeScript
+
+O TypeORM funciona com a unificação do Knex.js tornando eficiente principal na
+questão de mudança do tipo de banco de dados
