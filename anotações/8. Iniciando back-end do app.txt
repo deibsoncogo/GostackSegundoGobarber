@@ -17,3 +17,12 @@ O Object Relational Mapping (ORM) é o metodo mais facil para utilizar queries
 
 O TypeORM funciona com a unificação do Knex.js tornando eficiente principal na
 questão de mudança do tipo de banco de dados
+
+--> Conceitos Docker
+Docker serve para controlar os serviços externo da aplicação
+Uma das coisas que ele serve é a criação de ambientes isolados (Container)
+Os containers expõe portas para conseguir comunicar com eles
+Imagens são ferramentas do Docker que podemos colocar dentro dos containers
+E o container é a instancia de uma imagem
+Docker Registry é onde fica salvo as imagens
+Dockerfile premite nos criar imagens
