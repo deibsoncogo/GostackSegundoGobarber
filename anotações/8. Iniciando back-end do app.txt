@@ -30,3 +30,36 @@ Dockerfile premite nos criar imagens
 --> Instalando Docker
 Existe um arquivo mostrando como funciona o instalamento
 Depois de instalar é nescessário executar ele e logar, isso se for a versão desktop
+
+--> Criando container do banco
+Para verificar todos comandos de postgres temos o site abaixo
+	https://hub.docker.com/_/postgres
+
+Para verificar se uma porta está sendo utilizada temos dois comandos abaixo para o Windows
+Verifica uma porta expeficica, se tiver direcionada vai aparecer o programa que esta utilizando
+	netstat -ano | findstr PORTA
+
+Mostra todas portas em utilização
+	netstat -o -a -b
+
+Para criar a instancia devemos utilizar o comando abaixo
+	docker run --name NOME -e POSTGRES_USER=LOGIN POSTGRES_PASSWORD=SENHA -p PORTA:PORTA -d IMAGEM
+	docker run --name gostack_postgres -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+
+A segunda porta precisa ser 5432 pois está é a que o Docker utiliza, já a primeira será
+a porta que o sistema utiliza onde para está podemos escolher qual usar
+
+Para listar todos bancos de dados ou somente o ativo temos os comandos abaixo
+	docker ps -a
+	docker ps
+
+Para buscar os logs de alteração, para iniciar ou parar temos os comandos abaixo
+	docker logs ID ou NOME
+	docker start ID ou NOME
+	docker stop ID ou NOME
+
+Para acessar o postgres (Banco de dados) temos o programa DBeaver
+
+Para adicionar uma conexão clicamos no símbolo de tomada e adiconar,
+estolhemos o tipo do banco de dados (PostgreSQL), informar a porta, nome da database,
+o username e a senha, por último em PostgreSQL ativamos Show all databases
