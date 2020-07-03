@@ -103,3 +103,26 @@ Os comandos abaixo que server para criar, excluir e mostrar um status das migrat
 
 Não podemos realizar alterações de uma migration que já foi divulgado para a equipe
 Com isso devemos criar uma outra migration para alterar oque precisa
+
+--> Criando model de agendamento
+Para salvar os dados no banco de dados devemos vincula-lo a uma classe modelo
+Um metodo fácil de utilizar para o vinculo é usando o Decorator e o Entity, para isso
+devemos ativar os itens abaixo no tsconfig.json e importar o Entity do TypeORM
+	"experimentalDecorators": true
+  "emitDecoratorMetadata": true
+
+Precisamos também informar dentro do model oque vai ser coluna e propriedade
+
+Também importamos o Entity do TypeORM para usar junto o Decorator do TypeScript,
+ele dever ser usado sempre na linha de cima do item desejado
+	@Entity('NOME-DA-TABELA')
+	class NOME-DA-CLASSE {
+		...
+	}
+
+Na utilização de JavaScript deve usar o Entity na exportação
+	export default Entity(NOME-DA-CLASSE);
+
+O TypeORM inicializa uma variavel ao executar mais o IDE não sabe disso, para resolver
+este problema devemos ativar está configuração no tsconfig.json
+	"strictPropertyInitialization": false
