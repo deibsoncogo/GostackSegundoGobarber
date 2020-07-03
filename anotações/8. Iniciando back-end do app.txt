@@ -77,3 +77,29 @@ As configurações devem ser salvas no seguinte arquivo
 
 Depois de configurar temos que instalar o drive do danco de dados PostgreSQL
 	yarn add pg
+
+--> Criando tabela de agendamentos
+As migrations servem para criar ou editar um banco de dados gerando um histórico
+
+Antes de criar uma migration temos que informar nas configurações o caminho de onde as
+migrations estão salvas e falar que o diretório está no mesmo caminho
+
+Para criar migrations no tipo TypeScript usamos o comando abaixo (Atalho: typeorm)
+	yarn ts-node-dev ./node_modules/typeorm/cli.js
+
+Para criar uma migration utilizamos o seguinte comando
+	yarn typeorm migration:create -n NOME-NO-PLURAL
+
+Uma migration possui dois metodos de execução
+	up serve para definir oque queremos fazer
+	down é utilizado desfazer tarefas do up
+
+Devemos criar o down em sentido contrário do up
+
+Os comandos abaixo que server para criar, excluir e mostrar um status das migrations
+	yarn typeorm migration:run
+	yarn typeorm migration:revert
+	yarn typeorm migration:show
+
+Não podemos realizar alterações de uma migration que já foi divulgado para a equipe
+Com isso devemos criar uma outra migration para alterar oque precisa
