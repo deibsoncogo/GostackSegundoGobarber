@@ -63,3 +63,17 @@ Para acessar o postgres (Banco de dados) temos o programa DBeaver
 Para adicionar uma conexão clicamos no símbolo de tomada e adiconar,
 estolhemos o tipo do banco de dados (PostgreSQL), informar a porta, nome da database,
 o username e a senha, por último em PostgreSQL ativamos Show all databases
+
+--> Configurando TypeORM
+Primeiro de tudo temos que instalar o TypeORM
+	yarn add typeorm
+
+Para poder utilizar temos que realizar as configurações basicas
+O site mostra todas as configurações possiveis
+	https://typeorm.io/
+
+As configurações devem ser salvas no seguinte arquivo
+	ormconfig.json
+
+Depois de configurar temos que instalar o drive do danco de dados PostgreSQL
+	yarn add pg
