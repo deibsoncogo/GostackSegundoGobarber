@@ -1,3 +1,4 @@
+import { getCustomRepository } from 'typeorm';
 import { startOfHour } from 'date-fns';
 
 import AgendamentoModelo from '../models/agendamento';
@@ -10,6 +11,7 @@ interface RequestDTO {
 }
 
 class CriarAgendamento {
+	/** COM A IMPLEMENTACAO DO BANCO DE DADOS NAO PRECISAMOS MAIS DESTES COMANDOS
 	// CRIA UMA VARIAVEL LOCAL
 	private agendamentoRepositorio: AgendamentoRepositorio;
 
@@ -17,13 +19,17 @@ class CriarAgendamento {
 	constructor(agendamentoRepositorio: AgendamentoRepositorio) {
 		this.agendamentoRepositorio = agendamentoRepositorio;
 	}
+	 */
 
-	public execute({ profissional, data }: RequestDTO): AgendamentoModelo {
+	public async execute({ profissional, data }: RequestDTO): Promise<AgendamentoModelo> {
+		// PREMITE A UTILIZACAO DOS REPOSITORIOS
+		const agendamentoRepositorio = getCustomRepository(AgendamentoRepositorio);
+
 		// ARRENDONDA PARA HORA CHEIA
 		const arrendondarHorario = startOfHour(data);
 
 		// ENVIA E TRAZ O RESUTLADO DA EXISTENCIA DESSE HORARIO
-		const horarioDuplicado = this.agendamentoRepositorio.buscaHorario(arrendondarHorario);
+		const horarioDuplicado = await agendamentoRepositorio.buscaHorario(arrendondarHorario);
 
 		// RETORNAR UMA MENSAGEM SE A VARIAVEL POR VERDADEIRA
 		// AQUI NAO TEMOS ACESSO AO RESPONSE OU REQUEST DO USUARIO
@@ -37,10 +43,14 @@ class CriarAgendamento {
 
 		// VINCULO DO REPOSITORIO COM O SERVICO
 		// UTILIZANDO O METODO DE OBJETO PARA MANIPULAR OS DADOS
-		const agendamento = this.agendamentoRepositorio.criar({
+		// O METODO SOMENTE CRIA OS DADOS
+		const agendamento = agendamentoRepositorio.create({
 			profissional,
 			data: arrendondarHorario,
 		});
+
+		// SERVE PARA SALVAR OS DADOS
+		await agendamentoRepositorio.save(agendamento);
 
 		return agendamento;
 	}

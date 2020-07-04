@@ -126,3 +126,18 @@ Na utilização de JavaScript deve usar o Entity na exportação
 O TypeORM inicializa uma variavel ao executar mais o IDE não sabe disso, para resolver
 este problema devemos ativar está configuração no tsconfig.json
 	"strictPropertyInitialization": false
+
+--> Repositório do TypeORM
+O TypeORM possui um repositório com funções essenciais como salvar, buscar e outras
+
+Uma Promise demora um pouco para finalizar sua execução, com isso devemos usar alguns
+comandos para falar que deve esperar ela finalizar para continuar
+	async = Usamos na função
+	await = Usamos no repositório
+
+Também devemos informar qual será o tipo do resultado desta Promise
+
+Para um funcionamento correto do Decorator temos que instalar a dependencia abaixo
+	yarn add reflect-metadata
+
+Nas configurações ormconfig.json devemos informar onde estão as entidades

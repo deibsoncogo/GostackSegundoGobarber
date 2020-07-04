@@ -1,3 +1,25 @@
+import { EntityRepository, Repository } from 'typeorm';
+
+import AgendamentoModelo from '../models/agendamento';
+
+// POSSIBILITA CRIAR UM REPOSITORIO PARA O TypeORM
+@EntityRepository(AgendamentoModelo)
+// Extends ENVIA ESTE REPOSITORIO PARA DENTRO DO TypeORM
+class Agendamento extends Repository<AgendamentoModelo> {
+	// VERIFICA SE JA EXISTE ESTE HORARIO CADASTRADO
+	public async buscaHorario(data: Date): Promise<AgendamentoModelo | null> {
+		const resultadoBusca = await this.findOne({
+			where: { data }, // where E UMA CONDICAO
+		});
+
+		// SE NAO EXISTIR O HORARIO CADASTRADO VAI RETORNAR NULO
+		return resultadoBusca || null;
+	}
+}
+
+export default Agendamento;
+
+/** IREMOS REFATORAR ESTES COMANDOS COM OS REPOSITORIOS DO TypeORM
 import { isEqual } from 'date-fns';
 
 import AgendamentoModelo from '../models/agendamento';
@@ -51,3 +73,4 @@ class Agendamento {
 }
 
 export default Agendamento;
+ */

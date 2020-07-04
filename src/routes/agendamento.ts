@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import { getCustomRepository } from 'typeorm';
 import { parseISO } from 'date-fns';
 
 import AgendamentoRepositorio from '../repositories/agendamento';
@@ -7,16 +8,18 @@ import CriarAgendamentoServico from '../services/CriarAgendamento';
 const agendamentosRota = Router();
 
 // VINCULA O REPOSITORIO COM A ROTA
-const agendamentoRepositorio = new AgendamentoRepositorio();
+// const agendamentoRepositorio = new AgendamentoRepositorio();
 
-agendamentosRota.get('/', (request, response) => {
+agendamentosRota.get('/', async (request, response) => {
+	const agendamentoRepositorio = getCustomRepository(AgendamentoRepositorio);
+
 	// UTILIZA O VINCULO CRIADO COM O REPOSITORIO
-	const agendamentos = agendamentoRepositorio.listarTodos();
+	const agendamentos = await agendamentoRepositorio.find();
 
 	return response.json(agendamentos);
 });
 
-agendamentosRota.post('/', (request, response) => {
+agendamentosRota.post('/', async (request, response) => {
 	// BUSCA PELO TIPO DE ACAO DO throw (Error)
 	try {
 		// RECUPERA AS INFORMACOES NO request.body
@@ -26,10 +29,10 @@ agendamentosRota.post('/', (request, response) => {
 		const converterHorario = parseISO(data);
 
 		// VINCULO DO SERVICO COM A ROTA
-		const criarAgendamento = new CriarAgendamentoServico(agendamentoRepositorio);
+		const criarAgendamento = new CriarAgendamentoServico();
 
 		// ENVIA OS DADOS PARA O SERVICO VINCULADO
-		const agendamento = criarAgendamento.execute({
+		const agendamento = await criarAgendamento.execute({
 			profissional,
 			data: converterHorario,
 		});

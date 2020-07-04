@@ -12,6 +12,7 @@ export default class CriarAgendamento1593735231745 implements MigrationInterface
 						type: 'varchar', // TIPO PARA DADOS COMPLEXO
 						isPrimary: true, // COLUNA PRINCIPAL
 						generationStrategy: 'uuid', // DEFINE O TIPO DE DADO
+						default: 'uuid_generate_v4()', // ADICIONA A FUNCAO DO uuidv4
 					},
 					{
 						name: 'profissional',
