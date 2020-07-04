@@ -21,6 +21,7 @@
 	"rules": {
 		"no-console": "off", // PERMITE UTILIZAR console.log
 		"class-methods-use-this": "off", // DESATIVA A UTILZACAO DO this
+		"camelcase": "off", // DESATIVA REGRAS NA UTILIZACAO DE _
 		"prettier/prettier": "error",
 		"import/extensions": [
 			"error",

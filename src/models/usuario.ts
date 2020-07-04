@@ -20,9 +20,11 @@ class Usuario {
 	@Column()
 	senha: string;
 
+	// EXTENCAO DE GERACAO DE DATA E HORA AUTOMATICA NA CRIACAO
 	@CreateDateColumn()
 	criacao: Date;
 
+	// EXTENCAO DE GERACAO DE DATA E HORA AUTOMATICA NA ALTERCAO
 	@UpdateDateColumn()
 	alteracao: Date;
 }

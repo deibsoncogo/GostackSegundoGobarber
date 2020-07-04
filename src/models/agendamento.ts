@@ -5,9 +5,13 @@ import {
 	PrimaryGeneratedColumn,
 	CreateDateColumn,
 	UpdateDateColumn,
+	ManyToOne,
+	JoinColumn,
 } from 'typeorm';
 
 // import { uuid } from 'uuidv4';
+
+import UsuarioModelo from './usuario'; // INSTANCIA DA CLASSE USUARIO
 
 // O Decorator (@) COM O Entity CRIAR O VINCULO COM O BANCO DE DADOS
 // ESTE METODO CRIA UM Constructor AUTOMATICAMENTE
@@ -19,7 +23,12 @@ class Agendamento {
 
 	// DEFINE QUE E UMA COLUNA TIPO STRING
 	@Column()
-	profissional: string;
+	profissional_id: string;
+
+	// CRIA UM RELACIONAMENTO COM TODOS DADOS DO OUTRO BANCO DE DADOS
+	@ManyToOne(() => UsuarioModelo) // DEFINE QUANTIDADE DE VEZES QUE PODE SER RELACIONADO
+	@JoinColumn({ name: 'profissional_id' }) // DEFINE QUAL COLUNA IDENTIFICA O USUARIO
+	profissional: UsuarioModelo; // PROPRIEDADE
 
 	// DEFINE QUE E UMA COLUNA TIPO TIMESTAMP
 	@Column('timestamp with time zone')

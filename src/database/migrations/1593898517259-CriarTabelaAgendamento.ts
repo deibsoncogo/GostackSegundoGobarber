@@ -9,7 +9,7 @@ export default class CriarTabelaAgendamento1593898517259 implements MigrationInt
 				columns: [
 					{
 						name: 'id', // NOME DA COLUNA
-						type: 'varchar', // TIPO PARA DADOS COMPLEXO
+						type: 'uuid', // TIPO PARA DADOS COMPLEXO
 						isPrimary: true, // COLUNA PRINCIPAL
 						generationStrategy: 'uuid', // DEFINE O TIPO DE DADO
 						default: 'uuid_generate_v4()', // ADICIONA A FUNCAO DO uuidv4
