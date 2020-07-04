@@ -1,5 +1,11 @@
 // CRIACAO DA TIPAGEM DOS DADOS GLOBALMENTE
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+	Entity,
+	Column,
+	PrimaryGeneratedColumn,
+	CreateDateColumn,
+	UpdateDateColumn,
+} from 'typeorm';
 
 // import { uuid } from 'uuidv4';
 
@@ -18,6 +24,12 @@ class Agendamento {
 	// DEFINE QUE E UMA COLUNA TIPO TIMESTAMP
 	@Column('timestamp with time zone')
 	data: Date;
+
+	@CreateDateColumn()
+	criacao: Date;
+
+	@UpdateDateColumn()
+	alteracao: Date;
 
 	// ESTE METODO SERVE PARA CRIAR NOVAS INFORMACOES
 	// Omit SERVE PARA FALAR QUE CERTO ITEM NAO E PREENCHIDO PELO USUARIO

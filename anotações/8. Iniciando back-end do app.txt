@@ -141,3 +141,17 @@ Para um funcionamento correto do Decorator temos que instalar a dependencia abai
 	yarn add reflect-metadata
 
 Nas configurações ormconfig.json devemos informar onde estão as entidades
+
+----> 2. Cadastro de usuários
+--> Model e migration de usuários
+Para criar a tabela de usuários usamos o seguinte comando para assim criar a migration
+que será responsavel pela criação, também mudaremos o nome da criado de agendamentos
+	yarn typeorm migration:create -n CriarTabelaUsuario
+	yarn typeorm migration:create -n CriarTabelaAgendamento
+
+A propriedade isNullable possui o padrão de não permitir campos em banco
+Devemos definir o valor de default para todos dados alimentado pelo sistema
+
+É altamente recomendado criar as duas colunas abaixo
+	created_at: Ou criação que registrará o horário de data de quando o dado foi criado
+	updated_at: Ou alteração que vai salvar o quando foi realizado a última alteração

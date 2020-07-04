@@ -1,6 +1,6 @@
 import { MigrationInterface, QueryRunner, Table } from 'typeorm';
 
-export default class CriarAgendamento1593735231745 implements MigrationInterface {
+export default class CriarTabelaAgendamento1593898517259 implements MigrationInterface {
 	// METODO PARA GERAR CRIACOES E ALTERACOES
 	public async up(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.createTable(
@@ -23,6 +23,16 @@ export default class CriarAgendamento1593735231745 implements MigrationInterface
 						name: 'data',
 						type: 'timestamp with time zone',
 						isNullable: false,
+					},
+					{
+						name: 'criacao',
+						type: 'timestamp',
+						default: 'now()', // DEVEMOS DEFINIR ESTE VALOR PARA AS COLUNA AUTOMATICAS
+					},
+					{
+						name: 'alteracao',
+						type: 'timestamp',
+						default: 'now()',
 					},
 				],
 			}),
