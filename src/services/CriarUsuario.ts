@@ -1,4 +1,5 @@
 import { getRepository } from 'typeorm';
+import { hash } from 'bcryptjs';
 
 import UsuarioModelo from '../models/usuario';
 
@@ -24,15 +25,21 @@ export default class CriarUsuario {
 			throw new Error('Email já cadastrado');
 		}
 
+		// CRIA UMA CRIPTOGRAFIA DE TAMANHO 4
+		const criptografarSenha = await hash(senha, 4);
+
 		// CRIA ESTAS INFORMACOES NO BANCO DE DADOS
 		const usuario = usuarioRepositorio.create({
 			nome,
 			email,
-			senha,
+			senha: criptografarSenha, // SUBSTITUI A SENHA PARA A CRIPTOGRAFADA
 		});
 
 		// SALVA AS ALTERACOES QUE EXISTE NO BANCO DE DADOS
 		await usuarioRepositorio.save(usuario);
+
+		// REMOVE A INFORMACAO SENHA PARA O RETORNO DO USUARIO
+		delete usuario.senha;
 
 		// RETORNA AS INFORMACOES PARA A ROTA
 		return usuario;
