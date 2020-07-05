@@ -5,7 +5,7 @@ export default class CriarTabelaAgendamento1593898517259 implements MigrationInt
 	public async up(queryRunner: QueryRunner): Promise<void> {
 		await queryRunner.createTable(
 			new Table({
-				name: 'agendamento', // NOME DA TABELA
+				name: 'agendamentos', // NOME DA TABELA
 				columns: [
 					{
 						name: 'id', // NOME DA COLUNA
@@ -41,6 +41,6 @@ export default class CriarTabelaAgendamento1593898517259 implements MigrationInt
 
 	public async down(queryRunner: QueryRunner): Promise<void> {
 		// METODO PARA DESFAZER ITENS DO METODO up
-		await queryRunner.dropTable('agendamento');
+		await queryRunner.dropTable('agendamentos');
 	}
 }
