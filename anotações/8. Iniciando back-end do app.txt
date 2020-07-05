@@ -198,3 +198,20 @@ A propria dependencia de criptografia fornece uma opção de comparação
 	compare
 
 Nesta aula criamos somente a verificação se os dados estão corretos
+
+--> Gerando token JWT
+Para criar o token precisamos da depencia abaixo e de sua tipagem
+	yarn add jsonwebtoken
+	yarn add @types/jsonwebtoken -D
+
+Se o comando não retornar uma Promise não precisa do comando await
+O payload é muito utilizado para informar as premições que o usuário possui
+
+Não devemos colocar informacoes importante como senha no payload pois mesmo sendo
+criptografado qualquer um pode descriptogravar o token
+
+O site MD5 gera um um código a partir de uma palavra chave
+	http://www.md5.cz/
+
+O site JWT decodifica as informações do token, iat é quando foi criado
+	https://jwt.io/

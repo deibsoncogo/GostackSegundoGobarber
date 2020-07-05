@@ -10,12 +10,12 @@ secaoRota.post('/', async (request, response) => {
 
 		const criarSecao = new CriarSecaoServico();
 
-		const { emailValido } = await criarSecao.execute({
+		const { usuario, token } = await criarSecao.execute({
 			email,
 			senha,
 		});
 
-		return response.json({ emailValido });
+		return response.json({ usuario, token });
 	} catch (err) {
 		return response.status(400).json({ error: err.message });
 	}
