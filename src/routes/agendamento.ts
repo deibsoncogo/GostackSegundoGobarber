@@ -5,21 +5,21 @@ import { parseISO } from 'date-fns';
 import AgendamentoRepositorio from '../repositories/agendamento';
 import CriarAgendamentoServico from '../services/CriarAgendamento';
 
-const agendamentosRota = Router();
+const agendamentoRota = Router();
 
 // VINCULA O REPOSITORIO COM A ROTA
 // const agendamentoRepositorio = new AgendamentoRepositorio();
 
-agendamentosRota.get('/', async (request, response) => {
+agendamentoRota.get('/', async (request, response) => {
 	const agendamentoRepositorio = getCustomRepository(AgendamentoRepositorio);
 
 	// UTILIZA O VINCULO CRIADO COM O REPOSITORIO
-	const agendamentos = await agendamentoRepositorio.find();
+	const agendamento = await agendamentoRepositorio.find();
 
-	return response.json(agendamentos);
+	return response.json(agendamento);
 });
 
-agendamentosRota.post('/', async (request, response) => {
+agendamentoRota.post('/', async (request, response) => {
 	// BUSCA PELO TIPO DE ACAO DO throw (Error)
 	try {
 		// RECUPERA AS INFORMACOES NO request.body
@@ -45,4 +45,4 @@ agendamentosRota.post('/', async (request, response) => {
 	}
 });
 
-export default agendamentosRota;
+export default agendamentoRota;

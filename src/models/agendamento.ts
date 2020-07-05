@@ -15,7 +15,7 @@ import UsuarioModelo from './usuario'; // INSTANCIA DA CLASSE USUARIO
 
 // O Decorator (@) COM O Entity CRIAR O VINCULO COM O BANCO DE DADOS
 // ESTE METODO CRIA UM Constructor AUTOMATICAMENTE
-@Entity('agendamentos')
+@Entity('agendamento')
 class Agendamento {
 	// DEFINE COMO COLUNA PRINCIPAL E QUE É GERADA AUTOMATICAMENTE PELO UUID
 	@PrimaryGeneratedColumn('uuid')

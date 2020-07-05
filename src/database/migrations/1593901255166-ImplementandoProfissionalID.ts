@@ -4,11 +4,11 @@ export default class ImplementandoProfissionalID1593901255166
 	implements MigrationInterface {
 	public async up(queryRunner: QueryRunner): Promise<void> {
 		// REALIZA A EXCLUCAO DA COLUNA INFORMADA
-		await queryRunner.dropColumn('agendamentos', 'profissional');
+		await queryRunner.dropColumn('agendamento', 'profissional');
 
 		// CRIA UMA NOVA COLUNA
 		await queryRunner.addColumn(
-			'agendamentos',
+			'agendamento',
 			new TableColumn({
 				name: 'profissional_id',
 				type: 'uuid',
@@ -18,12 +18,12 @@ export default class ImplementandoProfissionalID1593901255166
 
 		// CRIA UMA CHAVE ESTRANGEIRA (BANCO DE DADOS VINCULADO)
 		await queryRunner.createForeignKey(
-			'agendamentos',
+			'agendamento',
 			new TableForeignKey({
 				name: 'AgendamentoProfissional', // CRIA UM NOME PARA A CHAVE ESTRANGEIRA
 				columnNames: ['profissional_id'], // COLUNA QUE VAI RECEBER A INFORMCAO
 				referencedColumnNames: ['id'], // INFORMACAO A SER ENVIADA
-				referencedTableName: 'usuarios', // DE ONDE VAI TIRAR A INFORMACAO
+				referencedTableName: 'usuario', // DE ONDE VAI TIRAR A INFORMACAO
 				// AO ECLUIR A INFORMACAO NA TABELA PRINCIPAL AQUI FICARA EM BRANCO
 				onDelete: 'SET NULL',
 				// AO ALTERAR A INFORMACAO NA TABELA PRINCIPAL AQUI SERA ATUALIZADO
@@ -35,14 +35,14 @@ export default class ImplementandoProfissionalID1593901255166
 	public async down(queryRunner: QueryRunner): Promise<void> {
 		// PARA DESFAZER O up TEMOS QUE COMECAR PELO ULTIMO COMANDO
 		// DESFAZ A CHAVE ESTRANGEIRA
-		await queryRunner.dropForeignKey('agendamentos', 'AgendamentoProfissional');
+		await queryRunner.dropForeignKey('agendamento', 'AgendamentoProfissional');
 
 		// DESFAZ A COLUNA CRIADA
-		await queryRunner.dropColumn('agendamentos', 'profissional_id');
+		await queryRunner.dropColumn('agendamento', 'profissional_id');
 
 		// CRIA A COLUNA EXCLUIDA
 		await queryRunner.addColumn(
-			'agendamentos',
+			'agendamento',
 			new TableColumn({
 				name: 'profissional',
 				type: 'varchar',

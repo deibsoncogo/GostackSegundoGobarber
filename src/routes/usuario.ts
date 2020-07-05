@@ -2,9 +2,9 @@ import { Router } from 'express';
 
 import CriarUsuarioServico from '../services/CriarUsuario';
 
-const usuariosRota = Router();
+const usuarioRota = Router();
 
-usuariosRota.post('/', async (request, response) => {
+usuarioRota.post('/', async (request, response) => {
 	try {
 		// RECEBE AS INFORMACOES RECEBIDA
 		const { nome, email, senha } = request.body;
@@ -26,4 +26,4 @@ usuariosRota.post('/', async (request, response) => {
 	}
 });
 
-export default usuariosRota;
+export default usuarioRota;
