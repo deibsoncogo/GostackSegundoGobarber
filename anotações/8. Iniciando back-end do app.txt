@@ -179,3 +179,15 @@ A dependencia abaixo serve para trabalhar com criptografia
 
 Temos que instalar também a tipagem desta dependencia
 	yarn add -D @types/bcryptjs
+
+----> 3. Autenticação
+--> Conceitos de JWT
+O JWT é serviço de autenticação pelo metodo Json
+Toda vez que ele é executado ele devolve um arquivo chamado de Token JWT
+
+Este arquivo possui um código que pode ser separado em 3 grupos
+	Até o primeiro ponto (Headers): É o tipo da criptografia
+	Do primeiro ao segundo ponto (Payload): São os dados recuperado
+	Do segundo ao fim (Assinatura): É o que certifica que nada foi alterado
+
+Não podemos colocar informações importantes no Token pois é fácil descriptograr ele
