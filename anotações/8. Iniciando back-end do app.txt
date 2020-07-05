@@ -172,3 +172,10 @@ Devemos criar repositórios quando o TypeORM não possuir aquela regra de servi�
 O TypeORM possui dois tipos de repositórios
 	getCustomRepository: Para quando criamos um repositório do zero
 	getRepository: Para quando utilizamos somente os já existente
+
+--> Criptografia de senha
+A dependencia abaixo serve para trabalhar com criptografia
+	yarn add bcryptjs
+
+Temos que instalar também a tipagem desta dependencia
+	yarn add -D @types/bcryptjs
