@@ -3,12 +3,14 @@ import { Router } from 'express';
 // IMPORTACAO DAS ROTAS SECUNDARIAS
 import AgendamentoRota from './agendamento';
 import UsuarioRota from './usuario';
+import SecaoRota from './secao';
 
 const rota = Router();
 
 // A APLICACAO DO METODO use PERMITE QUE VARIOS OUTROS METODOS SEJAM UTILIZADOS
 rota.use('/agendamentos', AgendamentoRota);
 rota.use('/usuarios', UsuarioRota);
+rota.use('/secoes', SecaoRota);
 
 export default rota;
 

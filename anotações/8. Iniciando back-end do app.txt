@@ -191,3 +191,10 @@ Este arquivo possui um código que pode ser separado em 3 grupos
 	Do segundo ao fim (Assinatura): É o que certifica que nada foi alterado
 
 Não podemos colocar informações importantes no Token pois é fácil descriptograr ele
+
+--> Validando credenciais
+Alguns comandos como findOne transforma a variavel em um objeto
+A propria dependencia de criptografia fornece uma opção de comparação
+	compare
+
+Nesta aula criamos somente a verificação se os dados estão corretos
