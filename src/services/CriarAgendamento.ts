@@ -6,7 +6,7 @@ import AgendamentoRepositorio from '../repositories/agendamento';
 
 // CRIANDO TIPAGEM PARA O RECEBIMENTO DAS INFORMACOES
 interface RequestDTO {
-	profissional: string;
+	profissional_id: string;
 	data: Date;
 }
 
@@ -21,7 +21,7 @@ class CriarAgendamento {
 	}
 	 */
 
-	public async execute({ profissional, data }: RequestDTO): Promise<AgendamentoModelo> {
+	public async execute({ profissional_id, data }: RequestDTO): Promise<AgendamentoModelo> {
 		// PREMITE A UTILIZACAO DOS REPOSITORIOS
 		const agendamentoRepositorio = getCustomRepository(AgendamentoRepositorio);
 
@@ -45,7 +45,7 @@ class CriarAgendamento {
 		// UTILIZANDO O METODO DE OBJETO PARA MANIPULAR OS DADOS
 		// O METODO SOMENTE CRIA OS DADOS
 		const agendamento = agendamentoRepositorio.create({
-			profissional,
+			profissional_id,
 			data: arrendondarHorario,
 		});
 

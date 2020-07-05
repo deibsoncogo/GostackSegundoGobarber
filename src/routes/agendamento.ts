@@ -23,7 +23,7 @@ agendamentosRota.post('/', async (request, response) => {
 	// BUSCA PELO TIPO DE ACAO DO throw (Error)
 	try {
 		// RECUPERA AS INFORMACOES NO request.body
-		const { profissional, data } = request.body;
+		const { profissional_id, data } = request.body;
 
 		// CONVERTE O FORMATO DO HORARIO
 		const converterHorario = parseISO(data);
@@ -33,7 +33,7 @@ agendamentosRota.post('/', async (request, response) => {
 
 		// ENVIA OS DADOS PARA O SERVICO VINCULADO
 		const agendamento = await criarAgendamento.execute({
-			profissional,
+			profissional_id,
 			data: converterHorario,
 		});
 

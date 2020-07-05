@@ -164,3 +164,11 @@ Quando trabalhamos com banco de dados relacionados precisamos cria uma chave est
 dentro da migration
 
 O principio Keep It Semple & Stupid (KISS) diz devemos deixar simples a API
+
+--> Criação de registros
+Aqui revimos todos o conteudo sobre rotas, servicos e repositórios
+Devemos criar repositórios quando o TypeORM não possuir aquela regra de serviço
+
+O TypeORM possui dois tipos de repositórios
+	getCustomRepository: Para quando criamos um repositório do zero
+	getRepository: Para quando utilizamos somente os já existente
