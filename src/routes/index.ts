@@ -7,8 +7,8 @@ import UsuarioRota from './usuario';
 const rota = Router();
 
 // A APLICACAO DO METODO use PERMITE QUE VARIOS OUTROS METODOS SEJAM UTILIZADOS
-rota.use('/agendamento', AgendamentoRota);
-rota.use('/usuario', UsuarioRota);
+rota.use('/agendamentos', AgendamentoRota);
+rota.use('/usuarios', UsuarioRota);
 
 export default rota;
 
