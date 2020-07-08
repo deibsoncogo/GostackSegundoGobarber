@@ -3,3 +3,8 @@ Rocketseat Bootcamp GoStack - Nível 2
 ------> 7. Primeiro projeto com Node.JS
 Nessa fase vamos aprender a configurar um projeto do total zero utilizando Node.js e
 TypeScript incluindo ferramentas como ts-node-dev, ESLint, Prettier, EditorConfig
+
+------> 8. Iniciando back-end do app
+Nessa etapa vamos continuar os aprendizados com Node.js aproveitando o projeto
+desenvolvido até agora para começar a trabalhar com conceitos de banco de dados,
+autenticação, autorização, etc.

@@ -42,9 +42,9 @@ Verifica uma porta expeficica, se tiver direcionada vai aparecer o programa que 
 Mostra todas portas em utilização
 	netstat -o -a -b
 
-Para criar a instancia devemos utilizar o comando abaixo
+Para criar o container devemos utilizar o comando abaixo
 	docker run --name NOME -e POSTGRES_USER=LOGIN POSTGRES_PASSWORD=SENHA -p PORTA:PORTA -d IMAGEM
-	docker run --name gostack_postgres -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+	docker run --name gostack-postgres -e POSTGRES_USER=docker -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
 
 A segunda porta precisa ser 5432 pois está é a que o Docker utiliza, já a primeira será
 a porta que o sistema utiliza onde para está podemos escolher qual usar
