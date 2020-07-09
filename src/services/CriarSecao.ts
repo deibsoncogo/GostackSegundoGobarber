@@ -2,7 +2,7 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
-import TokenConfiguracao from '../config/token';
+import AutenticacaoConfiguracao from '../config/autenticacao';
 import UsuarioModelo from '../models/usuario';
 
 interface Request {
@@ -39,7 +39,7 @@ export default class CriarSecao {
 		delete usuario.senha;
 
 		// METODO PARA FACILITAR A MANIPULACAO DOS DADOS
-		const { segredo, validade } = TokenConfiguracao.create;
+		const { segredo, validade } = AutenticacaoConfiguracao.tokenjwt;
 
 		// PRECISAMOS INFORMAR UMA SENHA PARA O TOKEN
 		const token = sign({}, segredo, {

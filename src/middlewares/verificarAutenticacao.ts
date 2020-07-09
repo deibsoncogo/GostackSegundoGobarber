@@ -4,7 +4,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
-import TokenConfiguracao from '../config/token';
+import AutenticacaoConfiguracao from '../config/autenticacao';
 
 interface TokenPayload {
 	iat: number; // DATA AUTOMATICA DE CRIACAO
@@ -31,7 +31,7 @@ export default function autenticarSecao(
 	const [, token] = tokenRecebido.split(' ');
 
 	try {
-		const tokenDecodificado = verify(token, TokenConfiguracao.create.segredo);
+		const tokenDecodificado = verify(token, AutenticacaoConfiguracao.tokenjwt.segredo);
 
 		// as OBRIGA A UTILIZACAO DA INTERFACE INFORMADA
 		const { sub } = tokenDecodificado as TokenPayload;

@@ -230,3 +230,37 @@ As propriedades de uma extenção salva os dados quando pedimos
 Existe um metodo de criar campos unicos para salvar estes dados
 Como exemplo temos o seguinte arquivo:
 	src/@types/express.d.ts
+
+----> 4. Upload de imagens
+--> Upload de arquivos
+Para salvar as fotos dos usuários (Avatar) iremos cria a seguinte migration para ela
+alterar a tabela usuarios adicionando uma coluna para fotos
+	yarn typeorm migration:create -n AdiconarAvatarTabelaUsuarios
+
+Não devemos salvar arquivos dentro do banco de dados pois eles iram sobrecarregar o
+banco de dados, com isso salvamos o caminho de onde o arquivo está salvo
+
+Ao criar uma coluna nova devemos permitir que os cadastros anteriores tenham o campo
+vazio, caso contrário na mesma migration temos que criar um comando para emprencher
+com alguma informação para não gerar um erro
+	isNullable: true // PERMITE CAMPO VAZIO
+
+Para lidar com upload de arquivos temos a depencia de middleware abaixo
+	yarn add multer
+	yarn add @types/multer -D
+
+O primeiro comando faz ignorar tudo dentro da pasta e no segundo cria uma exceção
+	temp/*
+	!temp/.gitkeep
+
+Devemos mudar o nome dos arquivos que sofreram upload caso contrairo pode gerar
+duplicidade causando um erro
+
+O multer possui uma regra de quantidade de arquivos
+	any: Todos exceto o tipo none
+	array: Varios arquivos de um tipo
+	fields: Varios arquivos de varios tipos
+	none: Nenhum arquivo
+	single: Um arquivo
+
+Para enviar um arquivo pelo Insomnia usamos a guia Multipart

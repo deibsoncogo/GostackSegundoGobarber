@@ -1,8 +1,12 @@
 import { Router } from 'express';
+import multer from 'multer';
 
+import UploadConfiguracao from '../config/upload';
+import VerificarAutenticacaoMiddleware from '../middlewares/verificarAutenticacao';
 import CriarUsuarioServico from '../services/CriarUsuario';
 
 const usuarioRota = Router();
+const multerFinal = multer(UploadConfiguracao);
 
 usuarioRota.post('/', async (request, response) => {
 	try {
@@ -25,5 +29,18 @@ usuarioRota.post('/', async (request, response) => {
 		return response.status(400).json({ error: err.message });
 	}
 });
+
+// QUANDO QUEREMOS ALTERAR SOMENTE UMA INFROMACAO USAMOS patch
+usuarioRota.patch(
+	'/avatar',
+	// O MIDDLEWARE SERA ATIVADO SOMENTE NESTE METODO
+	VerificarAutenticacaoMiddleware,
+	// ATIVA A DEPENCIA TIPO MIDDLEWARE PARA LIDAR COM UPLOAD DE ARQUIVOS
+	multerFinal.single('imagem'),
+	async (request, response) => {
+		// RETORNAR AS INFROMACOES DO ARQUIVO
+		return response.json(request.file);
+	},
+);
 
 export default usuarioRota;
