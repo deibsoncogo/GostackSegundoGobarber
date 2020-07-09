@@ -45,7 +45,7 @@ agendamentoRota.post('/', async (request, response) => {
 		return response.json(agendamento);
 		// AO ENCONTRAR O TIPO INFORMADO (err) EXECUTA O COMANDO ABAIXO
 	} catch (err) {
-		return response.status(400).json({ error: err.message });
+		return response.status(err.status).json({ erro: err.mensagem });
 	}
 });
 

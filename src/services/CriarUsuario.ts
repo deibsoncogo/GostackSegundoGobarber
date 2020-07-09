@@ -1,6 +1,7 @@
 import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
 
+import GeralErro from '../errors/geral';
 import UsuarioModelo from '../models/usuario';
 
 interface Request {
@@ -22,7 +23,7 @@ export default class CriarUsuario {
 
 		// SE ACHAR ESTE EMAIL NO BANCO DE DADOS EXECUTAR O COMANDO DE ERRO
 		if (emailDuplicado) {
-			throw new Error('Email já cadastrado');
+			throw new GeralErro('Email já cadastrado', 400);
 		}
 
 		// CRIA UMA CRIPTOGRAFIA DE TAMANHO 4

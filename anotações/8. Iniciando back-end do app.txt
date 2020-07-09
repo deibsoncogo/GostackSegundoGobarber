@@ -274,3 +274,8 @@ Utilizamos muitas dependencias para realizar o upload do avatar
 
 --> Servindo arquivos estáticos
 Criação de uma rota para mostrar os arquivos de avatar salvo
+
+----> 5. Tratando exceções
+--> Criando classe de erro
+Exception handling é lidar com excessões, lidar com erros
+O index de erro vai permitir mostrar o código HTTP real quando tiver

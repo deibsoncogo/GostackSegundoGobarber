@@ -1,6 +1,7 @@
 import { getCustomRepository } from 'typeorm';
 import { startOfHour } from 'date-fns';
 
+import GeralErro from '../errors/geral';
 import AgendamentoModelo from '../models/agendamento';
 import AgendamentoRepositorio from '../repositories/agendamento';
 
@@ -35,7 +36,7 @@ class CriarAgendamento {
 		// AQUI NAO TEMOS ACESSO AO RESPONSE OU REQUEST DO USUARIO
 		// COM ISSO CRIAMOS UM throw TIPO Error
 		if (horarioDuplicado) {
-			throw Error('Horário já reservado');
+			throw new GeralErro('Horário já reservado', 400);
 		}
 
 		// REALIZA O SALVAMENTO NO BANCO DE DADOS TEMPORARIO SEM UM CONSTRUCTOR

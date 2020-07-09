@@ -17,7 +17,9 @@ secaoRota.post('/', async (request, response) => {
 
 		return response.json({ usuario, token });
 	} catch (err) {
-		return response.status(400).json({ error: err.message });
+		// METODO UTILIZADO SEM UMA CLASSE PARA LIDAR COM ERROS
+		// return response.status(400).json({ error: err.message });
+		return response.status(err.status).json({ erro: err.mensagem });
 	}
 });
 

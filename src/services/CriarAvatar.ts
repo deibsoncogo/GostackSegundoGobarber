@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm';
 import path from 'path';
 import fs from 'fs';
 
+import GeralErro from '../errors/geral';
 import UploadConfiguracao from '../config/upload';
 import UsuarioModelo from '../models/usuario';
 
@@ -18,7 +19,7 @@ export default class CriarAvatar {
 		const usuario = await usuarioRepositorio.findOne(usuario_id);
 
 		if (!usuario) {
-			throw new Error('Usuario informado não encontrado');
+			throw new GeralErro('Usuario informado não encontrado', 401);
 		}
 
 		// VERIFICA SE EXISTE UMA INFORMACAO NA COLUNA AVATAR

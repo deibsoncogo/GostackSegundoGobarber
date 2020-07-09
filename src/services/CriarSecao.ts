@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
+import GeralErro from '../errors/geral';
 import AutenticacaoConfiguracao from '../config/autenticacao';
 import UsuarioModelo from '../models/usuario';
 
@@ -26,14 +27,16 @@ export default class CriarSecao {
 		});
 
 		if (!usuario) {
-			throw new Error('Email inválido');
+			// METODO UTILIZADO SEM UMA CLASSE PARA LIDAR COM ERROS
+			// throw new Error('Email inválido');
+			throw new GeralErro('Email inválido', 401);
 		}
 
 		// COMPARA UMA SENHA NAO CRIPTOGRAFADA COM UMA SIM
 		const senhaValida = await compare(senha, usuario.senha);
 
 		if (!senhaValida) {
-			throw new Error('Senha inválida');
+			throw new GeralErro('Senha inválida', 401);
 		}
 
 		delete usuario.senha;

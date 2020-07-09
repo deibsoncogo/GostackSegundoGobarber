@@ -27,7 +27,7 @@ usuarioRota.post('/', async (request, response) => {
 		// ENVIA PARA O USUARIO O RESUTLADO DA EXECUCAO DESTA ROTA
 		return response.json(usuario);
 	} catch (err) {
-		return response.status(400).json({ error: err.message });
+		return response.status(err.status).json({ erro: err.mensagem });
 	}
 });
 

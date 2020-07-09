@@ -4,6 +4,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
+import GeralErro from '../errors/geral';
 import AutenticacaoConfiguracao from '../config/autenticacao';
 
 interface TokenPayload {
@@ -23,7 +24,7 @@ export default function autenticarSecao(
 
 	// VERIFICA SE EXISTE ALGUMA INFORMACAO
 	if (!tokenRecebido) {
-		throw new Error('Token JWT não informado');
+		throw new GeralErro('Token JWT não informado', 401);
 	}
 
 	// DIFIDE A INFORMACAO NO CABECALHO PELO ESPACO CRIANDO UM ARRAY
@@ -43,6 +44,6 @@ export default function autenticarSecao(
 
 		return next();
 	} catch (err) {
-		throw new Error('Token JWT inválido');
+		throw new GeralErro('Token JWT inválido', 401);
 	}
 }
