@@ -264,3 +264,10 @@ O multer possui uma regra de quantidade de arquivos
 	single: Um arquivo
 
 Para enviar um arquivo pelo Insomnia usamos a guia Multipart
+
+--> Atualizando avatar
+Utilizamos muitas dependencias para realizar o upload do avatar
+	import path from 'path'
+	import fs from 'fs'
+	import multer from 'multer'
+	import crypto from 'crypto'
