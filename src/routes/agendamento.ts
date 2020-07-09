@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { parseISO } from 'date-fns';
 
+import VerificarTokenMiddlewares from '../middlewares/verificarToken';
 import AgendamentoRepositorio from '../repositories/agendamento';
 import CriarAgendamentoServico from '../services/CriarAgendamento';
 
@@ -9,6 +10,9 @@ const agendamentoRota = Router();
 
 // VINCULA O REPOSITORIO COM A ROTA
 // const agendamentoRepositorio = new AgendamentoRepositorio();
+
+// ESTE METODO E EXECUTADO TODA VEZ QUE OUTRO METODO ABAIXO E CHAMADO
+agendamentoRota.use(VerificarTokenMiddlewares);
 
 agendamentoRota.get('/', async (request, response) => {
 	const agendamentoRepositorio = getCustomRepository(AgendamentoRepositorio);

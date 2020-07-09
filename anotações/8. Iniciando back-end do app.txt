@@ -215,3 +215,18 @@ O site MD5 gera um um código a partir de uma palavra chave
 
 O site JWT decodifica as informações do token, iat é quando foi criado
 	https://jwt.io/
+
+--> Rotas autenticadas
+O metodo mais fácil de realizar a autenticação é com um middleware
+
+O token deve ir no cabeçalho da requisição, não junto com as outras informações, e
+algumas pessoas adicionam a palavra abaixo na frente do token
+	Bearer
+
+O Insominia tem uma ferramenta exclusiva para atutenticação com token, este campo fica
+na segunda aba do programa chamado de Bearer Token
+
+As propriedades de uma extenção salva os dados quando pedimos
+Existe um metodo de criar campos unicos para salvar estes dados
+Como exemplo temos o seguinte arquivo:
+	src/@types/express.d.ts

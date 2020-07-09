@@ -2,6 +2,7 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
+import TokenConfiguracao from '../config/token';
 import UsuarioModelo from '../models/usuario';
 
 interface Request {
@@ -28,7 +29,7 @@ export default class CriarSecao {
 			throw new Error('Email inválido');
 		}
 
-		// COMPARA UMA SENHA CRIPTOGRAFADA COM UMA NAO
+		// COMPARA UMA SENHA NAO CRIPTOGRAFADA COM UMA SIM
 		const senhaValida = await compare(senha, usuario.senha);
 
 		if (!senhaValida) {
@@ -37,10 +38,13 @@ export default class CriarSecao {
 
 		delete usuario.senha;
 
+		// METODO PARA FACILITAR A MANIPULACAO DOS DADOS
+		const { segredo, validade } = TokenConfiguracao.create;
+
 		// PRECISAMOS INFORMAR UMA SENHA PARA O TOKEN
-		const token = sign({}, 'ad9fe8bfaa77d9808d582fe2eaa29262', {
+		const token = sign({}, segredo, {
 			subject: usuario.id, // ID DO USUARIO
-			expiresIn: '10d', // TEMPO DE VALIDADE DO TOKEN
+			expiresIn: validade, // TEMPO DE VALIDADE DO TOKEN
 		});
 
 		return {
