@@ -271,3 +271,6 @@ Utilizamos muitas dependencias para realizar o upload do avatar
 	import fs from 'fs'
 	import multer from 'multer'
 	import crypto from 'crypto'
+
+--> Servindo arquivos estáticos
+Criação de uma rota para mostrar os arquivos de avatar salvo
