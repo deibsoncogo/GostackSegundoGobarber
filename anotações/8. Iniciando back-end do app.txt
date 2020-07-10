@@ -279,3 +279,15 @@ Criação de uma rota para mostrar os arquivos de avatar salvo
 --> Criando classe de erro
 Exception handling é lidar com excessões, lidar com erros
 O index de erro vai permitir mostrar o código HTTP real quando tiver
+
+--> Lidando com erros
+O middleware para dar tratativa de erros deve receber 4 parametros
+Se o erro que a middleware captar for uma instancia do index de erros devemos ignorar
+
+O express não consegue passar para a frete a mensagem de erro quando utilisamos o
+async e await, para corrigir temos que utilizar a dependencia abaixo
+	yarn add express-async-errors
+
+Com este metodo não devemos utilizar os comandos abaixo
+	try
+	catch

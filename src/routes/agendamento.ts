@@ -24,29 +24,23 @@ agendamentoRota.get('/', async (request, response) => {
 });
 
 agendamentoRota.post('/', async (request, response) => {
-	// BUSCA PELO TIPO DE ACAO DO throw (Error)
-	try {
-		// RECUPERA AS INFORMACOES NO request.body
-		const { profissional_id, data } = request.body;
+	// RECUPERA AS INFORMACOES NO request.body
+	const { profissional_id, data } = request.body;
 
-		// CONVERTE O FORMATO DO HORARIO
-		const converterHorario = parseISO(data);
+	// CONVERTE O FORMATO DO HORARIO
+	const converterHorario = parseISO(data);
 
-		// VINCULO DO SERVICO COM A ROTA
-		const criarAgendamento = new CriarAgendamentoServico();
+	// VINCULO DO SERVICO COM A ROTA
+	const criarAgendamento = new CriarAgendamentoServico();
 
-		// ENVIA OS DADOS PARA O SERVICO VINCULADO
-		const agendamento = await criarAgendamento.execute({
-			profissional_id,
-			data: converterHorario,
-		});
+	// ENVIA OS DADOS PARA O SERVICO VINCULADO
+	const agendamento = await criarAgendamento.execute({
+		profissional_id,
+		data: converterHorario,
+	});
 
-		// LISTA OS DADOS SALVO ACIMA
-		return response.json(agendamento);
-		// AO ENCONTRAR O TIPO INFORMADO (err) EXECUTA O COMANDO ABAIXO
-	} catch (err) {
-		return response.status(err.status).json({ erro: err.mensagem });
-	}
+	// LISTA OS DADOS SALVO ACIMA
+	return response.json(agendamento);
 });
 
 export default agendamentoRota;

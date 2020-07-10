@@ -10,25 +10,21 @@ const usuarioRota = Router();
 const multerFinal = multer(UploadConfiguracao);
 
 usuarioRota.post('/', async (request, response) => {
-	try {
-		// RECEBE AS INFORMACOES RECEBIDA
-		const { nome, email, senha } = request.body;
+	// RECEBE AS INFORMACOES RECEBIDA
+	const { nome, email, senha } = request.body;
 
-		// CRIA UMA INSTANCIA PARA PODER USTILIZAR O COMANDOS DO ARQUIVO
-		const criarUsuario = new CriarUsuarioServico();
+	// CRIA UMA INSTANCIA PARA PODER USTILIZAR O COMANDOS DO ARQUIVO
+	const criarUsuario = new CriarUsuarioServico();
 
-		// ENVIA AS INFORMACOES PARA O ARQUIVO INSTANCIADO
-		const usuario = await criarUsuario.execute({
-			nome,
-			email,
-			senha,
-		});
+	// ENVIA AS INFORMACOES PARA O ARQUIVO INSTANCIADO
+	const usuario = await criarUsuario.execute({
+		nome,
+		email,
+		senha,
+	});
 
-		// ENVIA PARA O USUARIO O RESUTLADO DA EXECUCAO DESTA ROTA
-		return response.json(usuario);
-	} catch (err) {
-		return response.status(err.status).json({ erro: err.mensagem });
-	}
+	// ENVIA PARA O USUARIO O RESUTLADO DA EXECUCAO DESTA ROTA
+	return response.json(usuario);
 });
 
 // QUANDO QUEREMOS ALTERAR SOMENTE UMA INFROMACAO USAMOS patch
@@ -39,19 +35,15 @@ usuarioRota.patch(
 	// ATIVA A DEPENCIA TIPO MIDDLEWARE PARA LIDAR COM UPLOAD DE UM ARQUIVO
 	multerFinal.single('imagem'),
 	async (request, response) => {
-		try {
-			const criarAvatarServico = new CriarAvatarServico();
+		const criarAvatarServico = new CriarAvatarServico();
 
-			const usuario = await criarAvatarServico.execute({
-				usuario_id: request.usuario.id,
-				imagemAvatar: request.file.filename,
-			});
+		const usuario = await criarAvatarServico.execute({
+			usuario_id: request.usuario.id,
+			imagemAvatar: request.file.filename,
+		});
 
-			return response.json([usuario, request.file]);
-		} catch (err) {
-			return response.status(400).json({ error: err.message });
-		}
 		// RETORNAR AS INFROMACOES DO ARQUIVO
+		return response.json([usuario, request.file]);
 	},
 );
 
