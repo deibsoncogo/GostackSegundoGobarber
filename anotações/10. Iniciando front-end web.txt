@@ -1,0 +1,116 @@
+Rocketseat Bootcamp GoStack - Nível 3
+
+------> 10. Iniciando front-end web
+Durante esse módulo criaremos a versão web da aplicação GoBarber que será utilizada
+pelos usuários que prestam serviços dentro da aplicação
+
+----> 1. Estrutura das páginas
+--> Configurando Estrutura
+Neste momento iremos focar na criação do frontend
+Para criar os arquivos base usamos o seguinte comando
+	create-react-app nivel3-10 --template=typescript
+
+Alguns arquivos podemos excluir deixando somente estes
+  App.tsx
+  index.tsx
+	react-app-env.d.ts
+	setupTests.ts
+  index.html
+	robots.txt
+
+Primeiro instalamos a extensão do EditorConfig e depois criamos o arquivo de
+configuração do EditorConfig clicando o botão direito
+  root = true
+
+  [*]
+  indent_style = tab
+  indent_size = 2
+  charset = utf-8
+  trim_trailing_whitespace = true
+  insert_final_newline = true
+  end_of_line = crlf
+
+Está configuração serve para o ReactJS, para o React Native é diferente
+Agora devemos instalar a extensão e a dependencia como desenvolvedor do Eslint
+  yarn add eslint@6.8.0 -D
+
+Atenção a versão mais recente do Eslint está gerando conflitos
+
+Temos que remover a configuração abaixo do arquivo package.json
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+
+Para criar o arquivo de configuração do Eslint usamos o comando abaixo
+  yarn eslint --init
+
+Respondemos as perguntas e depois instalamos as dependencias que precisaremos
+  ? How would you like to use ESLint? To check syntax, find problems, and enforce code style
+	? What type of modules does your project use? JavaScript modules (import/export)
+	? Which framework does your project use? React
+	? Does your project use TypeScript? Yes
+	? Where does your code run? Browser
+	? How would you like to define a style for your project? Use a popular style guide
+	? Which style guide do you want to follow? Airbnb: https://github.com/airbnb/javascript
+	? What format do you want your config file to be in? JSON
+
+Depois de responder as perguntas acima teremos várias dependencias para instalar
+  yarn add eslint-plugin-react@^7.20.0 @typescript-eslint/eslint-plugin@latest eslint-config-airbnb@latest eslint-plugin-import@^2.21.2 eslint-plugin-jsx-a11y@^6.3.0 eslint-plugin-react-hooks@^2.3.0 @typescript-eslint/parser@latest -D
+
+Criamos o arquivo .eslintignore para o Eslint ignorar os arquivos listado
+	node_modules
+	build
+	dist
+
+Faz o React ler e entender os arquivos TypeScript
+  yarn add eslint-import-resolver-typescript -D
+
+Agora adicionamos as configurações abaixo no arquivo .eslint.json
+  "extends": [
+		"plugin:@typescript-eslint/recommended"
+  ],
+	"plugins": [
+		"react-hooks"
+	],
+  "rules": {
+		"react-hooks/rules-of-hooks": "error",
+		"react-hooks/exhaustive-deps": "warn",
+		"react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+		"import/prefer-default-export": "off",
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"ts": "never",
+				"tsx": "never"
+			}
+		]
+	},
+	"settings": {
+		"import/resolver": {
+			"typescript": {}
+		}
+	}
+
+Temos que instalar as seguintes depencias para utilizar o Prettier
+  yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+
+Agora devemos adicionar as seguintes configurações no arquivo .eslintrc.json
+  "extends": [
+  	"prettier/@typescript-eslint",
+		"plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  },
+
+Também criamos o arquivo prettier.config.js para poder configurar o Prettier
+  module.exports = {
+    singleQuote: true,
+    trailingComma: 'all',
+    arrowParens: 'avoid',
+    printWidth: 91,
+  }
