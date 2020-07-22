@@ -31,7 +31,7 @@ configuração do EditorConfig clicando o botão direito
   end_of_line = crlf
 
 Está configuração serve para o ReactJS, para o React Native é diferente
-Agora devemos instalar a extensão e a dependencia como desenvolvedor do Eslint
+Agora devemos instalar a extensão e a dependência como desenvolvedor do Eslint
   yarn add eslint@6.8.0 -D
 
 Atenção a versão mais recente do Eslint está gerando conflitos
@@ -44,7 +44,7 @@ Temos que remover a configuração abaixo do arquivo package.json
 Para criar o arquivo de configuração do Eslint usamos o comando abaixo
   yarn eslint --init
 
-Respondemos as perguntas e depois instalamos as dependencias que precisaremos
+Respondemos as perguntas e depois instalamos as dependências que precisaremos
   ? How would you like to use ESLint? To check syntax, find problems, and enforce code style
 	? What type of modules does your project use? JavaScript modules (import/export)
 	? Which framework does your project use? React
@@ -54,7 +54,7 @@ Respondemos as perguntas e depois instalamos as dependencias que precisaremos
 	? Which style guide do you want to follow? Airbnb: https://github.com/airbnb/javascript
 	? What format do you want your config file to be in? JSON
 
-Depois de responder as perguntas acima teremos várias dependencias para instalar
+Depois de responder as perguntas acima teremos várias dependências para instalar
   yarn add eslint-plugin-react@^7.20.0 @typescript-eslint/eslint-plugin@latest eslint-config-airbnb@latest eslint-plugin-import@^2.21.2 eslint-plugin-jsx-a11y@^6.3.0 eslint-plugin-react-hooks@^2.3.0 @typescript-eslint/parser@latest -D
 
 Criamos o arquivo .eslintignore para o Eslint ignorar os arquivos listado
@@ -114,3 +114,8 @@ Também criamos o arquivo prettier.config.js para poder configurar o Prettier
     arrowParens: 'avoid',
     printWidth: 91,
   }
+
+--> Estilos globais
+O melhor metodo de criar as estilisações é usando a dependência abaixo
+	yarn add styled-components
+	yarn add @types/styled-components -D
