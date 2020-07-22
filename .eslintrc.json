@@ -29,6 +29,7 @@
 		"prettier"
 	],
 	"rules": {
+		"react/jsx-indent": "off", // DESATIVA UMA REGRA DE RECUO PARA TSX
 		"prettier/prettier": "error",
 		"react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn",

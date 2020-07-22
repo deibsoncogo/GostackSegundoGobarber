@@ -92,7 +92,7 @@ Agora adicionamos as configurações abaixo no arquivo .eslint.json
 		}
 	}
 
-Temos que instalar as seguintes depencias para utilizar o Prettier
+Temos que instalar as seguintes dependências para utilizar o Prettier
   yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
 
 Agora devemos adicionar as seguintes configurações no arquivo .eslintrc.json
@@ -119,3 +119,14 @@ Também criamos o arquivo prettier.config.js para poder configurar o Prettier
 O melhor metodo de criar as estilisações é usando a dependência abaixo
 	yarn add styled-components
 	yarn add @types/styled-components -D
+
+--> Página de login
+Agora iremos criar todos os itens da página de login
+Para definir os icones usamos a dependência abaixo
+	yarn add react-icons
+
+E para lidar com cores iremos usar novamente esta dependência
+	yarn add polished
+
+Agora consulte o arquivo abaixo para verificar as configurações de estilo
+	src/pages/login/styles.ts
