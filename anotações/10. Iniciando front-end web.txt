@@ -130,3 +130,11 @@ E para lidar com cores iremos usar novamente esta dependência
 
 Agora consulte o arquivo abaixo para verificar as configurações de estilo
 	src/pages/login/styles.ts
+
+--> Isolando componentes
+Um isolamento de componente é a criação de um programa que fica escondida do resto
+do programa principal, um exemplo é a crição de um estilo para todos os botões
+
+Estas duas regras são desnessesárias quando utilisamos TypeScript
+	"react/jsx-props-no-spreading": "off"
+	"react/prop-types": "off"
