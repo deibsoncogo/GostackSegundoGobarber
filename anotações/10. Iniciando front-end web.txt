@@ -138,3 +138,7 @@ do programa principal, um exemplo é a crição de um estilo para todos os botõ
 Estas duas regras são desnessesárias quando utilisamos TypeScript
 	"react/jsx-props-no-spreading": "off"
 	"react/prop-types": "off"
+
+--> Página de cadastro
+Nesta aula simplismente duplicamos a página de login e realizamos algumas alterações
+para transformar ela na página de cadastro de usuários ou cabelereiro
