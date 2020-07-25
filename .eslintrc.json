@@ -32,6 +32,7 @@
 		"react/jsx-props-no-spreading": "off", // DESATIVA A NAO UTILIZACAO DE SPREADINGH
 		"react/prop-types": "off", // DESATIVA A UTILIZACAO DE TIPAGEM EM PROPRIEDADES
 		"react/jsx-indent": "off", // DESATIVA UMA REGRA DE RECUO PARA TSX
+		"react/jsx-indent-props": "off",
 		"prettier/prettier": "error",
 		"react-hooks/rules-of-hooks": "error",
 		"react-hooks/exhaustive-deps": "warn",

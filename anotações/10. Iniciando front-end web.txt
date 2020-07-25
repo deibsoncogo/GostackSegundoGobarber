@@ -142,3 +142,16 @@ Estas duas regras são desnessesárias quando utilisamos TypeScript
 --> Página de cadastro
 Nesta aula simplismente duplicamos a página de login e realizamos algumas alterações
 para transformar ela na página de cadastro de usuários ou cabelereiro
+
+--> Utilizando Unform
+O unform serve para trabalhar com formulário de uma forma dinámica
+
+Para manipular os dados temos a opção já utilizaso até o momento com as bibliotecas
+de useState e useEffect, mais como eles geram alto gasto de desenpenho do servidor
+iremos usar as bibliotecas destas dependências
+	yarn add @unform/core @unform/web
+
+Temos que informar quais campos a biblioteca deve monitorar para poder criar um registro
+Para isso temos o hook abaixo que recebe 4 itens importante
+	import { useField } from '@unform/core'
+		const { fieldName, defaultValue, error, registerField } = useField(nome);
