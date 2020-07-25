@@ -155,3 +155,12 @@ Temos que informar quais campos a biblioteca deve monitorar para poder criar um 
 Para isso temos o hook abaixo que recebe 4 itens importante
 	import { useField } from '@unform/core'
 		const { fieldName, defaultValue, error, registerField } = useField(nome);
+
+--> Usabilidade do input
+Aqui iremos aplicar alguns comando para trabalhar com a estilisação de um campo para
+quando ele é selecionado ou deselecionado, usando os seguinte comandos
+	onFocus={}
+	onBlur={}
+
+O comando abaixo serve para criar funções que não serão reiniciadas todas vezes
+	import { useCallback } from 'react'

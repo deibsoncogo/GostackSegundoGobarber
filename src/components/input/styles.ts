@@ -1,6 +1,11 @@
-import Styled from 'styled-components';
+import Styled, { css } from 'styled-components';
 
-export const Container = Styled.div`
+interface ContainerPropriedade {
+	selecionado: boolean;
+	preenchido: boolean;
+}
+
+export const Container = Styled.div<ContainerPropriedade>`
 	background: #232129;
 	border-radius: 10px;
 	border: 2px solid #232129;
@@ -13,6 +18,19 @@ export const Container = Styled.div`
 	& + div {
 		margin-top: 8px;
 	}
+
+	${props =>
+		props.selecionado &&
+		css`
+			color: #ff9000;
+			border-color: #ff9000;
+		`}
+
+	${props =>
+		props.preenchido &&
+		css`
+			color: #ff9000;
+		`}
 
 	input {
 		flex: 1;
