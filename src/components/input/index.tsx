@@ -70,6 +70,8 @@ const Input: React.FC<InputPropriedade> = ({ nome, icone: Icone, ...rest }) => {
 				ref={inputRef}
 				{...rest}
 			/>
+
+			{error}
 		</Container>
 	);
 };

@@ -1,5 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { FiArrowLeft, FiMail, FiUser, FiLock } from 'react-icons/fi';
+import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
 
@@ -8,11 +9,18 @@ import LogoImagem from '../../assets/logo.svg';
 import InputComponente from '../../components/input';
 import ButtonComponente from '../../components/button';
 
+import ValidacaoErroUtilizario from '../../utils/validacaoerro';
+
 // FUNCAO PARA REALIZAR A VALIDACAO DO USUARIO
 const Cadastro: React.FC = () => {
+	const formRef = useRef<FormHandles>(null);
+
 	// FUNCAO QUE VAI EXECUTAR SOMENTE UMA FEZ
 	const usuarioSubmit = useCallback(async (data: object) => {
 		try {
+			// ESVAZIA A LISTA DE ERROS
+			formRef.current?.setErrors({});
+
 			// INFORMAMOS COMO IREMOS RECEBER OS DADOS
 			const schema = Yup.object().shape({
 				// REGRAS DE VALIDACAO
@@ -27,7 +35,11 @@ const Cadastro: React.FC = () => {
 				abortEarly: false,
 			});
 		} catch (err) {
-			console.log(err);
+			// CHAMA A IMPORTCAO PARA DAR UMA TRATIVA NOS ERROS
+			const resultado = ValidacaoErroUtilizario(err);
+
+			// ENVIA AS TRATATIVAS EXISTENTES
+			formRef.current?.setErrors(resultado);
 		}
 	}, []);
 
@@ -38,7 +50,11 @@ const Cadastro: React.FC = () => {
 				<img src={LogoImagem} alt="Logo da Gobarber" />
 
 				{/* CRIA UM VALOR INICIAL DO CAMPO */}
-				<Form initialData={{ nome: 'Deibson Cogo' }} onSubmit={usuarioSubmit}>
+				<Form
+					ref={formRef}
+					initialData={{ nome: 'Deibson Cogo' }}
+					onSubmit={usuarioSubmit}
+				>
 					<h1>Faça seu cadastro</h1>
 
 					<InputComponente nome="nome" icone={FiUser} placeholder="Nome e sobrenome" />

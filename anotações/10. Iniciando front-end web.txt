@@ -172,3 +172,10 @@ Para realizar validações (Regras de negócio) temos a dependência Yup
 
 Com o comando abaixo conseguimos importar todos os do Yup por uma variável
 	import * as Yup from 'yup';
+
+--> Exibindo erros no Input
+A dependência Unform facilita a ultilização de estilisação voltado para erros mais suas
+tipagens não aparecem na IDE, para corrigir usamos esta importação
+	import { FormHandles } from '@unform/core';
+
+Nesta aula utilziamos pela primeira vez o metodo de arquivos utilitario
