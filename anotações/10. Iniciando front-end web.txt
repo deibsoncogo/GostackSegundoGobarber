@@ -164,3 +164,11 @@ quando ele é selecionado ou deselecionado, usando os seguinte comandos
 
 O comando abaixo serve para criar funções que não serão reiniciadas todas vezes
 	import { useCallback } from 'react'
+
+--> Validando cadastro
+Para realizar validações (Regras de negócio) temos a dependência Yup
+	yarn add yup
+	yarn add @types/yup -D
+
+Com o comando abaixo conseguimos importar todos os do Yup por uma variável
+	import * as Yup from 'yup';
