@@ -7,7 +7,7 @@ import CadastroPagina from './pages/cadastro';
 /* eslint-disable */
 const App: React.FC = () => (
 	<>
-		{/* <LoginPagina /> */}
+		<LoginPagina />
 		<CadastroPagina />
 		<GlobalEstilo />
   </>

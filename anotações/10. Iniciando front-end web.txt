@@ -183,3 +183,7 @@ Nesta aula utilziamos pela primeira vez o metodo de arquivos utilitario
 --> Criando tooltip de erros
 Tooltip é um menu flutuante onde iremos usar para mostrar a descrição do erro
 Existe estilos de css ja feitos na internet, eles são bem elaborados
+
+--> Validação de login
+Nesta aula iremos fazer as mesma coisa aplicada na página de cadastro como validação
+de erros, estilização e outros
