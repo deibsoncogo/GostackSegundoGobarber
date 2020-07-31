@@ -1,6 +1,7 @@
 import 'reflect-metadata';
 
 import express, { Request, Response, NextFunction } from 'express';
+import cors from 'cors';
 import 'express-async-errors';
 import rotas from './routes';
 
@@ -10,6 +11,13 @@ import GeralErro from './errors/geral';
 import UploadConfig from './config/upload';
 
 const app = express();
+
+app.use(
+	cors({
+		// DEFINE QUAL ENDERECO PODE ACESSAR ESTE BACKEND
+		// origin: 'http://localhost:3333',
+	}),
+);
 
 // FAZ O EXPRESS ENTERDE O JSON
 app.use(express.json());
