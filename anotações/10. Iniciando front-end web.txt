@@ -170,7 +170,7 @@ Para realizar validações (Regras de negócio) temos a dependência Yup
 	yarn add yup
 	yarn add @types/yup -D
 
-Com o comando abaixo conseguimos importar todos os do Yup por uma variável
+om o comando abaixo conseguimos importar todos os do Yup por uma variável
 	import * as Yup from 'yup';
 
 --> Exibindo erros no Input
@@ -187,3 +187,20 @@ Existe estilos de css ja feitos na internet, eles são bem elaborados
 --> Validação de login
 Nesta aula iremos fazer as mesma coisa aplicada na página de cadastro como validação
 de erros, estilização e outros
+
+----> 2. Autenticação
+--> Habilitando CORS na API
+Iremos criar o vinculo do nosso frontend web com seu backend
+Para isso usamos a dependência abaixo
+	yarn add cors
+
+Depois de importar devemos ativar a utilização dele, podemos definir qual endereço pode
+acessar o backend como abaixo
+	import cors from 'cors';
+
+	app.use(
+		cors({
+			// DEFINE QUAL ENDERECO PODE ACESSAR ESTE BACKEND
+			origin: 'http://localhost:3333',
+		}),
+	);
