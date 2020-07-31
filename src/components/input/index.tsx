@@ -6,9 +6,10 @@ import React, {
 	useCallback,
 } from 'react';
 import { IconBaseProps } from 'react-icons';
+import { FiAlertCircle } from 'react-icons/fi';
 import { useField } from '@unform/core';
 
-import { Container } from './styles';
+import { Container, Erro } from './styles';
 
 // RECEBE AS TIPAGEM DE UM input
 interface InputPropriedade extends InputHTMLAttributes<HTMLInputElement> {
@@ -56,7 +57,7 @@ const Input: React.FC<InputPropriedade> = ({ nome, icone: Icone, ...rest }) => {
 	}, []);
 
 	return (
-		<Container preenchido={preenchido} selecionado={selecionado}>
+		<Container errado={!!error} preenchido={preenchido} selecionado={selecionado}>
 			{/* REALIZA UMA VERIFICACAO SE EXISTE UM ICONE */}
 			{Icone && <Icone size={20} />}
 			{/* O props ASSIM ENVIA TODO TIPO DE PROPRIEDADE */}
@@ -71,7 +72,11 @@ const Input: React.FC<InputPropriedade> = ({ nome, icone: Icone, ...rest }) => {
 				{...rest}
 			/>
 
-			{error}
+			{error && (
+				<Erro titulo={error}>
+					<FiAlertCircle color="#c53030" size={20} />
+				</Erro>
+			)}
 		</Container>
 	);
 };
