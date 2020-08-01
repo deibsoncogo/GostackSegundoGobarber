@@ -206,3 +206,11 @@ Com os comandos abaixo defenimos qual endereço pode acessar o backend
 	);
 
 Não sei o porque mais o Cors não aceita comentarios entre os comandos
+
+--> API de Contexto
+O termo de API de contexto é um conjunto de variáveis global com registrições, as
+retrições que quero dizer é que conseguimos definir quem vai receber estas informações
+
+Com está metodologia iremos criar o arquivo de autenticação do usuário, para criar
+usaremos uma funcionalidade do React como abaixo
+	createContext
