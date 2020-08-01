@@ -20,7 +20,9 @@ interface DadosLogin {
 const Login: React.FC = () => {
 	const formRef = useRef<FormHandles>(null);
 
-	const { login } = useContext(Autenticar);
+	const { usuario, login } = useContext(Autenticar);
+
+	console.log(usuario);
 
 	const usuarioSubmit = useCallback(
 		async (data: DadosLogin) => {

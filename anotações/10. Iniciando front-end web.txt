@@ -219,3 +219,8 @@ usaremos uma funcionalidade do React como abaixo
 Finalisamos os itens basicos para o login
 E criamos a conexão com o backend
 	yarn add axios
+
+--> Mantendo usuário no storage
+O token será salvo no local storage invéz de um cooker
+Aqui aprendemos a jogar as informações salva no local storage dentro do programa
+toda vez que o usuário atualizar a página
