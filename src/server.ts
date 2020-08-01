@@ -12,12 +12,7 @@ import UploadConfig from './config/upload';
 
 const app = express();
 
-app.use(
-	cors({
-		// DEFINE QUAL ENDERECO PODE ACESSAR ESTE BACKEND
-		// origin: 'http://localhost:3333',
-	}),
-);
+app.use(cors());
 
 // FAZ O EXPRESS ENTERDE O JSON
 app.use(express.json());

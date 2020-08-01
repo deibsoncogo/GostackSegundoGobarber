@@ -291,3 +291,26 @@ async e await, para corrigir temos que utilizar a dependencia abaixo
 Com este metodo não devemos utilizar os comandos abaixo
 	try
 	catch
+
+------> 10. Iniciando front-end web
+Durante esse módulo criaremos a versão web da aplicação GoBarber que será utilizada
+pelos usuários que prestam serviços dentro da aplicação
+
+----> 2. Autenticação
+--> Habilitando CORS na API
+Iremos criar o vinculo do nosso frontend web com seu backend
+Para isso usamos a dependência abaixo
+	yarn add cors
+
+Depois de importar devemos ativar a utilização dele, podemos definir qual endereço pode
+acessar o backend como abaixo
+	import cors from 'cors';
+
+Com os comandos abaixo defenimos qual endereço pode acessar o backend
+	app.use(
+		cors({
+			origin: 'http://localhost:3333',
+		}),
+	);
+
+Não o porque mais o Cors não aceita comentarios entre os comandos
