@@ -198,9 +198,11 @@ Depois de importar devemos ativar a utilização dele, podemos definir qual ende
 acessar o backend como abaixo
 	import cors from 'cors';
 
+Com os comandos abaixo defenimos qual endereço pode acessar o backend
 	app.use(
 		cors({
-			// DEFINE QUAL ENDERECO PODE ACESSAR ESTE BACKEND
 			origin: 'http://localhost:3333',
 		}),
 	);
+
+Não sei o porque mais o Cors não aceita comentarios entre os comandos
