@@ -214,3 +214,8 @@ retrições que quero dizer é que conseguimos definir quem vai receber estas in
 Com está metodologia iremos criar o arquivo de autenticação do usuário, para criar
 usaremos uma funcionalidade do React como abaixo
 	createContext
+
+--> Login pelo Contexto
+Finalisamos os itens basicos para o login
+E criamos a conexão com o backend
+	yarn add axios

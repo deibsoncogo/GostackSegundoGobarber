@@ -4,16 +4,16 @@ import GlobalEstilo from './styles/global';
 import LoginPagina from './pages/login';
 import CadastroPagina from './pages/cadastro';
 
-import AutenticarContexto from './context/autenticar';
+import { AutenticacaoProvider } from './context/autenticar';
 
 /* eslint-disable */
 const App: React.FC = () => (
 	<>
-		{/* ATIVA A UTILIZACAO DE CONTEXTO PARA OQUE ESTIVER DENTRO */}
-		<AutenticarContexto.Provider value={{ nome: 'Deibson' }}>
+		{/* DEFINE OQUE VAI TER ACESSO AO CONTEXTO */}
+		<AutenticacaoProvider>
 			<LoginPagina />
 			<CadastroPagina />
-		</AutenticarContexto.Provider>
+		</AutenticacaoProvider>
 		<GlobalEstilo />
 	</>
 );

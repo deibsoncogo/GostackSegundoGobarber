@@ -10,31 +10,44 @@ import InputComponente from '../../components/input';
 import ButtonComponente from '../../components/button';
 
 import ValidacaoErroUtilizario from '../../utils/validacaoerro';
-import AutenticarContexto from '../../context/autenticar';
+import { Autenticar } from '../../context/autenticar';
+
+interface DadosLogin {
+	email: string;
+	senha: string;
+}
 
 const Login: React.FC = () => {
 	const formRef = useRef<FormHandles>(null);
 
-	const { nome } = useContext(AutenticarContexto);
+	const { login } = useContext(Autenticar);
 
-	const usuarioSubmit = useCallback(async (data: object) => {
-		try {
-			formRef.current?.setErrors({});
+	const usuarioSubmit = useCallback(
+		async (data: DadosLogin) => {
+			try {
+				formRef.current?.setErrors({});
 
-			const schema = Yup.object().shape({
-				email: Yup.string().required('E-mail obrigatório!').email('E-mail inválido!'),
-				senha: Yup.string().required('Senha obrigatória!'),
-			});
+				const schema = Yup.object().shape({
+					email: Yup.string().required('E-mail obrigatório!').email('E-mail inválido!'),
+					senha: Yup.string().required('Senha obrigatória!'),
+				});
 
-			await schema.validate(data, {
-				abortEarly: false,
-			});
-		} catch (err) {
-			const resultado = ValidacaoErroUtilizario(err);
+				await schema.validate(data, {
+					abortEarly: false,
+				});
 
-			formRef.current?.setErrors(resultado);
-		}
-	}, []);
+				login({
+					email: data.email,
+					senha: data.senha,
+				});
+			} catch (err) {
+				const resultado = ValidacaoErroUtilizario(err);
+
+				formRef.current?.setErrors(resultado);
+			}
+		},
+		[login],
+	);
 
 	return (
 		<Container>
