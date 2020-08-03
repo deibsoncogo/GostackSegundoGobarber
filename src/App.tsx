@@ -4,7 +4,7 @@ import GlobalEstilo from './styles/global';
 import LoginPagina from './pages/login';
 import CadastroPagina from './pages/cadastro';
 
-import { AutenticacaoProvider } from './context/autenticar';
+import { AutenticacaoProvider } from './hooks/autenticar';
 
 /* eslint-disable */
 const App: React.FC = () => (

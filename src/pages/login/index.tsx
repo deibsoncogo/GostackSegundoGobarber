@@ -10,7 +10,7 @@ import InputComponente from '../../components/input';
 import ButtonComponente from '../../components/button';
 
 import ValidacaoErroUtilizario from '../../utils/validacaoerro';
-import { useAutenticacao } from '../../context/autenticar';
+import { useAutenticacao } from '../../hooks/autenticar';
 
 interface DadosLogin {
 	email: string;

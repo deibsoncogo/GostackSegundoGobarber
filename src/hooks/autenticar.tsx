@@ -15,6 +15,7 @@ interface CredencialTipagem {
 interface AutenticacaoContexto {
 	usuario: object;
 	login(credencial: CredencialTipagem): Promise<void>;
+	deslogar(): void;
 }
 
 // FORCAMOS A INICIALIZACAO DO VALOR COM O COMANDOS as
@@ -52,9 +53,17 @@ const AutenticacaoProvider: React.FC = ({ children }) => {
 		setData({ token, usuario });
 	}, []);
 
+	// DESLOGA O USUARIO APAGANDO OS ITENS DO LOCAL STORAGE
+	const deslogar = useCallback(() => {
+		localStorage.removeItem('@GoBarber:token');
+		localStorage.removeItem('@GoBarber:usuario');
+
+		setData({} as AutenticacaoState);
+	}, []);
+
 	return (
 		// ATIVA A UTILIZACAO DE CONTEXTO PARA OQUE ESTIVER DENTRO
-		<Autenticar.Provider value={{ usuario: data.usuario, login }}>
+		<Autenticar.Provider value={{ usuario: data.usuario, login, deslogar }}>
 			{children}
 		</Autenticar.Provider>
 	);

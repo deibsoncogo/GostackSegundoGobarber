@@ -227,3 +227,7 @@ toda vez que o usuário atualizar a página
 
 --> Criando hook useAuth
 Aplicamos a utilização de hook para realizar a autenticação do usuário
+
+--> Logout da aplicação
+Nesta aula executamos a deslogagem do usuário apagando as informações de login
+dentro do localStorage do navegador
