@@ -1,4 +1,4 @@
-import React, { useState, useCallback, createContext } from 'react';
+import React, { useState, useCallback, createContext, useContext } from 'react';
 
 import ApiServico from '../services/api';
 
@@ -12,16 +12,16 @@ interface CredencialTipagem {
 	senha: string;
 }
 
-interface Tipagem {
+interface AutenticacaoContexto {
 	usuario: object;
 	login(credencial: CredencialTipagem): Promise<void>;
 }
 
 // FORCAMOS A INICIALIZACAO DO VALOR COM O COMANDOS as
-export const Autenticar = createContext<Tipagem>({} as Tipagem);
+const Autenticar = createContext<AutenticacaoContexto>({} as AutenticacaoContexto);
 
 // EXPORTCAO ISOLADA
-export const AutenticacaoProvider: React.FC = ({ children }) => {
+const AutenticacaoProvider: React.FC = ({ children }) => {
 	// VAI JOGAR AS INFORMACOES SALVA NO STORAGE PRA O FRONTEND NOVAMENTE
 	// CASO NAO EXISTA A INFORMACAO NO LOCAL STORAGE VAI DEIXAR EM BRANCO
 	const [data, setData] = useState<AutenticacaoState>(() => {
@@ -60,4 +60,14 @@ export const AutenticacaoProvider: React.FC = ({ children }) => {
 	);
 };
 
-export default Autenticar;
+function useAutenticacao(): AutenticacaoContexto {
+	const contexto = useContext(Autenticar);
+
+	if (!contexto) {
+		throw new Error('useAutenticacao deve ser usado dentro do AutenticacaoProvider');
+	}
+
+	return contexto;
+}
+
+export { AutenticacaoProvider, useAutenticacao };

@@ -1,4 +1,4 @@
-import React, { useRef, useCallback, useContext } from 'react';
+import React, { useRef, useCallback } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
@@ -10,7 +10,7 @@ import InputComponente from '../../components/input';
 import ButtonComponente from '../../components/button';
 
 import ValidacaoErroUtilizario from '../../utils/validacaoerro';
-import { Autenticar } from '../../context/autenticar';
+import { useAutenticacao } from '../../context/autenticar';
 
 interface DadosLogin {
 	email: string;
@@ -20,9 +20,7 @@ interface DadosLogin {
 const Login: React.FC = () => {
 	const formRef = useRef<FormHandles>(null);
 
-	const { usuario, login } = useContext(Autenticar);
-
-	console.log(usuario);
+	const { login } = useAutenticacao();
 
 	const usuarioSubmit = useCallback(
 		async (data: DadosLogin) => {

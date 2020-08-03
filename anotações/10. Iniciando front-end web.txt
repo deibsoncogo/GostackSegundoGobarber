@@ -224,3 +224,6 @@ E criamos a conexão com o backend
 O token será salvo no local storage invéz de um cooker
 Aqui aprendemos a jogar as informações salva no local storage dentro do programa
 toda vez que o usuário atualizar a página
+
+--> Criando hook useAuth
+Aplicamos a utilização de hook para realizar a autenticação do usuário
