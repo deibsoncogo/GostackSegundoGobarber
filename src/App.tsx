@@ -4,6 +4,7 @@ import GlobalEstilo from './styles/global';
 import LoginPagina from './pages/login';
 import CadastroPagina from './pages/cadastro';
 
+import ToastComponente from './components/toast';
 import { AutenticacaoProvider } from './hooks/autenticar';
 
 /* eslint-disable */
@@ -14,8 +15,11 @@ const App: React.FC = () => (
 			<LoginPagina />
 			<CadastroPagina />
 		</AutenticacaoProvider>
+
+		<ToastComponente />
+
 		<GlobalEstilo />
 	</>
 );
 
-	export default App;
+export default App;

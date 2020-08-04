@@ -41,9 +41,14 @@ const Login: React.FC = () => {
 					senha: data.senha,
 				});
 			} catch (err) {
-				const resultado = ValidacaoErroUtilizario(err);
+				// VERIFICA SE O ERRO VEM DO Yup
+				if (err instanceof Yup.ValidationError) {
+					const resultado = ValidacaoErroUtilizario(err);
 
-				formRef.current?.setErrors(resultado);
+					formRef.current?.setErrors(resultado);
+				}
+
+				// EXECUTA O TOAST
 			}
 		},
 		[login],

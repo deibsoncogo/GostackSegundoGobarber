@@ -231,3 +231,8 @@ Aplicamos a utilização de hook para realizar a autenticação do usuário
 --> Logout da aplicação
 Nesta aula executamos a deslogagem do usuário apagando as informações de login
 dentro do localStorage do navegador
+
+----> 3. Mensagens de toast
+--> Estrutura de Toasts
+Os toasts são mensagens de notificação que aparecem em algum conto da tela
+Aplicamos estilizações utilizando regras e propriedades dos campos
