@@ -236,3 +236,10 @@ dentro do localStorage do navegador
 --> Estrutura de Toasts
 Os toasts são mensagens de notificação que aparecem em algum conto da tela
 Aplicamos estilizações utilizando regras e propriedades dos campos
+
+--> Criando hook de toast
+Agora criamos um hook para faciliatar mais a utilização de toasts
+Também criamos um arquivo mestre para resumir as importações de hooks no arquivo
+mestre da nossa API, para a improtação de um pasta funcionar devemos ter dentro dela
+um arquivo index idependente de sua extensão (A extensão tem que ser válida)
+	import AppProvider from './hooks';

@@ -4,19 +4,16 @@ import GlobalEstilo from './styles/global';
 import LoginPagina from './pages/login';
 import CadastroPagina from './pages/cadastro';
 
-import ToastComponente from './components/toast';
-import { AutenticacaoProvider } from './hooks/autenticar';
+import AppProvider from './hooks';
 
 /* eslint-disable */
 const App: React.FC = () => (
 	<>
 		{/* DEFINE OQUE VAI TER ACESSO AO CONTEXTO */}
-		<AutenticacaoProvider>
+		<AppProvider>
 			<LoginPagina />
 			<CadastroPagina />
-		</AutenticacaoProvider>
-
-		<ToastComponente />
+		</AppProvider>
 
 		<GlobalEstilo />
 	</>

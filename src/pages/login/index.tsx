@@ -11,6 +11,7 @@ import ButtonComponente from '../../components/button';
 
 import ValidacaoErroUtilizario from '../../utils/validacaoerro';
 import { useAutenticacao } from '../../hooks/autenticar';
+import { useToast } from '../../hooks/toast';
 
 interface DadosLogin {
 	email: string;
@@ -21,6 +22,7 @@ const Login: React.FC = () => {
 	const formRef = useRef<FormHandles>(null);
 
 	const { login } = useAutenticacao();
+	const { adicionarToast } = useToast();
 
 	const usuarioSubmit = useCallback(
 		async (data: DadosLogin) => {
@@ -36,7 +38,7 @@ const Login: React.FC = () => {
 					abortEarly: false,
 				});
 
-				login({
+				await login({
 					email: data.email,
 					senha: data.senha,
 				});
@@ -48,10 +50,10 @@ const Login: React.FC = () => {
 					formRef.current?.setErrors(resultado);
 				}
 
-				// EXECUTA O TOAST
+				adicionarToast();
 			}
 		},
-		[login],
+		[login, adicionarToast],
 	);
 
 	return (
