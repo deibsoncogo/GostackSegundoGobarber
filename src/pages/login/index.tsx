@@ -50,7 +50,11 @@ const Login: React.FC = () => {
 					formRef.current?.setErrors(resultado);
 				}
 
-				adicionarToast();
+				adicionarToast({
+					tipo: 'erro',
+					titulo: 'Teste primeiro de tudo',
+					descricao: 'Estou aprendendo :)',
+				});
 			}
 		},
 		[login, adicionarToast],

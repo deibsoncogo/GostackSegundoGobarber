@@ -243,3 +243,10 @@ Também criamos um arquivo mestre para resumir as importações de hooks no arqu
 mestre da nossa API, para a improtação de um pasta funcionar devemos ter dentro dela
 um arquivo index idependente de sua extensão (A extensão tem que ser válida)
 	import AppProvider from './hooks';
+
+--> Adicionando e removendo Toasts
+Para a criação de um id para o toast iremos usar a dependência abaixo
+	yarn add uuidv4
+
+O pacote abaixo faz o papel de internacionalização do pragrama
+	react-i18n

@@ -1,50 +1,21 @@
 import React from 'react';
-import { FiAlertCircle, FiXCircle } from 'react-icons/fi';
 
-import { Container, Mensagem } from './styles';
+import Mensagem from './sub';
+import { MensagemTipagem } from '../../hooks/toast';
 
-const Toast: React.FC = () => {
+import { Container } from './styles';
+
+interface ToastPropriedade {
+	mensagem: MensagemTipagem[];
+}
+
+const Toast: React.FC<ToastPropriedade> = ({ mensagem }) => {
 	return (
 		<Container>
-			{/* temDescricao ASSIM RECEBE VALOR COMO true */}
-			<Mensagem temDescricao>
-				<FiAlertCircle size={20} />
-
-				<div>
-					<strong>Aconteceu um erro</strong>
-					<p>Não foi possível fazer login na aplicação</p>
-				</div>
-
-				<button type="button">
-					<FiXCircle size={18} />
-				</button>
-			</Mensagem>
-
-			<Mensagem temDescricao={false} tipo="sucesso">
-				<FiAlertCircle size={20} />
-
-				<div>
-					<strong>Aconteceu um erro</strong>
-					{/* <p>Não foi possível fazer login na aplicação</p> */}
-				</div>
-
-				<button type="button">
-					<FiXCircle size={18} />
-				</button>
-			</Mensagem>
-
-			<Mensagem temDescricao tipo="erro">
-				<FiAlertCircle size={20} />
-
-				<div>
-					<strong>Aconteceu um erro</strong>
-					<p>Não foi possível fazer login na aplicação</p>
-				</div>
-
-				<button type="button">
-					<FiXCircle size={18} />
-				</button>
-			</Mensagem>
+			{mensagem.map(informacao => (
+				// temDescricao SEM TRUE OU FALSE RECEBE O VALOR COMO true
+				<Mensagem key={informacao.id} informacao={informacao} />
+			))}
 		</Container>
 	);
 };
