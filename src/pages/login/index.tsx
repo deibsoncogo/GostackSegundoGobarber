@@ -3,8 +3,9 @@ import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
+import { Link } from 'react-router-dom';
 
-import { Container, Conteudo, Background } from './styles';
+import { Container, Conteudo, Animacao, Background } from './styles';
 import LogoImagem from '../../assets/logo.svg';
 import InputComponente from '../../components/input';
 import ButtonComponente from '../../components/button';
@@ -48,6 +49,8 @@ const Login: React.FC = () => {
 					const resultado = ValidacaoErroUtilizario(err);
 
 					formRef.current?.setErrors(resultado);
+
+					return;
 				}
 
 				adicionarToast({
@@ -63,28 +66,30 @@ const Login: React.FC = () => {
 	return (
 		<Container>
 			<Conteudo>
-				<img src={LogoImagem} alt="Logo da Gobarber" />
+				<Animacao>
+					<img src={LogoImagem} alt="Logo da Gobarber" />
 
-				<Form ref={formRef} onSubmit={usuarioSubmit}>
-					<h1>Faça seu logon</h1>
+					<Form ref={formRef} onSubmit={usuarioSubmit}>
+						<h1>Faça seu logon</h1>
 
-					<InputComponente nome="email" icone={FiMail} placeholder="E-mail" />
-					<InputComponente
-						nome="senha"
-						icone={FiLock}
-						type="password"
-						placeholder="Senha"
-					/>
+						<InputComponente nome="email" icone={FiMail} placeholder="E-mail" />
+						<InputComponente
+							nome="senha"
+							icone={FiLock}
+							type="password"
+							placeholder="Senha"
+						/>
 
-					<ButtonComponente type="submit">Entrar</ButtonComponente>
+						<ButtonComponente type="submit">Entrar</ButtonComponente>
 
-					<a href="forgot">Esqueci minha senha</a>
-				</Form>
+						<a href="forgot">Esqueci minha senha</a>
+					</Form>
 
-				<a href="login">
-					<FiLogIn />
-					Criar conta
-				</a>
+					<Link to="/cadastro">
+						<FiLogIn />
+						Criar conta
+					</Link>
+				</Animacao>
 			</Conteudo>
 			<Background />
 		</Container>

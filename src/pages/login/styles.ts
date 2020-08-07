@@ -1,10 +1,11 @@
-import Styled from 'styled-components';
+import Styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import BackgroundImagem from '../../assets/backgroundLogin.png';
 
 export const Container = Styled.div`
 	height: 100vh; /* FAZ OCUPAR TODA A TELA DISPONIVEL */
+
 	display: flex;
 	align-items: stretch; /* FAZ OS ITENS DENTRO OCUPAR TODO ESPACO */
 `;
@@ -13,9 +14,31 @@ export const Conteudo = Styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	place-content: center; /* ALINHAMENTO */
+	justify-content: center;
+
 	width: 100%;
 	max-width: 700px;
+`;
+
+const aparecerEsquerda = keyframes`
+	from {
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX( 0px);
+	}
+`;
+
+export const Animacao = Styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	animation: ${aparecerEsquerda} 1s;
 
 	form {
 		margin: 80px 0;
@@ -46,6 +69,7 @@ export const Conteudo = Styled.div`
 		margin-top: 24px;
 		text-decoration: none;
 		transition: color 0.2s;
+
 		display: flex;
 		align-items: center;
 

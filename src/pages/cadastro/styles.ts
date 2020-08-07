@@ -1,4 +1,4 @@
-import Styled from 'styled-components';
+import Styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
 
 import BackgroundImagem from '../../assets/backgroundCadastro.png';
@@ -13,9 +13,31 @@ export const Conteudo = Styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	place-content: center; /* ALINHAMENTO */
+	justify-content: center;
+
 	width: 100%;
 	max-width: 700px;
+`;
+
+const aparecerDireita = keyframes`
+	from {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX( 0px);
+	}
+`;
+
+export const Animacao = Styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	animation: ${aparecerDireita} 1s;
 
 	form {
 		margin: 80px 0;
@@ -41,11 +63,12 @@ export const Conteudo = Styled.div`
 
 	/* > DEFINE ESTA CONFIGURACOES PARA O a QUE ESTA FORA DO form */
 	> a {
-		color: #f4ede8;
+		color: #ff9000;
 		display: block;
 		margin-top: 24px;
 		text-decoration: none;
 		transition: color 0.2s;
+
 		display: flex;
 		align-items: center;
 
@@ -54,7 +77,7 @@ export const Conteudo = Styled.div`
 		}
 
 		&:hover {
-			color: ${shade(0.2, '#f4ede8')};
+			color: ${shade(0.2, '#ff9000')};
 		}
 	}
 `;

@@ -262,3 +262,11 @@ Para as animações funcinarem temos que adicionar a importação abaixo dentro 
 estilos pois uma div normal do HTML não executa, precisamos de uma animated.div
 	import { animated } from 'react-spring';
 	export const Container = Styled(animated.div)<ContainerPropriedade>``;
+
+----> 4. Rotas da aplicação
+--> Configurando Rotas
+Para lidar com as rotas do aplicação usaremos a dependência abaixo
+	yarn add react-router-dom
+	yarn add @types/react-router-dom -D
+
+Também utilziamos o keyframes para criar uma animação ao acessar a página
