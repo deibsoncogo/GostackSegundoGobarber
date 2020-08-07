@@ -1,4 +1,5 @@
 import Styled, { css } from 'styled-components';
+import { animated } from 'react-spring';
 
 interface ContainerPropriedade {
 	tipo?: 'informacao' | 'sucesso' | 'erro';
@@ -22,7 +23,7 @@ const tipoToast = {
 	`,
 };
 
-export const Container = Styled.div<ContainerPropriedade>`
+export const Container = Styled(animated.div)<ContainerPropriedade>`
 	width: 360px;
 
 	position: relative;

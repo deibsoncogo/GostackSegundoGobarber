@@ -250,3 +250,15 @@ Para a criação de um id para o toast iremos usar a dependência abaixo
 
 O pacote abaixo faz o papel de internacionalização do pragrama
 	react-i18n
+
+--> Animando Toasts
+As animações devemos tomar cuidado quando montar pois ela pode gerar conflitos
+Temos o pacote abaixo que possui diversos tipos de animações e ele consegue controlar
+qual pacote vai ser removido da tela executando uma animação antes da exclusão
+	yarn add react-spring
+	https://www.react-spring.io/
+
+Para as animações funcinarem temos que adicionar a importação abaixo dentro dos nossos
+estilos pois uma div normal do HTML não executa, precisamos de uma animated.div
+	import { animated } from 'react-spring';
+	export const Container = Styled(animated.div)<ContainerPropriedade>``;

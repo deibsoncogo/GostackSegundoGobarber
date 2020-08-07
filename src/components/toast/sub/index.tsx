@@ -6,6 +6,7 @@ import { Container } from './styles';
 
 interface ToastPropriedade {
 	informacao: MensagemTipagem;
+	style: object;
 }
 
 const icone = {
@@ -14,7 +15,7 @@ const icone = {
 	erro: <FiAlertCircle size={24} />,
 };
 
-const Toast: React.FC<ToastPropriedade> = ({ informacao }) => {
+const Toast: React.FC<ToastPropriedade> = ({ informacao, style }) => {
 	const { removerToast } = useToast();
 
 	useEffect(() => {
@@ -28,7 +29,8 @@ const Toast: React.FC<ToastPropriedade> = ({ informacao }) => {
 	}, [removerToast, informacao.id]);
 
 	return (
-		<Container tipo={informacao.tipo} temDescricao={!!informacao.descricao}>
+		// temDescricao SEM TRUE OU FALSE RECEBE O VALOR COMO true
+		<Container tipo={informacao.tipo} temDescricao={!!informacao.descricao} style={style}>
 			{icone[informacao.tipo || 'informacao']}
 
 			<div>
