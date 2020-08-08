@@ -3,7 +3,7 @@ import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { Container, Conteudo, Animacao, Background } from './styles';
 import LogoImagem from '../../assets/logo.svg';
@@ -25,6 +25,8 @@ const Login: React.FC = () => {
 	const { login } = useAutenticacao();
 	const { adicionarToast } = useToast();
 
+	const historico = useHistory();
+
 	const usuarioSubmit = useCallback(
 		async (data: DadosLogin) => {
 			try {
@@ -43,6 +45,8 @@ const Login: React.FC = () => {
 					email: data.email,
 					senha: data.senha,
 				});
+
+				historico.push('/inicial');
 			} catch (err) {
 				// VERIFICA SE O ERRO VEM DO Yup
 				if (err instanceof Yup.ValidationError) {
@@ -55,12 +59,12 @@ const Login: React.FC = () => {
 
 				adicionarToast({
 					tipo: 'erro',
-					titulo: 'Teste primeiro de tudo',
-					descricao: 'Estou aprendendo :)',
+					titulo: 'Erro na autenticação',
+					descricao: 'Ocorreu um erro ao fazer login, cheque as credenciais',
 				});
 			}
 		},
-		[login, adicionarToast],
+		[login, adicionarToast, historico],
 	);
 
 	return (

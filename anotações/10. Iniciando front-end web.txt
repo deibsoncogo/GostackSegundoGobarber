@@ -272,9 +272,13 @@ Para lidar com as rotas do aplicação usaremos a dependência abaixo
 Também utilziamos o keyframes para criar uma animação ao acessar a página
 
 --> Rotas autenticadas
-Nesta aula criamos uma metodologia para premitir que o usuario acesse algumas rotas
+Nesta aula criamos uma metodologia para premitir que o usuário acesse algumas rotas
 somente quando ele estiver logado
 
 Também aprendemos como manter um hitórico de navegação, a utilizar a dependência
 Redirect e que o comando as serve também para renomear algo como abaixo
 	import { RouteProps as ReactDomRotaPropriedade } from 'react-router-dom';
+
+--> Finalizando App
+Realizamos o vinculo da página de cadastro de usuário com o backend e a implementação
+de alguns erros
