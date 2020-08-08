@@ -1,14 +1,20 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch } from 'react-router-dom';
+
+import Rota from './rota';
 
 import LoginPagina from '../pages/login';
 import CadastroPagina from '../pages/cadastro';
+import InicialPagina from '../pages/inicial';
 
 const Rotas: React.FC = () => {
 	return (
 		<Switch>
-			<Route path="/" exact component={LoginPagina} />
-			<Route path="/cadastro" exact component={CadastroPagina} />
+			<Rota path="/" exact component={LoginPagina} />
+			<Rota path="/cadastro" exact component={CadastroPagina} />
+
+			{/* isPrivada VAI NOS FALAR QUE O USUARIO PRECISA ESTAR LOGADO PARA ACESSAR */}
+			<Rota path="/inicial" exact component={InicialPagina} isPrivada />
 		</Switch>
 	);
 };

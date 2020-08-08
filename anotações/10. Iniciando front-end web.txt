@@ -270,3 +270,11 @@ Para lidar com as rotas do aplicação usaremos a dependência abaixo
 	yarn add @types/react-router-dom -D
 
 Também utilziamos o keyframes para criar uma animação ao acessar a página
+
+--> Rotas autenticadas
+Nesta aula criamos uma metodologia para premitir que o usuario acesse algumas rotas
+somente quando ele estiver logado
+
+Também aprendemos como manter um hitórico de navegação, a utilizar a dependência
+Redirect e que o comando as serve também para renomear algo como abaixo
+	import { RouteProps as ReactDomRotaPropriedade } from 'react-router-dom';
