@@ -1,18 +1,20 @@
 import React, { useRef, useCallback } from 'react';
 import { FiLogIn, FiMail, FiLock } from 'react-icons/fi';
+import { Link, useHistory } from 'react-router-dom';
+
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import { Link, useHistory } from 'react-router-dom';
 
-import { Container, Conteudo, Animacao, Background } from './styles';
-import LogoImagem from '../../assets/logo.svg';
-import InputComponente from '../../components/input';
 import ButtonComponente from '../../components/button';
-
-import ValidacaoErroUtilizario from '../../utils/validacaoerro';
+import InputComponente from '../../components/input';
 import { useAutenticacao } from '../../hooks/autenticar';
 import { useToast } from '../../hooks/toast';
+import ValidacaoErroUtilizario from '../../utils/validacaoerro';
+
+import LogoImagem from '../../assets/logo.svg';
+
+import { Container, Conteudo, Animacao, Background } from './styles';
 
 interface DadosLogin {
 	email: string;

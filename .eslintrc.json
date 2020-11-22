@@ -26,7 +26,8 @@
 		"react",
 		"react-hooks",
 		"@typescript-eslint",
-		"prettier"
+		"prettier",
+		"eslint-plugin-import-helpers"
 	],
 	"rules": {
 		"react/jsx-props-no-spreading": "off", // DESATIVA A NAO UTILIZACAO DE SPREADINGH
@@ -47,6 +48,25 @@
 			{
 				"ts": "never",
 				"tsx": "never"
+			}
+		],
+		"import-helpers/order-imports": [
+			"warn", // IDENTIFICAR COMO UM AVISO AZUL
+			{
+				// UTILIZANDO O ^ NO COMECO FAZ BUSCAR SOMENTE PALAVRA QUE COMECAM COM ELA
+				"groups": [
+					"/react/",
+					"module", // TODAS AS DEMAIS DEPENDECIAS
+					// ARQUIVOS QUE ESTAO EM PASTAS COM ESTE NOME
+					["/router/", "/services/", "/repositories/", "/models/", "/database/", "/migrations/"],
+					["/config/", "/components/", "/utils/", "/hooks/", "/middlewares/", "/errors/"],
+					"/assets/",
+					"parent", // ARQUIVOS IMPORTADOS QUE ESTAO LONGE
+					"sibling", // ARQUIVOS IMPORTADOS QUE ESTAO PROXIMOS
+					"/styles/"
+				],
+				"newlinesBetween": "always", //SEMPRE CRIAR UMA LINHA PARA SEPARAR
+				"alphabetize": { "order": "asc", "ignoreCase": true } //ORDEM ALFABETICA
 			}
 		]
 	},

@@ -1,19 +1,21 @@
 import React, { useCallback, useRef } from 'react';
 import { FiArrowLeft, FiMail, FiUser, FiLock } from 'react-icons/fi';
+import { Link, useHistory } from 'react-router-dom';
+
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
-import { Link, useHistory } from 'react-router-dom';
 
 import Api from '../../services/api';
 
-import { Container, Conteudo, Animacao, Background } from './styles';
-import LogoImagem from '../../assets/logo.svg';
-import InputComponente from '../../components/input';
 import ButtonComponente from '../../components/button';
-
-import ValidacaoErroUtilizario from '../../utils/validacaoerro';
+import InputComponente from '../../components/input';
 import { useToast } from '../../hooks/toast';
+import ValidacaoErroUtilizario from '../../utils/validacaoerro';
+
+import LogoImagem from '../../assets/logo.svg';
+
+import { Container, Conteudo, Animacao, Background } from './styles';
 
 interface cadastroUsuario {
 	nome: string;

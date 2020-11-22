@@ -1,5 +1,6 @@
-import Styled, { css } from 'styled-components';
 import { animated } from 'react-spring';
+
+import Styled, { css } from 'styled-components';
 
 interface ContainerPropriedade {
 	tipo?: 'informacao' | 'sucesso' | 'erro';

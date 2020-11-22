@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
-import GlobalEstilo from './styles/global';
-
 import AppProvider from './hooks';
 
 import Rota from './routes';
+
+import GlobalEstilo from './styles/global';
 
 /* eslint-disable */
 const App: React.FC = () => (

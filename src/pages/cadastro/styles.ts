@@ -1,5 +1,6 @@
-import Styled, { keyframes } from 'styled-components';
 import { shade } from 'polished';
+
+import Styled, { keyframes } from 'styled-components';
 
 import BackgroundImagem from '../../assets/backgroundCadastro.png';
 

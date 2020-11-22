@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { FiAlertCircle, FiCheckCircle, FiInfo, FiXCircle } from 'react-icons/fi';
 
 import { MensagemTipagem, useToast } from '../../../hooks/toast';
+
 import { Container } from './styles';
 
 interface ToastPropriedade {

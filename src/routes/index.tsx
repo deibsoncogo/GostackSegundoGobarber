@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
 
-import Rota from './rota';
-
-import LoginPagina from '../pages/login';
 import CadastroPagina from '../pages/cadastro';
 import InicialPagina from '../pages/inicial';
+import LoginPagina from '../pages/login';
+
+import Rota from './rota';
 
 const Rotas: React.FC = () => {
 	return (

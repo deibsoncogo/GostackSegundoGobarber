@@ -1,8 +1,9 @@
 import React from 'react';
 import { useTransition } from 'react-spring';
 
-import Mensagem from './sub';
 import { MensagemTipagem } from '../../hooks/toast';
+
+import Mensagem from './sub';
 
 import { Container } from './styles';
 
