@@ -1,6 +1,5 @@
-import React from 'react'; // auth.routes.tsx
-
 import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react'; // auth.routes.tsx
 
 import CadastroPagina from '../pages/cadastro';
 import LoginPagina from '../pages/login';

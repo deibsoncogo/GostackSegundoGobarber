@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useRef, useCallback } from 'react'; // SING UP
 import {
 	Image,
@@ -9,16 +10,17 @@ import {
 	Alert,
 } from 'react-native';
 import IconeFeather from 'react-native-vector-icons/Feather';
-import { useNavigation } from '@react-navigation/native';
 
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/mobile';
 import * as Yup from 'yup';
 
 import Api from '../../services/api';
+
 import BotaoComponente from '../../components/botao';
 import InputComponente from '../../components/input';
 import ValidacaoErroUtilizario from '../../utils/validacaoerro';
+
 import logoImagem from '../../assets/logo.png';
 
 import { Container, Titulo, Voltar, VoltarTexto } from './styles';

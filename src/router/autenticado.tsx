@@ -1,6 +1,5 @@
-import React from 'react'; // app.routes.tsx
-
 import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react'; // app.routes.tsx
 
 import InicialPagina from '../pages/inicial';
 

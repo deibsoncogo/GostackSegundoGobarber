@@ -30,6 +30,7 @@
 		"eslint-plugin-import-helpers"
 	],
 	"rules": {
+		"no-shadow": "off",
 		"@typescript-eslint/no-explicit-any": "off",
 		"no-unused-expressions": "off",
 		"@typescript-eslint/ban-types": "off",
@@ -43,6 +44,7 @@
 		"react-hooks/exhaustive-deps": "warn",
 		"react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
 		"import/prefer-default-export": "off",
+		"array-bracket-spacing": ["error", "never"],
 		"import/extensions": [
 			"error",
 			"ignorePackages",
@@ -53,32 +55,22 @@
 				"jsx": "never"
 			}
 		],
-		"import-helpers/order-imports": [ //
-			"warn", // IDENTIFICAR COMO UM AVISO
+		"import-helpers/order-imports": [
+			"warn", // IDENTIFICAR COMO UM AVISO AZUL
 			{
+				// UTILIZANDO O ^ NO COMECO FAZ BUSCAR SOMENTE PALAVRA QUE COMECAM COM ELA
 				"groups": [
-					"/^react/", // TODOS QUE COMECAM COM REACT
-					"/react/", // TODOS OS DEMAIS QUE POSSUEM A PALAVRA REACT
+					"/react/",
 					"module", // TODAS AS DEMAIS DEPENDECIAS
-					"/router/",
-					"/services/",
-					"/repositories/",
-					"/models/",
-					"/database/",
-					"/migrations/",
-					"/config/",
-					"/components/",
-					"/utils/",
-					"/hooks/",
-					"/middlewares/",
-					"/errors/",
+					// ARQUIVOS QUE ESTAO EM PASTAS COM ESTE NOME
+					["/router/", "/services/", "/repositories/", "/models/", "/database/", "/migrations/"],
+					["/config/", "/components/", "/utils/", "/hooks/", "/middlewares/", "/errors/"],
 					"/assets/",
 					"parent", // ARQUIVOS IMPORTADOS QUE ESTAO LONGE
 					"sibling", // ARQUIVOS IMPORTADOS QUE ESTAO PROXIMOS
-					["index", "absolute"], // NAO SEI PARA QUE SERVE
 					"/styles/"
 				],
-				"newlinesBetween": "ignore", //SEMPRE CRIAR UMA LINHA PARA SEPARAR
+				"newlinesBetween": "always", //SEMPRE CRIAR UMA LINHA PARA SEPARAR
 				"alphabetize": { "order": "asc", "ignoreCase": true } //ORDEM ALFABETICA
 			}
 		]
