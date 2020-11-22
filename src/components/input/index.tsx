@@ -7,6 +7,7 @@ import React, {
 	forwardRef,
 } from 'react';
 import { TextInputProps } from 'react-native';
+
 import { useField } from '@unform/core';
 
 import { Container, TextoInput, Icone } from './styles';

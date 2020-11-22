@@ -10,17 +10,18 @@ import {
 } from 'react-native';
 import IconeFeather from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
-import { Form } from '@unform/mobile';
+
 import { FormHandles } from '@unform/core';
+import { Form } from '@unform/mobile';
 import * as Yup from 'yup';
 
 import Api from '../../services/api';
-import ValidacaoErroUtilizario from '../../utils/validacaoerro';
-import InputComponente from '../../components/input';
 import BotaoComponente from '../../components/botao';
-import { Container, Titulo, Voltar, VoltarTexto } from './styles';
-
+import InputComponente from '../../components/input';
+import ValidacaoErroUtilizario from '../../utils/validacaoerro';
 import logoImagem from '../../assets/logo.png';
+
+import { Container, Titulo, Voltar, VoltarTexto } from './styles';
 
 interface cadastroUsuario {
 	nome: string;

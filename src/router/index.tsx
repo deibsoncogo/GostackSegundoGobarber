@@ -3,8 +3,8 @@ import { View, ActivityIndicator } from 'react-native';
 
 import { useAutenticacao } from '../hooks/autenticar';
 
-import AutenticarRota from './autenticar'; // auth.routes.tsx
 import AutenticadoRota from './autenticado'; // app.routes.tsx
+import AutenticarRota from './autenticar'; // auth.routes.tsx
 
 const Rota: React.FC = () => {
 	const { usuario, carregando } = useAutenticacao();

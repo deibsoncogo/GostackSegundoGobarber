@@ -26,10 +26,10 @@
 		"react",
 		"react-hooks",
 		"@typescript-eslint",
-		"prettier"
+		"prettier",
+		"eslint-plugin-import-helpers"
 	],
 	"rules": {
-		//"sort-imports": "error",
 		"@typescript-eslint/no-explicit-any": "off",
 		"no-unused-expressions": "off",
 		"@typescript-eslint/ban-types": "off",
@@ -48,13 +48,44 @@
 			"ignorePackages",
 			{
 				"ts": "never",
-				"tsx": "never"
+				"tsx": "never",
+				"js": "never",
+				"jsx": "never"
+			}
+		],
+		"import-helpers/order-imports": [ //
+			"warn", // IDENTIFICAR COMO UM AVISO
+			{
+				"groups": [
+					"/^react/", // TODOS QUE COMECAM COM REACT
+					"/react/", // TODOS OS DEMAIS QUE POSSUEM A PALAVRA REACT
+					"module", // TODAS AS DEMAIS DEPENDECIAS
+					"/router/",
+					"/services/",
+					"/repositories/",
+					"/models/",
+					"/database/",
+					"/migrations/",
+					"/config/",
+					"/components/",
+					"/utils/",
+					"/hooks/",
+					"/middlewares/",
+					"/errors/",
+					"/assets/",
+					"parent", // ARQUIVOS IMPORTADOS QUE ESTAO LONGE
+					"sibling", // ARQUIVOS IMPORTADOS QUE ESTAO PROXIMOS
+					["index", "absolute"], // NAO SEI PARA QUE SERVE
+					"/styles/"
+				],
+				"newlinesBetween": "ignore", //SEMPRE CRIAR UMA LINHA PARA SEPARAR
+				"alphabetize": { "order": "asc", "ignoreCase": true } //ORDEM ALFABETICA
 			}
 		]
 	},
 	"settings": {
-    "import/resolver": {
-      "typescript": {}
-    }
-  }
+		"import/resolver": {
+			"typescript": {}
+		}
+	}
 }

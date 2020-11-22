@@ -1,8 +1,9 @@
 import React from 'react'; // auth.routes.tsx
+
 import { createStackNavigator } from '@react-navigation/stack';
 
-import LoginPagina from '../pages/login';
 import CadastroPagina from '../pages/cadastro';
+import LoginPagina from '../pages/login';
 
 // NAVEGACAO DE AUTENTICACAO DO USUARIO
 const CreateStackNavigator = createStackNavigator();

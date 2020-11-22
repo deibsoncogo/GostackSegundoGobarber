@@ -1,9 +1,10 @@
-import Styled from 'styled-components/native';
 import { RectButton } from 'react-native-gesture-handler';
+
+import Styled from 'styled-components/native';
 
 // PARA USAR ALGO QUE NAO PERTENCE AO STYLED USAMOS ()
 export const Container = Styled(RectButton)`
-	width: 100%;
+	/* width: 100%; */
 	height: 60px;
 	background: #ff9000;
 	border-radius: 10px;

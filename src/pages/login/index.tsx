@@ -10,14 +10,17 @@ import {
 } from 'react-native';
 import IconeFeather from 'react-native-vector-icons/Feather';
 import { useNavigation } from '@react-navigation/native';
-import { Form } from '@unform/mobile';
+
 import { FormHandles } from '@unform/core';
+import { Form } from '@unform/mobile';
 import * as Yup from 'yup';
 
-import { useAutenticacao } from '../../hooks/autenticar';
-import ValidacaoErroUtilizario from '../../utils/validacaoerro';
-import InputComponente from '../../components/input';
 import BotaoComponente from '../../components/botao';
+import InputComponente from '../../components/input';
+import ValidacaoErroUtilizario from '../../utils/validacaoerro';
+import { useAutenticacao } from '../../hooks/autenticar';
+import logoImagem from '../../assets/logo.png';
+
 import {
 	Container,
 	Titulo,
@@ -26,8 +29,6 @@ import {
 	CriarConta,
 	CriarContaTexto,
 } from './styles';
-
-import logoImagem from '../../assets/logo.png';
 
 interface DadosLogin {
 	email: string;

@@ -1,5 +1,6 @@
-import Styled, { css } from 'styled-components/native';
 import IconeFeather from 'react-native-vector-icons/Feather';
+
+import Styled, { css } from 'styled-components/native';
 
 interface ContainerPropriedade {
 	selecionado: boolean;
