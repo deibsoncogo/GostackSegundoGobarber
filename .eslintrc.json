@@ -63,11 +63,11 @@
 					"/react/",
 					"module", // TODAS AS DEMAIS DEPENDECIAS
 					// ARQUIVOS QUE ESTAO EM PASTAS COM ESTE NOME
-					["/router/", "/services/", "/repositories/", "/models/", "/database/", "/migrations/"],
-					["/config/", "/components/", "/utils/", "/hooks/", "/middlewares/", "/errors/"],
-					"/assets/",
+					["/(router|services|repositories|models|database|migrations)/"],
+					["/(config|components|utils|hooks|middlewares|errors/"],
 					"parent", // ARQUIVOS IMPORTADOS QUE ESTAO LONGE
 					"sibling", // ARQUIVOS IMPORTADOS QUE ESTAO PROXIMOS
+					"/assets/",
 					"/styles/"
 				],
 				"newlinesBetween": "always", //SEMPRE CRIAR UMA LINHA PARA SEPARAR
