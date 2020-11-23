@@ -1,8 +1,9 @@
-import { getRepository } from 'typeorm';
 import { hash } from 'bcryptjs';
+import { getRepository } from 'typeorm';
+
+import UsuarioModelo from '../models/usuario';
 
 import GeralErro from '../errors/geral';
-import UsuarioModelo from '../models/usuario';
 
 interface Request {
 	nome: string;

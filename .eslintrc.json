@@ -16,7 +16,8 @@
 	},
 	"plugins": [
 		"@typescript-eslint",
-		"prettier"
+		"prettier",
+		"eslint-plugin-import-helpers"
 	],
 	"rules": {
 		"no-console": "off", // PERMITE UTILIZAR console.log
@@ -29,6 +30,23 @@
 			"ignorePackages",
 			{
 				"ts": "never"
+			}
+		],
+		"import-helpers/order-imports": [
+			"warn",
+			{
+				"groups": [
+					"/react/",
+					"module",
+					["/(routes|services|repositories|models|database|migrations)/"],
+					["/(config|components|utils|hooks|middlewares|errors)/"],
+					"parent",
+					"sibling",
+					"/assets/",
+					"/styles/"
+				],
+				"newlinesBetween": "always",
+				"alphabetize": { "order": "asc", "ignoreCase": true }
 			}
 		]
 	},

@@ -1,14 +1,14 @@
+import './database';
+import 'express-async-errors';
 import 'reflect-metadata';
 
-import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
-import 'express-async-errors';
+import express, { Request, Response, NextFunction } from 'express';
+
 import rotas from './routes';
 
-import './database';
-
-import GeralErro from './errors/geral';
 import UploadConfig from './config/upload';
+import GeralErro from './errors/geral';
 
 const app = express();
 

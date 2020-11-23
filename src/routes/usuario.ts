@@ -1,10 +1,11 @@
 import { Router } from 'express';
 import multer from 'multer';
 
+import CriarAvatarServico from '../services/CriarAvatar';
+import CriarUsuarioServico from '../services/CriarUsuario';
+
 import UploadConfiguracao from '../config/upload';
 import VerificarAutenticacaoMiddleware from '../middlewares/verificarAutenticacao';
-import CriarUsuarioServico from '../services/CriarUsuario';
-import CriarAvatarServico from '../services/CriarAvatar';
 
 const usuarioRota = Router();
 const multerFinal = multer(UploadConfiguracao);

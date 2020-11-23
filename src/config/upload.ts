@@ -1,6 +1,6 @@
-import path from 'path';
 import crypto from 'crypto';
 import multer from 'multer';
+import path from 'path';
 
 // LOCAL A SALVAR
 const localASalvar = path.resolve(__dirname, '..', '..', 'tmp');

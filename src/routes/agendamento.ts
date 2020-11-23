@@ -1,10 +1,11 @@
+import { parseISO } from 'date-fns';
 import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
-import { parseISO } from 'date-fns';
 
-import VerificarAutenticacaoMiddlewares from '../middlewares/verificarAutenticacao';
 import AgendamentoRepositorio from '../repositories/agendamento';
 import CriarAgendamentoServico from '../services/CriarAgendamento';
+
+import VerificarAutenticacaoMiddlewares from '../middlewares/verificarAutenticacao';
 
 const agendamentoRota = Router();
 

@@ -4,8 +4,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { verify } from 'jsonwebtoken';
 
-import GeralErro from '../errors/geral';
 import AutenticacaoConfiguracao from '../config/autenticacao';
+import GeralErro from '../errors/geral';
 
 interface TokenPayload {
 	iat: number; // DATA AUTOMATICA DE CRIACAO
