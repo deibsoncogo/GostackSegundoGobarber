@@ -1,0 +1,58 @@
+{
+	"env": {
+		"es2020": true,
+		"node": true
+	},
+	"extends": [
+		"airbnb-base",
+		"plugin:@typescript-eslint/recommended",
+		"prettier/@typescript-eslint",
+		"plugin:prettier/recommended"
+	],
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": 11,
+		"sourceType": "module"
+	},
+	"plugins": [
+		"@typescript-eslint",
+		"prettier",
+		"eslint-plugin-import-helpers"
+	],
+	"rules": {
+		"no-console": "off", // PERMITE UTILIZAR console.log
+		"class-methods-use-this": "off", // DESATIVA A UTILZACAO DO this
+		"camelcase": "off", // DESATIVA REGRAS NA UTILIZACAO DE _
+		"@typescript-eslint/no-unused-vars": ["error", {"argsIgnorePattern": "_"}],
+		"prettier/prettier": "error",
+		"import/extensions": [
+			"error",
+			"ignorePackages",
+			{
+				"ts": "never"
+			}
+		],
+		"import-helpers/order-imports": [
+			"warn",
+			{
+				"groups": [
+					"/react/",
+					"module",
+					["/(routes|services|repositories|models|database|migrations)/"],
+					["/(config|components|utils|hooks|middlewares|errors)/"],
+					"parent",
+					"sibling",
+					"/assets/",
+					"/styles/"
+				],
+				"newlinesBetween": "always",
+				"alphabetize": { "order": "asc", "ignoreCase": true }
+			}
+		]
+	},
+	"settings": {
+		"import/resolver": {
+			"typescript": {}
+		}
+	}
+}

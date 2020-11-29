@@ -1,0 +1,316 @@
+Rocketseat Bootcamp GoStack - Nível 2
+
+------> 8. Iniciando back-end do app
+Nessa etapa vamos continuar os aprendizados com Node.js aproveitando o projeto
+desenvolvido até agora para começar a trabalhar com conceitos de banco de dados,
+autenticação, autorização, etc.
+
+----> 1. Banco de dados
+--> Estratégias de abstração
+Para trabalhar com banco de dados pricisamos lidar com o drive nativo da linguagem
+gerando queries, para isso temos dependencias que facilita a criação
+
+O Knex.js utiliza JavaScript e depois ele converte para SQL
+O Object Relational Mapping (ORM) é o metodo mais facil para utilizar queries
+	Sequelize para JavaScript
+	TypeORM para TypeScript
+
+O TypeORM funciona com a unificação do Knex.js tornando eficiente principal na
+questão de mudança do tipo de banco de dados
+
+--> Conceitos Docker
+Docker serve para controlar os serviços externo da aplicação
+Uma das coisas que ele serve é a criação de ambientes isolados (Container)
+Os containers expõe portas para conseguir comunicar com eles
+Imagens são ferramentas do Docker que podemos colocar dentro dos containers
+E o container é a instancia de uma imagem
+Docker Registry é onde fica salvo as imagens
+Dockerfile premite nos criar imagens
+
+--> Instalando Docker
+Existe um arquivo mostrando como funciona o instalamento
+Depois de instalar é nescessário executar ele e logar, isso se for a versão desktop
+
+--> Criando container do banco
+Para verificar todos comandos de postgres temos o site abaixo
+	https://hub.docker.com/_/postgres
+
+Para verificar se uma porta está sendo utilizada temos dois comandos abaixo para o Windows
+Verifica uma porta expeficica, se tiver direcionada vai aparecer o programa que esta utilizando
+	netstat -ano | findstr PORTA
+
+Mostra todas portas em utilização
+	netstat -o -a -b
+
+Para criar o container devemos utilizar o comando abaixo
+	docker run --name NOME -e POSTGRES_USER=LOGIN POSTGRES_PASSWORD=SENHA -p PORTA:PORTA -d IMAGEM
+	docker run --name gostack-postgres -e POSTGRES_USER=docker -e POSTGRES_PASSWORD=docker -p 5432:5432 -d postgres
+
+A segunda porta precisa ser 5432 pois está é a que o Docker utiliza, já a primeira será
+a porta que o sistema utiliza onde para está podemos escolher qual usar
+
+Para listar todos bancos de dados ou somente o ativo temos os comandos abaixo
+	docker ps -a
+	docker ps
+
+Para buscar os logs de alteração, para iniciar ou parar temos os comandos abaixo
+	docker logs ID ou NOME
+	docker start ID ou NOME
+	docker stop ID ou NOME
+
+Para acessar o postgres (Banco de dados) temos o programa DBeaver
+
+Para adicionar uma conexão clicamos no símbolo de tomada e adiconar,
+estolhemos o tipo do banco de dados (PostgreSQL), informar a porta, nome da database,
+o username e a senha, por último em PostgreSQL ativamos Show all databases
+
+--> Configurando TypeORM
+Primeiro de tudo temos que instalar o TypeORM
+	yarn add typeorm
+
+Para poder utilizar temos que realizar as configurações basicas
+O site mostra todas as configurações possiveis
+	https://typeorm.io/
+
+As configurações devem ser salvas no seguinte arquivo
+	ormconfig.json
+
+Depois de configurar temos que instalar o drive do danco de dados PostgreSQL
+	yarn add pg
+
+--> Criando tabela de agendamentos
+As migrations servem para criar ou editar um banco de dados gerando um histórico
+
+Antes de criar uma migration temos que informar nas configurações o caminho de onde as
+migrations estão salvas e falar que o diretório está no mesmo caminho
+
+Para criar migrations no tipo TypeScript usamos o comando abaixo (Atalho: typeorm)
+	yarn ts-node-dev ./node_modules/typeorm/cli.js
+
+Para criar uma migration utilizamos o seguinte comando
+	yarn typeorm migration:create -n NOME-NO-PLURAL
+
+Uma migration possui dois metodos de execução
+	up serve para definir oque queremos fazer
+	down é utilizado desfazer tarefas do up
+
+Devemos criar o down em sentido contrário do up
+
+Os comandos abaixo que server para criar, excluir e mostrar um status das migrations
+	yarn typeorm migration:run
+	yarn typeorm migration:revert
+	yarn typeorm migration:show
+
+Não podemos realizar alterações de uma migration que já foi divulgado para a equipe
+Com isso devemos criar uma outra migration para alterar oque precisa
+
+--> Criando model de agendamento
+Para salvar os dados no banco de dados devemos vincula-lo a uma classe modelo
+Um metodo fácil de utilizar para o vinculo é usando o Decorator e o Entity, para isso
+devemos ativar os itens abaixo no tsconfig.json e importar o Entity do TypeORM
+	"experimentalDecorators": true
+  "emitDecoratorMetadata": true
+
+Precisamos também informar dentro do model oque vai ser coluna e propriedade
+
+Também importamos o Entity do TypeORM para usar junto o Decorator do TypeScript,
+ele dever ser usado sempre na linha de cima do item desejado
+	@Entity('NOME-DA-TABELA')
+	class NOME-DA-CLASSE {
+		...
+	}
+
+Na utilização de JavaScript deve usar o Entity na exportação
+	export default Entity(NOME-DA-CLASSE);
+
+O TypeORM inicializa uma variavel ao executar mais o IDE não sabe disso, para resolver
+este problema devemos ativar está configuração no tsconfig.json
+	"strictPropertyInitialization": false
+
+--> Repositório do TypeORM
+O TypeORM possui um repositório com funções essenciais como salvar, buscar e outras
+
+Uma Promise demora um pouco para finalizar sua execução, com isso devemos usar alguns
+comandos para falar que deve esperar ela finalizar para continuar
+	async = Usamos na função
+	await = Usamos no repositório
+
+Também devemos informar qual será o tipo do resultado desta Promise
+
+Para um funcionamento correto do Decorator temos que instalar a dependencia abaixo
+	yarn add reflect-metadata
+
+Nas configurações ormconfig.json devemos informar onde estão as entidades
+
+----> 2. Cadastro de usuários
+--> Model e migration de usuários
+Para criar a tabela de usuários usamos o seguinte comando para assim criar a migration
+que será responsavel pela criação, também mudaremos o nome da criado de agendamentos
+	yarn typeorm migration:create -n CriarTabelaUsuario
+	yarn typeorm migration:create -n CriarTabelaAgendamento
+
+A propriedade isNullable possui o padrão de não permitir campos em banco
+Devemos definir o valor de default para todos dados alimentado pelo sistema
+
+É altamente recomendado criar as duas colunas abaixo
+	created_at: Ou criação que registrará o horário de data de quando o dado foi criado
+	updated_at: Ou alteração que vai salvar o quando foi realizado a última alteração
+
+--> Relacionamento nos models
+Até o momento no agendamento recebemos o nome do profissional, sendo que o correto
+e receber seu ID de usuário transformando em um "profissional"
+
+Quando trabalhamos com banco de dados relacionados precisamos cria uma chave estrangeira
+dentro da migration
+
+O principio Keep It Semple & Stupid (KISS) diz devemos deixar simples a API
+
+--> Criação de registros
+Aqui revimos todos o conteudo sobre rotas, servicos e repositórios
+Devemos criar repositórios quando o TypeORM não possuir aquela regra de serviço
+
+O TypeORM possui dois tipos de repositórios
+	getCustomRepository: Para quando criamos um repositório do zero
+	getRepository: Para quando utilizamos somente os já existente
+
+--> Criptografia de senha
+A dependencia abaixo serve para trabalhar com criptografia
+	yarn add bcryptjs
+
+Temos que instalar também a tipagem desta dependencia
+	yarn add -D @types/bcryptjs
+
+----> 3. Autenticação
+--> Conceitos de JWT
+O JWT é serviço de autenticação pelo metodo Json
+Toda vez que ele é executado ele devolve um arquivo chamado de Token JWT
+
+Este arquivo possui um código que pode ser separado em 3 grupos
+	Até o primeiro ponto (Headers): É o tipo da criptografia
+	Do primeiro ao segundo ponto (Payload): São os dados recuperado
+	Do segundo ao fim (Assinatura): É o que certifica que nada foi alterado
+
+Não podemos colocar informações importantes no Token pois é fácil descriptograr ele
+
+--> Validando credenciais
+Alguns comandos como findOne transforma a variavel em um objeto
+A propria dependencia de criptografia fornece uma opção de comparação
+	compare
+
+Nesta aula criamos somente a verificação se os dados estão corretos
+
+--> Gerando token JWT
+Para criar o token precisamos da depencia abaixo e de sua tipagem
+	yarn add jsonwebtoken
+	yarn add @types/jsonwebtoken -D
+
+Se o comando não retornar uma Promise não precisa do comando await
+O payload é muito utilizado para informar as premições que o usuário possui
+
+Não devemos colocar informacoes importante como senha no payload pois mesmo sendo
+criptografado qualquer um pode descriptogravar o token
+
+O site MD5 gera um um código a partir de uma palavra chave
+	http://www.md5.cz/
+
+O site JWT decodifica as informações do token, iat é quando foi criado
+	https://jwt.io/
+
+--> Rotas autenticadas
+O metodo mais fácil de realizar a autenticação é com um middleware
+
+O token deve ir no cabeçalho da requisição, não junto com as outras informações, e
+algumas pessoas adicionam a palavra abaixo na frente do token
+	Bearer
+
+O Insominia tem uma ferramenta exclusiva para atutenticação com token, este campo fica
+na segunda aba do programa chamado de Bearer Token
+
+As propriedades de uma extenção salva os dados quando pedimos
+Existe um metodo de criar campos unicos para salvar estes dados
+Como exemplo temos o seguinte arquivo:
+	src/@types/express.d.ts
+
+----> 4. Upload de imagens
+--> Upload de arquivos
+Para salvar as fotos dos usuários (Avatar) iremos cria a seguinte migration para ela
+alterar a tabela usuarios adicionando uma coluna para fotos
+	yarn typeorm migration:create -n AdiconarAvatarTabelaUsuarios
+
+Não devemos salvar arquivos dentro do banco de dados pois eles iram sobrecarregar o
+banco de dados, com isso salvamos o caminho de onde o arquivo está salvo
+
+Ao criar uma coluna nova devemos permitir que os cadastros anteriores tenham o campo
+vazio, caso contrário na mesma migration temos que criar um comando para emprencher
+com alguma informação para não gerar um erro
+	isNullable: true // PERMITE CAMPO VAZIO
+
+Para lidar com upload de arquivos temos a depencia de middleware abaixo
+	yarn add multer
+	yarn add @types/multer -D
+
+O primeiro comando faz ignorar tudo dentro da pasta e no segundo cria uma exceção
+	temp/*
+	!temp/.gitkeep
+
+Devemos mudar o nome dos arquivos que sofreram upload caso contrairo pode gerar
+duplicidade causando um erro
+
+O multer possui uma regra de quantidade de arquivos
+	any: Todos exceto o tipo none
+	array: Varios arquivos de um tipo
+	fields: Varios arquivos de varios tipos
+	none: Nenhum arquivo
+	single: Um arquivo
+
+Para enviar um arquivo pelo Insomnia usamos a guia Multipart
+
+--> Atualizando avatar
+Utilizamos muitas dependencias para realizar o upload do avatar
+	import path from 'path'
+	import fs from 'fs'
+	import multer from 'multer'
+	import crypto from 'crypto'
+
+--> Servindo arquivos estáticos
+Criação de uma rota para mostrar os arquivos de avatar salvo
+
+----> 5. Tratando exceções
+--> Criando classe de erro
+Exception handling é lidar com excessões, lidar com erros
+O index de erro vai permitir mostrar o código HTTP real quando tiver
+
+--> Lidando com erros
+O middleware para dar tratativa de erros deve receber 4 parametros
+Se o erro que a middleware captar for uma instancia do index de erros devemos ignorar
+
+O express não consegue passar para a frete a mensagem de erro quando utilisamos o
+async e await, para corrigir temos que utilizar a dependencia abaixo
+	yarn add express-async-errors
+
+Com este metodo não devemos utilizar os comandos abaixo
+	try
+	catch
+
+------> 10. Iniciando front-end web
+Durante esse módulo criaremos a versão web da aplicação GoBarber que será utilizada
+pelos usuários que prestam serviços dentro da aplicação
+
+----> 2. Autenticação
+--> Habilitando CORS na API
+Iremos criar o vinculo do nosso frontend web com seu backend
+Para isso usamos a dependência abaixo
+	yarn add cors
+
+Depois de importar devemos ativar a utilização dele, podemos definir qual endereço pode
+acessar o backend como abaixo
+	import cors from 'cors';
+
+Com os comandos abaixo defenimos qual endereço pode acessar o backend
+	app.use(
+		cors({
+			origin: 'http://localhost:3333',
+		}),
+	);
+
+Não o porque mais o Cors não aceita comentarios entre os comandos

@@ -1,0 +1,229 @@
+Rocketseat Bootcamp GoStack - Nível 2
+
+------> 7. Primeiro projeto com Node.JS
+Nessa fase vamos aprender a configurar um projeto do total zero utilizando Node.js e
+TypeScript incluindo ferramentas como ts-node-dev, ESLint, Prettier, EditorConfig
+
+----> 1. Estrutura e padrões
+--> Configurando estrutura
+A primeira coisa a fazer é criar o arquivo package.json
+  yarn init -y
+
+Logo em seguida instalar as dependencias abaixo
+  yarn add express
+  yarn add typescript -D
+
+Agora criar os demais arquivos essenciais para a API
+  dist
+  src\server.ts
+  .gitignore
+  readme
+
+E por último criar o arquivo tsconfig.json para depois definir o local onde
+salvar os arquivos convertido e onde fica o arquivo main
+  yarn tsc --init
+  "outDir": "./dist",
+  "rootDir": "./src",
+
+Para rodar o servidor temos que converter o TypeScript em JavaScript e depois
+executar o arquivo main convertido
+  yarn tsc
+  node dist/server.js
+
+O melhor metodo para executar o servidor durante o processo de desenvolvimento é
+pela depencia abaixo, ele consegue executar o servidor sem converser o TypeScript para
+JavaScript e quando acontece uma alteração o servidor é atualizado
+  yarn add ts-node-dev -D
+  yarn ts-node-dev src/server.ts
+
+Quando digitamos algum comando errado o proprio IDE nos avisa, com isso podemos
+adicionar o comando abaixo desativa esta verificacao na execução do servidor
+  --transpileOnly
+
+Também adicionamos o comando abaixo para ignorar a converção dos arquivos na
+pasta node_modules e desativar a monitoração de alterações do mesmo
+  --ignore-watch node_modules
+
+Assim o comando para iniciar o servidor fica com esta composição
+  yarn ts-node-dev --transpileOnly --ignore-watch node_modules src/server.ts
+
+--> EditorConfig
+O EditorConfig é uma ferramenta simples mais com uma funcionalidade incrível
+Ele padroniza configurações para quando abrir a API em outro IDE, editor de código ou em
+outro computador para as configurações ficarem igual, para utilizar basta instalar a
+extenção EditorConfig for VS Code no lado, depois clicar com o botão direiro na guia
+e criar o arquivo .editorconfig e realizar as configurações abaixo
+	root = true
+
+		[*]
+		indent_style = tab #TIPO DE RECUO
+		indent_size = 2 #TAMANHO DO RECUO
+		charset = utf-8 #TIPO DE CARACTER
+		trim_trailing_whitespace = true #REMOVER ESPAÇOS EM BRANCO NO FINAL DA LINHA
+		insert_final_newline = true #CRIAR UMA LINHA EM BRANCO NO FINAL DO ARQUIVO
+		end_of_line = lf #TIPO DE ENTER (WINDOWS OU LINUX)
+
+Tem dos comandos que força o programa a executar a padronização
+  Reindent Lines (Atalho pessoal: Alt + E)
+  Reindent Selected Lines
+
+--> ESLint
+O Eslint é ferramenta que realiza padronizações de códigos
+Devemos instalar a extenção dele e também sua dependencia
+  yarn add eslint -D
+
+Depois de instalar devemos ativar as configurações abaixo para corrigir os códigos
+quando realizarmos o salvamento do arquivo
+	"[javascript]": {
+		"editor.codeActionsOnSave": {
+			source.fixAll.eslint": true,
+		}
+  },
+
+  "[javascriptreact]":{
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": true,
+		}
+  },
+
+  "[typescript]":{
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": true,
+		}
+  },
+
+  "[typescriptreact]":{
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": true,
+		}
+  },
+
+Para ele funcionar deve utilizar o comando abaixo e depois de executar o comando
+deveremos que responder algumas pergutas como
+  yarn eslint --init
+
+  How would you like to use ESLint? = To check syntax, find problems, and enforce code style
+  What type of modules does your project use? = JavaScript modules (import/export)
+  Which framework does your project use? = None of these
+  Does your project use TypeScript? = Yes
+  Where does your code run? = Node
+  How would you like to define a style for your project? = Use a popular style guide
+  Which style guide do you want to follow? = Airbnb: https://github.com/airbnb/javascript
+  What format do you want your config file to be in? = JSON
+
+Depois de responder as perguntas sera gerado uma lista de dependencias para instalar
+  yarn add @typescript-eslint/eslint-plugin@latest eslint-config-airbnb-base@latest eslint-plugin-import@^2.20.1 @typescript-eslint/parser@latest -D
+
+Para o NodeJS entender os arquivos do TypeScript temos a dependencia abaixo
+	yarn add eslint-import-resolver-typescript -D
+
+Para criar exclução de verificação podemos criar o arquivo abaixo
+	.eslintignore
+
+Para procurar erros de padronização em todos os arquivo execute o comando abaixo
+	yarn eslint .
+
+Para corrigir todos os erros de padronização pode utilizar o comando abaixo
+	yarn eslint . --fix
+
+--> Prettier
+Este serve também para padronizar os códigos, para instalar utilize os comandos abaixo
+  yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+
+Para realizar as configurações dele teremos o arquivo abaixo
+	prettier.config.js
+
+--> Debugando NodeJS
+A versão dublada do Visual Studio Code gera conflitos no debug
+Para criar clique em Run (Ctrl + Shift + D) e depois create a launch.json
+E para finalziar escolhemos como vamos querer executar a depuração por exemplo Node.JS
+Depois de criar o arquivo launch.json iremos alterar algumas configurações como
+	"request": "attach"
+	"protocol": "inspector"
+	"restart": true
+
+Request attach define que quando ativarmos o debug ele não vai reiniciar o servidor
+Protocol inspector faz a IDE se conectar com o servidor a partir do comando --inspect
+	yarn ts-node-dev --inspect --transpileOnly --ignore-watch node_modules src/server.ts
+
+Com a depuração conseguimos identificar com mais faciliadades os erros de execução
+Ao iniciar a depuração um menu flutuante aparece para nos auxiliar no que fazer
+Também podemos definir breakpoints (Ponto vermelho) em uma linha expecifica
+clicando no número dela, assim a depuração para na linha marcada para analisar
+
+Variables mostra os valores que todas as variaveis executada possui
+Watch permite uma busca filtrada de variaveis
+Call stack mostra todos os arquivos que já foram executado
+Breakpoints mostra todos breaks criado
+
+----> 2. Construindo Aplicação
+--> Layout da Aplicação
+Figma é uma ferramenta incrível para criar leiaute
+	https://www.figma.com/
+
+--> Cadastro de Agendamentos
+Está API ganhou o nome de GoBarber
+Nesta aula iremos começar a agrupar em pastas todas as regras de serviços, rotas,
+migrations, database e outros salvando em pastas
+
+O Insomnia possui uma ferramenta chama de Timestamp que gera o data e hora atual
+
+--> Validando a data
+A dependencia abaixo é a mais recomendada para a manipulação de datas e horas
+  yarn add date-fns
+
+O comando abaixo arredonda as horas para cheia
+  startOfHour
+
+Este comando transforma uma data e hora de string para o formato de data e hora
+  parseISO
+
+Para realizar comparações temos o seguinte comando
+  isEqual
+
+--> Model de Agendamento
+O conceito de model ou entidade servem para criar inteface em modo global
+O metodo anterior funciona somente no arquivos criado a inteface
+O constructor serve para criar novos dados pois ele vincula oque está recebendo do
+request.body, compara com a tipagem acima e retornar para ser salvo
+
+--> Criando repositórios
+Iremos utilizar os repositórios para executar todos os metodos de alterações
+Iremos salvar nele os metodos manual, os que não utilizamos um pronto
+Ele será a ligação entre as rotas com o banco de dados
+As minupulações com o banco de dados devemos deixar restrito ao repositório
+
+--> Listando Agendamentos
+Aqui vemos como criar um metodo para listar todos os agendamentos criados
+A rota não deve ter a responsabilidade de executar tarefas e controlar dados
+Existe uma metodologia chamada de SOC (Separation os Concerns) traduzindo seria a
+separação de preoupações, que quer dizer que cada arquivo deve cuidar
+somente do mesmo tipo de coisa
+
+--> Trabalhando com dados
+Um DTO (Data Transfer Object) é a tranferência de informação entre arquivos
+Quando tiver mais de um dado para transferir devemos transformalos em objeto
+Alguns dados precisam ser ocultado do usuario pois ele será criado pelo sistema,
+para isso temos o comando abaixo do TypeScript
+	Omit<>
+
+--> Services & SOLID
+Services são os arquivos responsaveis pelas regras de negócio (Definições no sistema)
+Devemos criar um arquivo para cada tipo de serviço e nomear este arquivo no futuro
+com as primeira letras em caixa alta (Maiúscula)
+
+Uma transformação de dado (Converção) não é uma regra de negócio
+
+O Dependency Inversion quer dizer que não devemos criar mais de um relacionamento com
+o repositório, pois ao criar estaremos na verdade criando mais um banco de dados, para
+ter acesso aos dados criamos um parametro com o constructor
+
+SOLID é um grupo de regras contendo está acima e muitas outras que aprenderemos
+	Single responsability principle: Cada arquivo com sua responsabilidade
+	Dependency invertion principle: Utilização de objetos
+
+Um software provisório (MVP) não precisa respeitar todas as regras, mais será
+dificil futuramente melhorar ele
+
+Removemos as regras de negócio da rota para atender a regra de não repetir regra de
+negócio (DRY), pois futuramente aquela regra pode ser acionada por mais de caminho

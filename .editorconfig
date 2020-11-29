@@ -1,0 +1,9 @@
+root = true
+
+	[*]
+	indent_style = tab #TIPO DE RECUO
+	indent_size = 2 #TAMANHO DO RECUO
+	charset = utf-8 #TIPO DE CARACTER
+	trim_trailing_whitespace = true #REMOVER ESPAÇOS EM BRANCO NO FINAL DA LINHA
+	insert_final_newline = true #CRIAR UMA LINHA EM BRANCO NO FINAL DO ARQUIVO
+	end_of_line = crlf #TIPO DE ENTER (WINDOWS OU LINUX)
