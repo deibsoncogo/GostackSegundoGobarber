@@ -1,0 +1,2 @@
+// DEFINE ESTE TIPO DE EXTENCAO COMO UM MODULO DO PROGRAMA
+declare module '*.png';

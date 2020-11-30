@@ -1,0 +1,283 @@
+Rocketseat Bootcamp GoStack - Nível 3
+
+------> 11. Iniciando aplicativo mobile
+Nesse módulo criaremos a versão mobile do GoBarber que será utilizada pelos usuários
+para agendar serviços dentro da plataforma
+
+----> 1. Estrutura e padrões
+--> Configurando estrutura
+A equipe da Rocketseat não recomenda ter o React Native CLi instalado como globalmente
+	yarn global remove react-native-cli
+
+Para criar um novo projeto usaremos o comando abaixo, o nome da pasta não pode conter
+acentos e símbolos, ele também ira realizar diversas configurações essenciais
+	yarn react-native init appgobarber --template react-native-template-typescript
+
+Para verificar se o celular está conectado temos o comando abaixo
+	adb devices
+
+E para executar o programa temos este comando
+	yarn start
+
+--> Padrões de Projeto com Eslint, Prettier e Editor Config
+Primeiro instalamos a extensão do EditorConfig e depois criamos o arquivo de
+configuração do EditorConfig clicando o botão direito
+  root = true
+
+  [*]
+  indent_style = tab
+  indent_size = 2
+  charset = utf-8
+  trim_trailing_whitespace = true
+  insert_final_newline = true
+  end_of_line = crlf
+
+Agora iniciamos as configurações para o Eslint funcionar com o React Native Cli
+	yarn add eslint@6.8.0 -D
+
+Depois de instalar o Eslint usamos o comando abaixo para saber de quais dependências
+iremos precisar para finalizar as configurações
+	yarn eslint --init
+
+	? How would you like to use ESLint? To check syntax, find problems, and enforce code style
+	? What type of modules does your project use? JavaScript modules (import/export)
+	? Which framework does your project use? React
+	? Does your project use TypeScript? Yes
+	? Where does your code run?
+	? How would you like to define a style for your project? Use a popular style guide
+	? Which style guide do you want to follow? Airbnb: https://github.com/airbnb/javascript
+	? What format do you want your config file to be in? JSON
+
+	yarn add eslint-plugin-react@^7.20.0 @typescript-eslint/eslint-plugin@latest eslint-config-airbnb@latest eslint-plugin-import@^2.21.2 eslint-plugin-jsx-a11y@^6.3.0 eslint-plugin-react-hooks@^2.3.0 @typescript-eslint/parser@latest -D
+
+Agora criamos o arquivo abaixo para criar exceções de verificações
+	.eslintignore
+
+	node_modules
+	build
+	dist
+
+Agora adicionamos as configurações abaixo no arquivo .eslint.json
+	{
+		"extends": [
+			"plugin:@typescript-eslint/recommended"
+		],
+		"globals": {
+			"__DEV__": "readonly"
+		},
+		"plugins": [
+			"react-hooks"
+		],
+		"rules": {
+			"react-hooks/rules-of-hooks": "error",
+			"react-hooks/exhaustive-deps": "warn",
+			"react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
+			"import/prefer-default-export": "off",
+			"import/extensions": [
+				"error",
+				"ignorePackages",
+				{
+					"ts": "never",
+					"tsx": "never"
+				}
+			]
+		},
+		"settings": {
+			"import/resolver": {
+				"typescript": {}
+			}
+		}
+	}
+
+Faz o React ler e entender os arquivos TypeScript
+  yarn add eslint-import-resolver-typescript -D
+
+Temos que instalar as seguintes dependências para utilizar o Prettier
+  yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+
+Agora devemos adicionar as seguintes configurações no arquivo .eslintrc.json
+  "extends": [
+  	"prettier/@typescript-eslint",
+		"plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": "error"
+  },
+
+E por último criamos o arquivo abaixo para adicionar as seguintes configurações
+	prettier.config.js
+
+  module.exports = {
+    singleQuote: true,
+    trailingComma: 'all',
+    arrowParens: 'avoid',
+    printWidth: 91,
+  }
+
+--> Configurando StatusBar
+Para executar o servidor devemos execar os seguintes comando na seguencia
+	yarn start
+		yarn react-native start
+	yarn android
+		yarn react-native run-android
+
+Nesta aula aprendemos também como basicos da dependência abaixo
+	StatusBar
+
+	Cor branca dos icones do topo: barStyle="light-content"
+	Cor de fundo do topo: backgroundColor="#312e38"
+
+--> Configurando navegação
+A dependência de estilação abaixo também serve para a verção mobile, mais temos que
+ativar o modo React Native na importação do mesmo
+	yarn add styled-components
+	yarn add @types/styled-components -D
+
+	import Styled from 'styled-components/native'
+
+Para lidar com as rotas iremos usar a dependência React Navigation
+	yarn add @react-navigation/native
+
+Depois de instalar a dependência temos que realizar alguma configurações onde temos
+salvo doque fazer no site abaixo
+	https://reactnavigation.org/docs/getting-started/
+
+A primeira configuração e instalar também estas dependências pois não usamos Expo
+	yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+
+A segunda para os sitema IOS é dentro da pasta ios executar este comando depois de ter
+instalado na maquina o Cocoapods (Gerenciado de diretórios como o Yarn)
+	pod install
+
+E para o Android não vamos precisar instalar na de expecial
+Para as ambas plataforma devemos realizar a importação a baixo na primeira linha
+do primeiro arquivo que ira executar pela API
+	import 'react-native-gesture-handler';
+
+Também devemos instalar esta dependência abaixo para lidar com as navegações
+	yarn add @react-navigation/stack
+
+Devemos também manter a dependência por volta de todo nosso programa, caso contrário a
+navegação não vai funcionar mais ele traz uma estilização pronta e editavel
+	import { NavigationContainer } from '@react-navigation/native';
+
+--> Densidade de pixel
+O conceito de densidade de pixel diz que a quantidade de pixel varia de dispositovo
+para dispositivo, com isso quando vamos utilizar imagens devemos ter a mesma imagem
+com três tamanhos diferente
+	Tamanho normal
+	Dobro do tamanho normal
+	Triplo do tamanho normal
+
+Para usar uma imagem com o conceito acima estamos esta dependência, mais os três
+arquivos deve manter este padrão de nome
+	import { Image } from 'react-native';
+
+	logo.png
+	logo@2x.png
+	logo@3x.png
+
+--> Importando fontes externas
+Para as verções mobile devemos baixar as fontes e inserir dentro da API pois a
+importação que realizamos em vezes anteriores não vai funcionar
+
+Depois temos que criar o arquivo abaixo e configurar ele falando que as fontas pertencem
+aos arquivos base do nosso programa
+	react-native.config.js
+
+O lado rui é que o React Native não permite estilização com herança
+
+----> 2. Autenticação e cadastro
+--> Input & Button
+Para utilizar botões vamos usar a dependência abaixo
+	yarn add react-native-vector-icons
+	yarn add @types/react-native-vector-icons -D
+
+No React Native temos que definir que os icones fazem parte dos arquivos principais do
+sistema adicinando os seguintes comandos nos seguintes arquivos
+
+	ios/appgobarber/Info.plist
+		<string>Feather.ttf</string>
+
+	android/app/src/build.gradle
+		// DEFINE QUAIS ICONES IMPORTAR
+		project.ext.vectoricons = [
+			iconFontNames: ['Feather.ttf']
+		];
+
+		apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
+
+Também revisamos metodos visto em vezes anteriores
+
+--> Tela de autenticação
+Conhecemos a dependência abaixo que identifica algumas configurações dos Iphone
+	yarn add react-native-iphone-x-helper
+
+Realizar uma manipulação de como o teclado deve ficar ao aparecer
+KeyboardAvoidingView
+
+--> Tela de cadastro
+Define qual página deve abrir ao iniciar o aplicativo
+	initialRouteName="CadastroPagina"
+
+Devemos acostumar com a criação de estilização com regra de if para ser aplicado certa
+estilização a partir do tipo de sistema que o celular utiliza como Android e IOS
+
+Para a criação das rotas vamos utilizar a dependência abaixo
+	import { useNavigation } from '@react-navigation/native';
+
+--> Integrando Unform
+Para lidar com os formulários usaremos as seguintes dependências
+	yarn add @unform/core @unform/mobile
+
+Utilizamos o useRef quando queremos manipular um elemento de forma direta, onde nos
+iremos configurar oque deve acontecer quando um botao ou outra coisa for acionado
+
+--> Usabilidade em formulários
+Nesta aula aprendemos a manipular os input definindo quais são de senha, e-mail, as
+primeira letras maiuscula deve ser cherada e a configuração do botão especial que
+existe nos teclado no canto inferior direito
+
+A propriedade ref não conseguimos acessar, com isso devemos mudar o tipo da função
+criar um interface dos comandos que desejamos usar e criar um hook ou informar o ref
+	React.FunctionComponent => RefForwardingComponent
+
+Referencias são formas de nos manipular/acessar propriedades e funções dentro do React
+de um elemento numa forma direta, sem a nescessidade de um evento
+
+--> Foco e preenchimento
+Agora utilizamos os mesmos metodo aplicado na versão web onde quando o input é
+selecionado a borda muda de cor e se ficar preenchido o icone muda de cor
+
+--> Validação dos formulários
+Para realizar as validações dos formulários iremos usar a seguinte dependência
+	yarn add yup
+	yarn add @types/yup -D
+
+Nesta aula reutilizamos a logica para validar as informações para realizar o
+login da página ou cadastro de usuário
+
+----> 3. Conectando com a API
+--> Cadastro na aplicação
+Para criar o vinculo com o backend iremos usar esta dependência
+	yarn add axios
+
+Para conectar com a api devemos criar um arquivo definindo a caminho do backend,
+onde para conectar um celular Android com ele devemos utilziar o IP do celular
+
+--> Autenticação de usuários
+Esta autenticação será bem pareceda com a que foi criada para a versão web
+Uma coisa que muda é que vamos utilizar Storage Async
+	yarn add @react-native-community/async-storage
+
+--> Rotas privadas
+Nesta aula aplicamos a metodologia de agrupar as páginas que pode ser acessadas
+somente quando o usuário estiver logado ou não, no modo web simplismente redirecionamos
+quando ele acessa algo que não pode, este metodo novo é mais eficaz
+
+Também aprendemos a como colocar o aplicativo em espera quanto a API verifica se o
+usuário está logado, para isso usamos a dependência abaixo:
+	import { ActivityIndicator } from 'react-native';
