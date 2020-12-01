@@ -8,3 +8,13 @@ TypeScript incluindo ferramentas como ts-node-dev, ESLint, Prettier, EditorConfi
 Nessa etapa vamos continuar os aprendizados com Node.js aproveitando o projeto
 desenvolvido até agora para começar a trabalhar com conceitos de banco de dados,
 autenticação, autorização, etc.
+
+Rocketseat Bootcamp GoStack - Nível 3
+
+------> 10. Iniciando front-end web
+Durante esse módulo criaremos a versão web da aplicação GoBarber que será utilizada
+pelos usuários que prestam serviços dentro da aplicação
+
+------> 11. Iniciando aplicativo mobile
+Nesse módulo criaremos a versão mobile do GoBarber que será utilizada pelos usuários
+para agendar serviços dentro da plataforma
