@@ -6,6 +6,16 @@ de arquitetura, design patterns e testes automatizados
 
 ----> 1. Arquitetura e DDD
 --> Introdução
-Explica que iremos iniciar uma fornada para desenvolver os sistemas baseado em testes
+Explica que iremos iniciar uma jornada para desenvolver os sistemas baseado em testes
 Toda grande aplicação não é apenas um monte de códigos, também precisamos pensar na
 arquitetura, nos testes, na documentação, na organização e principios da organização
+
+--> Conceitos DDD e TDD
+Hoje estamos separando os arquivos conforme seus tipos, isso vai nos atrapalhar quando
+o sistema se tornar grande, assim teremos que separa por tipo de dominio, qual é a
+área de conhecimento dquele módulo ou arquivo como usuários, agedamentos e outros
+
+DDD (Domain Driven Desing) e o Scrum são metodologias agil para que assim o time
+consigir se organizar e ser agil nas tarefas
+
+Estes dois metodos são diferentes de um TDD (Test Driven Development)
