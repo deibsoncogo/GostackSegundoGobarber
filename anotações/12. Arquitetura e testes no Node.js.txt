@@ -19,3 +19,12 @@ DDD (Domain Driven Desing) e o Scrum são metodologias agil para que assim o tim
 consigir se organizar e ser agil nas tarefas
 
 Estes dois metodos são diferentes de um TDD (Test Driven Development)
+
+--> Separando em módulos
+Antes de iniciar vamos configurar manualmente os icones para as pastas e arquivos
+que vamos utilizar durante nível quatro, podemos criar qualquer configuração no
+JSON basta saber quais são os icones seu nome
+
+Os modulos tem que ser dividido num formato onde a exclusão de um arquivo não vai
+afetar os arquivos dos outros modulos, para os arquivos que são interligados colocamos
+eles um pasta informando que os arquivos são compartilhados
