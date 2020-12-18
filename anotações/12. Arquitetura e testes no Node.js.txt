@@ -12,7 +12,7 @@ arquitetura, nos testes, na documentação, na organização e principios da org
 
 --> Conceitos DDD e TDD
 Hoje estamos separando os arquivos conforme seus tipos, isso vai nos atrapalhar quando
-o sistema se tornar grande, assim teremos que separa por tipo de dominio, qual é a
+o sistema se tornar grande, assim teremos que separa por tipo de domínio, qual é a
 área de conhecimento dquele módulo ou arquivo como usuários, agedamentos e outros
 
 DDD (Domain Driven Desing) e o Scrum são metodologias agil para que assim o time
@@ -28,3 +28,15 @@ JSON basta saber quais são os icones seu nome
 Os modulos tem que ser dividido num formato onde a exclusão de um arquivo não vai
 afetar os arquivos dos outros modulos, para os arquivos que são interligados colocamos
 eles um pasta informando que os arquivos são compartilhados
+
+--> Camada de Infra
+Infra é a parte tecnica da aplicação, as ferramentas que usamos como o Express,
+estes itens são aqueles que é decidido em uma reunião com programadores pois precisa
+de pessoas que entenda a área
+
+A camada de dominio seria tudo que depende do cliente ou do usuário, um exemplo seria
+a criação das regras de negocio pois o foco dela é desenvolvida baseando no que o
+cliente pediu/precisa
+
+Com isso devemos separar estes arquivos em pastas para um dia futuro facilitar na
+troca de uma ferramenta para outra
