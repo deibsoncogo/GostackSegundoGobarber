@@ -20,6 +20,8 @@
 		"eslint-plugin-import-helpers"
 	],
 	"rules": {
+		"import/order": "off",
+		"import/no-unresolved": "off",
 		"no-console": "off", // PERMITE UTILIZAR console.log
 		"class-methods-use-this": "off", // DESATIVA A UTILZACAO DO this
 		"camelcase": "off", // DESATIVA REGRAS NA UTILIZACAO DE _
@@ -38,7 +40,7 @@
 				"groups": [
 					"/react/",
 					"module",
-					["/(routes|services|repositories|models|database|migrations)/"],
+					["/(routes|services|repositories|models|database|entities|migrations)/"],
 					["/(config|components|utils|hooks|middlewares|errors)/"],
 					"parent",
 					"sibling",

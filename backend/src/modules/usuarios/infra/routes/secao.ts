@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import CriarSecaoServico from '../services/CriarSecao';
+import CriarSecaoServico from '@modules/usuarios/services/CriarSecao';
 
 const secaoRota = Router();
 

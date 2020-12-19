@@ -1,9 +1,9 @@
 import { Router } from 'express';
 
 // IMPORTACAO DAS ROTAS SECUNDARIAS
-import AgendamentoRota from './agendamento';
-import SecaoRota from './secao';
-import UsuarioRota from './usuario';
+import AgendamentoRota from '@modules/agendamentos/infra/routes/agendamento';
+import SecaoRota from '@modules/usuarios/infra/routes/secao';
+import UsuarioRota from '@modules/usuarios/infra/routes/usuario';
 
 const rota = Router();
 

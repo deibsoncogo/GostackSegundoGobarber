@@ -1,6 +1,6 @@
 import { EntityRepository, Repository } from 'typeorm';
 
-import AgendamentoModelo from '../models/agendamento';
+import AgendamentoModelo from '../infra/entities/agendamento';
 
 // POSSIBILITA CRIAR UM REPOSITORIO PARA O TypeORM
 @EntityRepository(AgendamentoModelo)

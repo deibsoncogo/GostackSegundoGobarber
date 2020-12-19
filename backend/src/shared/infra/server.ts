@@ -1,4 +1,4 @@
-import './database';
+import '@shared/infra/database';
 import 'express-async-errors';
 import 'reflect-metadata';
 
@@ -7,8 +7,8 @@ import express, { Request, Response, NextFunction } from 'express';
 
 import rotas from './routes';
 
-import UploadConfig from './config/upload';
-import GeralErro from './errors/geral';
+import UploadConfig from '@config/upload';
+import GeralErro from '@shared/errors/geral';
 
 const app = express();
 
@@ -37,7 +37,7 @@ app.use((err: Error, request: Request, response: Response, _next: NextFunction) 
 
 	return response.status(500).json({
 		status: 'Erro',
-		message: 'Erro interno do servidor',
+		message: 'ERRO INTERNO DO SERVIDOR',
 	});
 });
 

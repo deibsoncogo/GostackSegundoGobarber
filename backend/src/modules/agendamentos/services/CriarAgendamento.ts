@@ -1,10 +1,10 @@
 import { startOfHour } from 'date-fns';
 import { getCustomRepository } from 'typeorm';
 
-import AgendamentoModelo from '../models/agendamento';
+import AgendamentoModelo from '../infra/entities/agendamento';
 import AgendamentoRepositorio from '../repositories/agendamento';
 
-import GeralErro from '../errors/geral';
+import GeralErro from '@shared/errors/geral';
 
 // CRIANDO TIPAGEM PARA O RECEBIMENTO DAS INFORMACOES
 interface RequestDTO {

@@ -1,4 +1,5 @@
 // CRIACAO DA TIPAGEM DOS DADOS GLOBALMENTE
+import UsuarioModelo from '@modules/usuarios/infra/entities/usuario'; // INSTANCIA DA CLASSE USUARIO
 import {
 	Entity,
 	Column,
@@ -10,8 +11,6 @@ import {
 } from 'typeorm';
 
 // import { uuid } from 'uuidv4';
-
-import UsuarioModelo from './usuario'; // INSTANCIA DA CLASSE USUARIO
 
 // O Decorator (@) COM O Entity CRIAR O VINCULO COM O BANCO DE DADOS
 // ESTE METODO CRIA UM Constructor AUTOMATICAMENTE

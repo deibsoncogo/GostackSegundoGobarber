@@ -40,3 +40,20 @@ cliente pediu/precisa
 
 Com isso devemos separar estes arquivos em pastas para um dia futuro facilitar na
 troca de uma ferramenta para outra
+
+--> Configurando Imports
+Os arquivos começaram a ficar dentro de muitas pastas, com isso começamos a ter
+um problema para realizar importações pois os caminhos ficaram muito grande
+
+O Visual Studio Code tem uma funcionalidade de criar atalhos de importaçõe, para
+ativar temos que ir no arquivo tsconfig.json, depois definir o caminho base e por
+último os nomes dos atalhos e seu caminho
+  "baseUrl": "./src",
+	"paths": {
+    "@modules/*": ["modules/*"],
+		"@config/*": ["conig/*"],
+		"@shared/*": ["shared/*"],
+	},
+
+Para os demais itens entenderem o atalho devemos usar esta dependência
+	yarn add tsconfig-paths -D
