@@ -46,13 +46,13 @@ class CriarAgendamento {
 		// VINCULO DO REPOSITORIO COM O SERVICO
 		// UTILIZANDO O METODO DE OBJETO PARA MANIPULAR OS DADOS
 		// O METODO SOMENTE CRIA OS DADOS
-		const agendamento = agendamentoRepositorio.create({
+		const agendamento = await agendamentoRepositorio.create({
 			profissional_id,
 			data: arrendondarHorario,
 		});
 
-		// SERVE PARA SALVAR OS DADOS
-		await agendamentoRepositorio.save(agendamento);
+		// SERVIA PARA SALVAR OS DADOS AGORA O create CRIA E SALVA
+		// await agendamentoRepositorio.save(agendamento);
 
 		return agendamento;
 	}

@@ -67,3 +67,6 @@ iremos renomear o arquivo para começar com a letra I em maiúscula
 
 Oque fizemos nesta é uma das etapas do SOLID como o L - Liskov Substitution Principle
 Ele indica que o nosso service vai depender somente de um repositorio
+
+--> Reescrevendo Repositórios
+Os DTOS servem para definir os formatos dos dados nescessário para criar um agendamento

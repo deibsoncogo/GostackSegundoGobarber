@@ -1,22 +1,42 @@
-import { EntityRepository, Repository } from 'typeorm';
+import CriarAgendamentoInterfaceDTO from '@modules/agendamentos/dtos/Icriaragendamento';
+import { getRepository, Repository } from 'typeorm';
 
-import AgendamentoModelo from '../entities/agendamento';
+import AgendamentoEntidade from '../entities/agendamento';
 import AgendamentoIntefaceRepositorio from '@modules/agendamentos/repositories/Iagendamento';
 
 // POSSIBILITA CRIAR UM REPOSITORIO PARA O TypeORM
-@EntityRepository(AgendamentoModelo)
+// @EntityRepository(AgendamentoEntidade)
 // Extends ENVIA ESTE REPOSITORIO PARA DENTRO DO TypeORM
 // implements VINCULA AS REGRAS CRIA DO ARQUIVO IMPORTADO
-class Agendamento extends Repository<AgendamentoModelo>
-	implements AgendamentoIntefaceRepositorio {
+// class Agendamento extends Repository<AgendamentoEntidade>
+class Agendamento implements AgendamentoIntefaceRepositorio {
+	// VARIAVEL PRIVADA DO TIPO Repository DA ENTIDADE AgendamentoEntidade
+	private ORMRepositorio: Repository<AgendamentoEntidade>;
+
+	// PARA EXECUTAR ALGO QUANDO O REPOSITORIO FOR EXECUTADO
+	constructor() {
+		this.ORMRepositorio = getRepository(AgendamentoEntidade);
+	}
+
 	// VERIFICA SE JA EXISTE ESTE HORARIO CADASTRADO
-	public async buscaHorario(data: Date): Promise<AgendamentoModelo | undefined> {
-		const resultadoBusca = await this.findOne({
+	public async buscaHorario(data: Date): Promise<AgendamentoEntidade | undefined> {
+		const resultadoBusca = await this.ORMRepositorio.findOne({
 			where: { data }, // where E UMA CONDICAO
 		});
 
 		// SE NAO EXISTIR O HORARIO CADASTRADO VAI RETORNAR NULO
 		return resultadoBusca;
+	}
+
+	public async create({
+		profissional_id,
+		data,
+	}: CriarAgendamentoInterfaceDTO): Promise<AgendamentoEntidade> {
+		const agendamento = this.ORMRepositorio.create({ profissional_id, data });
+
+		await this.ORMRepositorio.save(agendamento);
+
+		return agendamento;
 	}
 }
 
@@ -25,7 +45,7 @@ export default Agendamento;
 /** IREMOS REFATORAR ESTES COMANDOS COM OS REPOSITORIOS DO TypeORM
 import { isEqual } from 'date-fns';
 
-import AgendamentoModelo from '../models/agendamento';
+import AgendamentoEntidade from '../models/agendamento';
 
 // CRIANDO TIPAGEM PARA O DTO DE CRIAR AGENDAMENTO
 interface CriarAgendamentoDTO {
@@ -35,22 +55,22 @@ interface CriarAgendamentoDTO {
 
 class Agendamento {
 	// VINCULANDO A TIPAGEM
-	private agendamentos: AgendamentoModelo[];
+	private agendamentos: AgendamentoEntidade[];
 
 	// CRIA UM BANCO DE BADOS QUE RESETA AO REINICIAR O SERVIDOR
-	// agendamentos: AgendamentoModelo[] = [];
+	// agendamentos: AgendamentoEntidade[] = [];
 	// O constructor INICIALIZA NOSSO BANCO DE DADOS
 	constructor() {
 		this.agendamentos = [];
 	}
 
 	// RETORNAR TODOS AGENDAMENTOS CADASTRADO
-	public listarTodos(): AgendamentoModelo[] {
+	public listarTodos(): AgendamentoEntidade[] {
 		return this.agendamentos;
 	}
 
 	// VERIFICA SE JA EXISTE ESTE HORARIO CADASTRADO
-	public buscaHorario(data: Date): AgendamentoModelo | null {
+	public buscaHorario(data: Date): AgendamentoEntidade | null {
 		const resultadoBusca = this.agendamentos.find(agendamento =>
 			isEqual(data, agendamento.data),
 		);
@@ -59,7 +79,7 @@ class Agendamento {
 		return resultadoBusca || null;
 	}
 
-	public criar({ profissional, data }: CriarAgendamentoDTO): AgendamentoModelo {
+	public criar({ profissional, data }: CriarAgendamentoDTO): AgendamentoEntidade {
 		// PERMITE A MINIPULACAO DOS DADOS ANTES DE SALVAR NO FORMATO DE OBJETO
 		// const agendamento = {
 		// 	id: uuid(),
@@ -67,7 +87,7 @@ class Agendamento {
 		// 	data: dataConvertidaeArredondada,
 		// };
 		// VINCULO DO MODELO COM O REPOSITORIO
-		const agendamento = new AgendamentoModelo({ profissional, data });
+		const agendamento = new AgendamentoEntidade({ profissional, data });
 
 		this.agendamentos.push(agendamento);
 
