@@ -57,3 +57,13 @@ ativar temos que ir no arquivo tsconfig.json, depois definir o caminho base e po
 
 Para os demais itens entenderem o atalho devemos usar esta dependência
 	yarn add tsconfig-paths -D
+
+--> Liskov Substitution Principle
+Devemos definir quais metodos os repositórios iram utilizar criando regras para saber
+se depois de trocar de dependência tudo continuara funcionando
+
+Quando tivermos um arquivo onde sua única responsabilidade for retornar uma interface
+iremos renomear o arquivo para começar com a letra I em maiúscula
+
+Oque fizemos nesta é uma das etapas do SOLID como o L - Liskov Substitution Principle
+Ele indica que o nosso service vai depender somente de um repositorio
