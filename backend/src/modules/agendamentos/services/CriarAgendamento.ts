@@ -2,7 +2,7 @@ import { startOfHour } from 'date-fns';
 import { getCustomRepository } from 'typeorm';
 
 import AgendamentoModelo from '../infra/entities/agendamento';
-import AgendamentoRepositorio from '../repositories/agendamento';
+import AgendamentoRepositorio from '../infra/repositories/agendamento';
 
 import GeralErro from '@shared/errors/geral';
 

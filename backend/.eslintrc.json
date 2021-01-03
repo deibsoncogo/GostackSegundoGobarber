@@ -25,6 +25,7 @@
 		"no-console": "off", // PERMITE UTILIZAR console.log
 		"class-methods-use-this": "off", // DESATIVA A UTILZACAO DO this
 		"camelcase": "off", // DESATIVA REGRAS NA UTILIZACAO DE _
+		// "@typescript-eslint/interface-name-prefix": ["error", { "prefixWithI": "always"}], // SERVE PARA FORCAR QUE AS INTERFACES INICIE COM A LETRA I
 		"@typescript-eslint/no-unused-vars": ["error", {"argsIgnorePattern": "_"}],
 		"prettier/prettier": "error",
 		"import/extensions": [

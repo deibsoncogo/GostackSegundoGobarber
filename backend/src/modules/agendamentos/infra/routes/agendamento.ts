@@ -2,7 +2,7 @@ import { parseISO } from 'date-fns';
 import { Router } from 'express';
 import { getCustomRepository } from 'typeorm';
 
-import AgendamentoRepositorio from '@modules/agendamentos/repositories/agendamento';
+import AgendamentoRepositorio from '@modules/agendamentos/infra/repositories/agendamento';
 import CriarAgendamentoServico from '@modules/agendamentos/services/CriarAgendamento';
 
 import VerificarAutenticacaoMiddlewares from '@shared/infra/middlewares/verificarAutenticacao';

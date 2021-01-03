@@ -1,19 +1,22 @@
 import { EntityRepository, Repository } from 'typeorm';
 
-import AgendamentoModelo from '../infra/entities/agendamento';
+import AgendamentoModelo from '../entities/agendamento';
+import AgendamentoIntefaceRepositorio from '@modules/agendamentos/repositories/Iagendamento';
 
 // POSSIBILITA CRIAR UM REPOSITORIO PARA O TypeORM
 @EntityRepository(AgendamentoModelo)
 // Extends ENVIA ESTE REPOSITORIO PARA DENTRO DO TypeORM
-class Agendamento extends Repository<AgendamentoModelo> {
+// implements VINCULA AS REGRAS CRIA DO ARQUIVO IMPORTADO
+class Agendamento extends Repository<AgendamentoModelo>
+	implements AgendamentoIntefaceRepositorio {
 	// VERIFICA SE JA EXISTE ESTE HORARIO CADASTRADO
-	public async buscaHorario(data: Date): Promise<AgendamentoModelo | null> {
+	public async buscaHorario(data: Date): Promise<AgendamentoModelo | undefined> {
 		const resultadoBusca = await this.findOne({
 			where: { data }, // where E UMA CONDICAO
 		});
 
 		// SE NAO EXISTIR O HORARIO CADASTRADO VAI RETORNAR NULO
-		return resultadoBusca || null;
+		return resultadoBusca;
 	}
 }
 
