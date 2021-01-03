@@ -22,15 +22,15 @@ E para executar o programa temos este comando
 --> Padrões de Projeto com Eslint, Prettier e Editor Config
 Primeiro instalamos a extensão do EditorConfig e depois criamos o arquivo de
 configuração do EditorConfig clicando o botão direito
-  root = true
+	root = true
 
-  [*]
-  indent_style = tab
-  indent_size = 2
-  charset = utf-8
-  trim_trailing_whitespace = true
-  insert_final_newline = true
-  end_of_line = crlf
+	[*]
+	indent_style = tab
+	indent_size = 2
+	charset = utf-8
+	trim_trailing_whitespace = true
+	insert_final_newline = true
+	end_of_line = crlf
 
 Agora iniciamos as configurações para o Eslint funcionar com o React Native Cli
 	yarn add eslint@6.8.0 -D
@@ -90,32 +90,32 @@ Agora adicionamos as configurações abaixo no arquivo .eslint.json
 	}
 
 Faz o React ler e entender os arquivos TypeScript
-  yarn add eslint-import-resolver-typescript -D
+	yarn add eslint-import-resolver-typescript -D
 
 Temos que instalar as seguintes dependências para utilizar o Prettier
-  yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+	yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
 
 Agora devemos adicionar as seguintes configurações no arquivo .eslintrc.json
-  "extends": [
-  	"prettier/@typescript-eslint",
+	"extends": [
+		"prettier/@typescript-eslint",
 		"plugin:prettier/recommended"
-  ],
-  "plugins": [
-    "prettier"
-  ],
-  "rules": {
-    "prettier/prettier": "error"
-  },
+	],
+	"plugins": [
+		"prettier"
+	],
+	"rules": {
+		"prettier/prettier": "error"
+	},
 
 E por último criamos o arquivo abaixo para adicionar as seguintes configurações
 	prettier.config.js
 
-  module.exports = {
-    singleQuote: true,
-    trailingComma: 'all',
-    arrowParens: 'avoid',
-    printWidth: 91,
-  }
+	module.exports = {
+		singleQuote: true,
+		trailingComma: 'all',
+		arrowParens: 'avoid',
+		printWidth: 91,
+	}
 
 --> Configurando StatusBar
 Para executar o servidor devemos execar os seguintes comando na seguencia

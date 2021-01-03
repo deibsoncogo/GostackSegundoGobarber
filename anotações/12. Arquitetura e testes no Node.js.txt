@@ -48,9 +48,9 @@ um problema para realizar importações pois os caminhos ficaram muito grande
 O Visual Studio Code tem uma funcionalidade de criar atalhos de importaçõe, para
 ativar temos que ir no arquivo tsconfig.json, depois definir o caminho base e por
 último os nomes dos atalhos e seu caminho
-  "baseUrl": "./src",
+	"baseUrl": "./src",
 	"paths": {
-    "@modules/*": ["modules/*"],
+		"@modules/*": ["modules/*"],
 		"@config/*": ["conig/*"],
 		"@shared/*": ["shared/*"],
 	},

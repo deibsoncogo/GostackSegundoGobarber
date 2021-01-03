@@ -7,45 +7,45 @@ TypeScript incluindo ferramentas como ts-node-dev, ESLint, Prettier, EditorConfi
 ----> 1. Estrutura e padrões
 --> Configurando estrutura
 A primeira coisa a fazer é criar o arquivo package.json
-  yarn init -y
+	yarn init -y
 
 Logo em seguida instalar as dependencias abaixo
-  yarn add express
-  yarn add typescript -D
+	yarn add express
+	yarn add typescript -D
 
 Agora criar os demais arquivos essenciais para a API
-  dist
-  src\server.ts
-  .gitignore
-  readme
+	dist
+	src\server.ts
+	.gitignore
+	readme
 
 E por último criar o arquivo tsconfig.json para depois definir o local onde
 salvar os arquivos convertido e onde fica o arquivo main
-  yarn tsc --init
-  "outDir": "./dist",
-  "rootDir": "./src",
+	yarn tsc --init
+	"outDir": "./dist",
+	"rootDir": "./src",
 
 Para rodar o servidor temos que converter o TypeScript em JavaScript e depois
 executar o arquivo main convertido
-  yarn tsc
-  node dist/server.js
+	yarn tsc
+	node dist/server.js
 
 O melhor metodo para executar o servidor durante o processo de desenvolvimento é
 pela depencia abaixo, ele consegue executar o servidor sem converser o TypeScript para
 JavaScript e quando acontece uma alteração o servidor é atualizado
-  yarn add ts-node-dev -D
-  yarn ts-node-dev src/server.ts
+	yarn add ts-node-dev -D
+	yarn ts-node-dev src/server.ts
 
 Quando digitamos algum comando errado o proprio IDE nos avisa, com isso podemos
 adicionar o comando abaixo desativa esta verificacao na execução do servidor
-  --transpileOnly
+	--transpileOnly
 
 Também adicionamos o comando abaixo para ignorar a converção dos arquivos na
 pasta node_modules e desativar a monitoração de alterações do mesmo
-  --ignore-watch node_modules
+	--ignore-watch node_modules
 
 Assim o comando para iniciar o servidor fica com esta composição
-  yarn ts-node-dev --transpileOnly --ignore-watch node_modules src/server.ts
+	yarn ts-node-dev --transpileOnly --ignore-watch node_modules src/server.ts
 
 --> EditorConfig
 O EditorConfig é uma ferramenta simples mais com uma funcionalidade incrível
@@ -54,7 +54,7 @@ outro computador para as configurações ficarem igual, para utilizar basta inst
 extenção EditorConfig for VS Code no lado, depois clicar com o botão direiro na guia
 e criar o arquivo .editorconfig e realizar as configurações abaixo
 	root = true
-
+	
 		[*]
 		indent_style = tab #TIPO DE RECUO
 		indent_size = 2 #TAMANHO DO RECUO
@@ -64,13 +64,13 @@ e criar o arquivo .editorconfig e realizar as configurações abaixo
 		end_of_line = lf #TIPO DE ENTER (WINDOWS OU LINUX)
 
 Tem dos comandos que força o programa a executar a padronização
-  Reindent Lines (Atalho pessoal: Alt + E)
-  Reindent Selected Lines
+	Reindent Lines (Atalho pessoal: Alt + E)
+	Reindent Selected Lines
 
 --> ESLint
 O Eslint é ferramenta que realiza padronizações de códigos
 Devemos instalar a extenção dele e também sua dependencia
-  yarn add eslint -D
+	yarn add eslint -D
 
 Depois de instalar devemos ativar as configurações abaixo para corrigir os códigos
 quando realizarmos o salvamento do arquivo
@@ -78,41 +78,41 @@ quando realizarmos o salvamento do arquivo
 		"editor.codeActionsOnSave": {
 			source.fixAll.eslint": true,
 		}
-  },
-
-  "[javascriptreact]":{
+	},
+	
+	"[javascriptreact]":{
 		"editor.codeActionsOnSave": {
 			"source.fixAll.eslint": true,
 		}
-  },
-
-  "[typescript]":{
+	},
+	
+	"[typescript]":{
 		"editor.codeActionsOnSave": {
 			"source.fixAll.eslint": true,
 		}
-  },
-
-  "[typescriptreact]":{
+	},
+	
+	"[typescriptreact]":{
 		"editor.codeActionsOnSave": {
 			"source.fixAll.eslint": true,
 		}
-  },
-
+	},
+	
 Para ele funcionar deve utilizar o comando abaixo e depois de executar o comando
 deveremos que responder algumas pergutas como
-  yarn eslint --init
+	yarn eslint --init
 
-  How would you like to use ESLint? = To check syntax, find problems, and enforce code style
-  What type of modules does your project use? = JavaScript modules (import/export)
-  Which framework does your project use? = None of these
-  Does your project use TypeScript? = Yes
-  Where does your code run? = Node
-  How would you like to define a style for your project? = Use a popular style guide
-  Which style guide do you want to follow? = Airbnb: https://github.com/airbnb/javascript
-  What format do you want your config file to be in? = JSON
+	How would you like to use ESLint? = To check syntax, find problems, and enforce code style
+	What type of modules does your project use? = JavaScript modules (import/export)
+	Which framework does your project use? = None of these
+	Does your project use TypeScript? = Yes
+	Where does your code run? = Node
+	How would you like to define a style for your project? = Use a popular style guide
+	Which style guide do you want to follow? = Airbnb: https://github.com/airbnb/javascript
+	What format do you want your config file to be in? = JSON
 
 Depois de responder as perguntas sera gerado uma lista de dependencias para instalar
-  yarn add @typescript-eslint/eslint-plugin@latest eslint-config-airbnb-base@latest eslint-plugin-import@^2.20.1 @typescript-eslint/parser@latest -D
+	yarn add @typescript-eslint/eslint-plugin@latest eslint-config-airbnb-base@latest eslint-plugin-import@^2.20.1 @typescript-eslint/parser@latest -D
 
 Para o NodeJS entender os arquivos do TypeScript temos a dependencia abaixo
 	yarn add eslint-import-resolver-typescript -D
@@ -128,7 +128,7 @@ Para corrigir todos os erros de padronização pode utilizar o comando abaixo
 
 --> Prettier
 Este serve também para padronizar os códigos, para instalar utilize os comandos abaixo
-  yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+	yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
 
 Para realizar as configurações dele teremos o arquivo abaixo
 	prettier.config.js
@@ -170,16 +170,16 @@ O Insomnia possui uma ferramenta chama de Timestamp que gera o data e hora atual
 
 --> Validando a data
 A dependencia abaixo é a mais recomendada para a manipulação de datas e horas
-  yarn add date-fns
+	yarn add date-fns
 
 O comando abaixo arredonda as horas para cheia
-  startOfHour
+	startOfHour
 
 Este comando transforma uma data e hora de string para o formato de data e hora
-  parseISO
+	parseISO
 
 Para realizar comparações temos o seguinte comando
-  isEqual
+	isEqual
 
 --> Model de Agendamento
 O conceito de model ou entidade servem para criar inteface em modo global
