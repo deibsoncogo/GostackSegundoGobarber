@@ -70,3 +70,12 @@ Ele indica que o nosso service vai depender somente de um repositorio
 
 --> Reescrevendo Repositórios
 Os DTOS servem para definir os formatos dos dados nescessário para criar um agendamento
+
+--> Dependency Inversion Principle
+Nesta aula iremos aplicar a letra D do SOLID que seguinifica dependency inversion
+
+Que é a inversão de dependência onde invez do service ter que saber com qual
+repositorio ele está lidando, iremos fazer com que o arquivo que vai utilizar a classe
+informe qual repositorio será nescessário, neste exemplo usaremos um constructor
+
+Este metodo é bom utilizar somente em dependências, as entidades não
