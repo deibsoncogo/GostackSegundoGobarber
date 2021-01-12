@@ -1,8 +1,7 @@
 import { startOfHour } from 'date-fns';
-import { getCustomRepository } from 'typeorm';
 
 import AgendamentoModelo from '../infra/entities/agendamento';
-import AgendamentoRepositorio from '../infra/repositories/agendamento';
+import AgendamentoRepositorioInterface from '../repositories/Iagendamento';
 
 import GeralErro from '@shared/errors/geral';
 
@@ -13,6 +12,10 @@ interface RequestDTO {
 }
 
 class CriarAgendamento {
+	// APLICA A LETRA D DO SOLID
+	// TRANFORMANDO A CLASSE DEPENDENTE DA INTERFACE INVES DE UMA DEPENDENCIA
+	constructor(private agendamentoRepositorio: AgendamentoRepositorioInterface) {}
+
 	/** COM A IMPLEMENTACAO DO BANCO DE DADOS NAO PRECISAMOS MAIS DESTES COMANDOS
 	// CRIA UMA VARIAVEL LOCAL
 	private agendamentoRepositorio: AgendamentoRepositorio;
@@ -25,13 +28,15 @@ class CriarAgendamento {
 
 	public async execute({ profissional_id, data }: RequestDTO): Promise<AgendamentoModelo> {
 		// PREMITE A UTILIZACAO DOS REPOSITORIOS
-		const agendamentoRepositorio = getCustomRepository(AgendamentoRepositorio);
+		// const agendamentoRepositorio = getCustomRepository(AgendamentoRepositorio);
 
 		// ARRENDONDA PARA HORA CHEIA
 		const arrendondarHorario = startOfHour(data);
 
 		// ENVIA E TRAZ O RESUTLADO DA EXISTENCIA DESSE HORARIO
-		const horarioDuplicado = await agendamentoRepositorio.buscaHorario(arrendondarHorario);
+		const horarioDuplicado = await this.agendamentoRepositorio.buscaHorario(
+			arrendondarHorario,
+		);
 
 		// RETORNAR UMA MENSAGEM SE A VARIAVEL POR VERDADEIRA
 		// AQUI NAO TEMOS ACESSO AO RESPONSE OU REQUEST DO USUARIO
@@ -46,7 +51,7 @@ class CriarAgendamento {
 		// VINCULO DO REPOSITORIO COM O SERVICO
 		// UTILIZANDO O METODO DE OBJETO PARA MANIPULAR OS DADOS
 		// O METODO SOMENTE CRIA OS DADOS
-		const agendamento = await agendamentoRepositorio.create({
+		const agendamento = await this.agendamentoRepositorio.create({
 			profissional_id,
 			data: arrendondarHorario,
 		});

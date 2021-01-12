@@ -20,6 +20,7 @@
 		"eslint-plugin-import-helpers"
 	],
 	"rules": {
+		"no-useless-constructor":"off",
 		"import/order": "off",
 		"import/no-unresolved": "off",
 		"no-console": "off", // PERMITE UTILIZAR console.log
