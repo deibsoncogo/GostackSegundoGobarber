@@ -1,8 +1,8 @@
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
-import { getRepository } from 'typeorm';
 
 import UsuarioModelo from '../infra/entities/usuario';
+import UsuarioInterfaceRepositorio from '../repositories/Iusuario';
 
 import AutenticacaoConfiguracao from '@config/autenticacao';
 import GeralErro from '@shared/errors/geral';
@@ -18,14 +18,14 @@ interface Response {
 }
 
 export default class CriarSecao {
+	constructor(private usuarioRepositorio: UsuarioInterfaceRepositorio) {}
+
 	public async execute({ email, senha }: Request): Promise<Response> {
-		const secaoRepositorio = getRepository(UsuarioModelo);
+		// const secaoRepositorio = getRepository(UsuarioModelo);
 
 		// RETORNAR TODOS AS INFORMACOES DO USUARIO TAMBEM
 		// VERIFICA SE EXISTE O EMAIL CADASTRADO
-		const usuario = await secaoRepositorio.findOne({
-			where: { email },
-		});
+		const usuario = await this.usuarioRepositorio.findByEmail(email);
 
 		if (!usuario) {
 			// METODO UTILIZADO SEM UMA CLASSE PARA LIDAR COM ERROS
@@ -40,7 +40,7 @@ export default class CriarSecao {
 			throw new GeralErro('Senha inválida', 401);
 		}
 
-		delete usuario.senha;
+		// delete usuario.senha;
 
 		// METODO PARA FACILITAR A MANIPULACAO DOS DADOS
 		const { segredo, validade } = AutenticacaoConfiguracao.tokenjwt;

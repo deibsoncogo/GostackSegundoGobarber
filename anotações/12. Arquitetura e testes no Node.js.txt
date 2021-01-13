@@ -79,3 +79,7 @@ repositorio ele está lidando, iremos fazer com que o arquivo que vai utilizar a
 informe qual repositorio será nescessário, neste exemplo usaremos um constructor
 
 Este metodo é bom utilizar somente em dependências, as entidades não
+
+--> Refatorando módulo de usuários
+Nesta aula iremos usar os mesmo metodos da aula anterior mais nesta vez para os
+arquivos que envolvem os usuários

@@ -7,7 +7,6 @@ import CriarAgendamentoServico from '@modules/agendamentos/services/CriarAgendam
 import VerificarAutenticacaoMiddlewares from '@shared/infra/middlewares/verificarAutenticacao';
 
 const agendamentoRota = Router();
-const agendamentoRepositorio = new AgendamentoRepositorio();
 
 // VINCULA O REPOSITORIO COM A ROTA
 // const agendamentoRepositorio = new AgendamentoRepositorio();
@@ -31,6 +30,7 @@ agendamentoRota.post('/', async (request, response) => {
 	// CONVERTE O FORMATO DO HORARIO
 	const converterHorario = parseISO(data);
 
+	const agendamentoRepositorio = new AgendamentoRepositorio();
 	// VINCULO DO SERVICO COM A ROTA
 	const criarAgendamento = new CriarAgendamentoServico(agendamentoRepositorio);
 

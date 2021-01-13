@@ -1,7 +1,7 @@
 import { hash } from 'bcryptjs';
-import { getRepository } from 'typeorm';
 
 import UsuarioModelo from '../infra/entities/usuario';
+import UsuarioInterfaceRepositorio from '../repositories/Iusuario';
 
 import GeralErro from '@shared/errors/geral';
 
@@ -13,14 +13,14 @@ interface Request {
 
 // TAMBEM PODEMOS EXPORTAR ASSIM
 export default class CriarUsuario {
+	constructor(private usuarioRepositorio: UsuarioInterfaceRepositorio) {}
+
 	public async execute({ nome, email, senha }: Request): Promise<UsuarioModelo> {
 		// NESCESSARIO PARA PODER USTILIZAR A DEPENDENCIA
-		const usuarioRepositorio = getRepository(UsuarioModelo);
+		// const usuarioRepositorio = getRepository(UsuarioModelo);
 
 		// TENTA LOCALIZAR ESTE EMAIL NO BANCO DE DADOS
-		const emailDuplicado = await usuarioRepositorio.findOne({
-			where: { email },
-		});
+		const emailDuplicado = await this.usuarioRepositorio.findByEmail(email);
 
 		// SE ACHAR ESTE EMAIL NO BANCO DE DADOS EXECUTAR O COMANDO DE ERRO
 		if (emailDuplicado) {
@@ -31,17 +31,17 @@ export default class CriarUsuario {
 		const criptografarSenha = await hash(senha, 4);
 
 		// CRIA ESTAS INFORMACOES NO BANCO DE DADOS
-		const usuario = usuarioRepositorio.create({
+		const usuario = await this.usuarioRepositorio.create({
 			nome,
 			email,
 			senha: criptografarSenha, // SUBSTITUI A SENHA PARA A CRIPTOGRAFADA
 		});
 
 		// SALVA AS ALTERACOES QUE EXISTE NO BANCO DE DADOS
-		await usuarioRepositorio.save(usuario);
+		// await usuarioRepositorio.save(usuario);
 
 		// REMOVE A INFORMACAO SENHA PARA O RETORNO DO USUARIO
-		delete usuario.senha;
+		// delete usuario.senha;
 
 		// RETORNA AS INFORMACOES PARA A ROTA
 		return usuario;

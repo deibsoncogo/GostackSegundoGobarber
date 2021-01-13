@@ -1,8 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { getRepository } from 'typeorm';
 
 import UsuarioModelo from '../infra/entities/usuario';
+import UsuarioInterfaceRepositorio from '../repositories/Iusuario';
 
 import UploadConfiguracao from '@config/upload';
 import GeralErro from '@shared/errors/geral';
@@ -13,11 +13,13 @@ interface Request {
 }
 
 export default class CriarAvatar {
+	constructor(private usuarioRepositorio: UsuarioInterfaceRepositorio) {}
+
 	public async execute({ usuario_id, imagemAvatar }: Request): Promise<UsuarioModelo> {
-		const usuarioRepositorio = getRepository(UsuarioModelo);
+		// const usuarioRepositorio = getRepository(UsuarioModelo);
 
 		// VERIFICA SE EXISTE O ID NO BANCO DE DADOS
-		const usuario = await usuarioRepositorio.findOne(usuario_id);
+		const usuario = await this.usuarioRepositorio.findById(usuario_id);
 
 		if (!usuario) {
 			throw new GeralErro('Usuario informado não encontrado', 401);
@@ -37,13 +39,13 @@ export default class CriarAvatar {
 			}
 		}
 
-		delete usuario.senha;
+		// delete usuario.senha;
 
 		// ENVIA A INFORMA NOVA PARA O BANCO DE DADOS
 		usuario.avatar = imagemAvatar;
 
 		// SALVA AS ALTERCOES DO BANCO DE DADOS
-		await usuarioRepositorio.save(usuario);
+		await this.usuarioRepositorio.save(usuario);
 
 		return usuario;
 	}

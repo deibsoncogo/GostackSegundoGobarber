@@ -6,8 +6,7 @@
 	"password": "docker",
 	"database": "gobarber",
 	"entities": [
-		"./src/modules/agendamentos/infra/entities/*.ts",
-		"./src/modules/usuarios/infra/entities/*.ts"
+		"./src/modules/**/infra/entities/*.ts"
 	],
 	"migrations": [
 		"./src/shared/infra/database/migrations/*.ts"
