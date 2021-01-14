@@ -1,6 +1,6 @@
 import { Router } from 'express';
+import { container } from 'tsyringe';
 
-import UsuarioRepositorio from '@modules/usuarios/infra/repositories/usuario';
 import CriarSecaoServico from '@modules/usuarios/services/CriarSecao';
 
 const secaoRota = Router();
@@ -10,8 +10,7 @@ secaoRota.post('/', async (request, response) => {
 	// try {
 	const { email, senha } = request.body;
 
-	const usuarioRepositorio = new UsuarioRepositorio();
-	const criarSecao = new CriarSecaoServico(usuarioRepositorio);
+	const criarSecao = container.resolve(CriarSecaoServico);
 
 	const { usuario, token } = await criarSecao.execute({
 		email,

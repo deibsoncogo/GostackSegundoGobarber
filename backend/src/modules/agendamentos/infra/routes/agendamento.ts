@@ -1,13 +1,12 @@
 import { parseISO } from 'date-fns';
 import { Router } from 'express';
+import { container } from 'tsyringe';
 
-import AgendamentoRepositorio from '@modules/agendamentos/infra/repositories/agendamento';
 import CriarAgendamentoServico from '@modules/agendamentos/services/CriarAgendamento';
 
 import VerificarAutenticacaoMiddlewares from '@shared/infra/middlewares/verificarAutenticacao';
 
 const agendamentoRota = Router();
-
 // VINCULA O REPOSITORIO COM A ROTA
 // const agendamentoRepositorio = new AgendamentoRepositorio();
 
@@ -30,9 +29,8 @@ agendamentoRota.post('/', async (request, response) => {
 	// CONVERTE O FORMATO DO HORARIO
 	const converterHorario = parseISO(data);
 
-	const agendamentoRepositorio = new AgendamentoRepositorio();
 	// VINCULO DO SERVICO COM A ROTA
-	const criarAgendamento = new CriarAgendamentoServico(agendamentoRepositorio);
+	const criarAgendamento = container.resolve(CriarAgendamentoServico);
 
 	// ENVIA OS DADOS PARA O SERVICO VINCULADO
 	const agendamento = await criarAgendamento.execute({

@@ -1,4 +1,5 @@
 import { startOfHour } from 'date-fns';
+import { injectable, inject } from 'tsyringe';
 
 import AgendamentoModelo from '../infra/entities/agendamento';
 import AgendamentoRepositorioInterface from '../repositories/Iagendamento';
@@ -11,10 +12,16 @@ interface RequestDTO {
 	data: Date;
 }
 
+// UTILISANDO ESTA DEPENDENCIA PARA FALAR QUE ESTA CLASSE PODE RECEBER INJECOES
+@injectable()
 class CriarAgendamento {
 	// APLICA A LETRA D DO SOLID
 	// TRANFORMANDO A CLASSE DEPENDENTE DA INTERFACE INVES DE UMA DEPENDENCIA
-	constructor(private agendamentoRepositorio: AgendamentoRepositorioInterface) {}
+	constructor(
+		// REALIZA A INJECAO DO REPOSITORIO DENTRO DA CLASSE
+		@inject('AgendamentoRepositorio')
+		private agendamentoRepositorio: AgendamentoRepositorioInterface,
+	) {}
 
 	/** COM A IMPLEMENTACAO DO BANCO DE DADOS NAO PRECISAMOS MAIS DESTES COMANDOS
 	// CRIA UMA VARIAVEL LOCAL

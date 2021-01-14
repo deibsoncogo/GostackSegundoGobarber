@@ -1,4 +1,5 @@
 import { hash } from 'bcryptjs';
+import { injectable, inject } from 'tsyringe';
 
 import UsuarioModelo from '../infra/entities/usuario';
 import UsuarioInterfaceRepositorio from '../repositories/Iusuario';
@@ -10,10 +11,13 @@ interface Request {
 	email: string;
 	senha: string;
 }
-
 // TAMBEM PODEMOS EXPORTAR ASSIM
+@injectable()
 export default class CriarUsuario {
-	constructor(private usuarioRepositorio: UsuarioInterfaceRepositorio) {}
+	constructor(
+		@inject('UsuarioRepositorio')
+		private usuarioRepositorio: UsuarioInterfaceRepositorio,
+	) {}
 
 	public async execute({ nome, email, senha }: Request): Promise<UsuarioModelo> {
 		// NESCESSARIO PARA PODER USTILIZAR A DEPENDENCIA

@@ -1,4 +1,5 @@
 import '@shared/infra/database';
+import '@shared/container';
 import 'express-async-errors';
 import 'reflect-metadata';
 

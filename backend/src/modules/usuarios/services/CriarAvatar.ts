@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { injectable, inject } from 'tsyringe';
 
 import UsuarioModelo from '../infra/entities/usuario';
 import UsuarioInterfaceRepositorio from '../repositories/Iusuario';
@@ -12,8 +13,12 @@ interface Request {
 	imagemAvatar: string;
 }
 
+@injectable()
 export default class CriarAvatar {
-	constructor(private usuarioRepositorio: UsuarioInterfaceRepositorio) {}
+	constructor(
+		@inject('UsuarioRepositorio')
+		private usuarioRepositorio: UsuarioInterfaceRepositorio,
+	) {}
 
 	public async execute({ usuario_id, imagemAvatar }: Request): Promise<UsuarioModelo> {
 		// const usuarioRepositorio = getRepository(UsuarioModelo);

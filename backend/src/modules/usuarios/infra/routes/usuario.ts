@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import multer from 'multer';
+import { container } from 'tsyringe';
 
-import UsuarioRepositorio from '@modules/usuarios/infra/repositories/usuario';
 import CriarAvatarServico from '@modules/usuarios/services/CriarAvatar';
 import CriarUsuarioServico from '@modules/usuarios/services/CriarUsuario';
 
@@ -15,9 +15,8 @@ usuarioRota.post('/', async (request, response) => {
 	// RECEBE AS INFORMACOES RECEBIDA
 	const { nome, email, senha } = request.body;
 
-	const usuarioRepositorio = new UsuarioRepositorio();
 	// CRIA UMA INSTANCIA PARA PODER USTILIZAR O COMANDOS DO ARQUIVO
-	const criarUsuario = new CriarUsuarioServico(usuarioRepositorio);
+	const criarUsuario = container.resolve(CriarUsuarioServico);
 
 	// ENVIA AS INFORMACOES PARA O ARQUIVO INSTANCIADO
 	const usuario = await criarUsuario.execute({
@@ -38,8 +37,7 @@ usuarioRota.patch(
 	// ATIVA A DEPENCIA TIPO MIDDLEWARE PARA LIDAR COM UPLOAD DE UM ARQUIVO
 	multerFinal.single('imagem'),
 	async (request, response) => {
-		const usuarioRepositorio = new UsuarioRepositorio();
-		const criarAvatarServico = new CriarAvatarServico(usuarioRepositorio);
+		const criarAvatarServico = container.resolve(CriarAvatarServico);
 
 		const usuario = await criarAvatarServico.execute({
 			usuario_id: request.usuario.id,

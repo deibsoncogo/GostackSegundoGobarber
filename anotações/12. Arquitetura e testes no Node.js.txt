@@ -83,3 +83,15 @@ Este metodo é bom utilizar somente em dependências, as entidades não
 --> Refatorando módulo de usuários
 Nesta aula iremos usar os mesmo metodos da aula anterior mais nesta vez para os
 arquivos que envolvem os usuários
+
+--> Injeção de dependências
+A injeção tonar o comando abaixo automatico, assim não vamos mais precisar passar ele
+manualmente como parametro das dependências
+	constructor(private agendamentoRepositorio: AgendamentoRepositorioInterface) {}
+
+Para tornar isso possivel temos que utilizar a lib da Microsoft TSYRINGE
+	yarn add tsyringe
+
+Ao utilizar este metodo também estaremos criando um container onde vai ser ele que vai
+controlar todas as dependências, este arquivo vai ficar neste local
+	src/shared/container/index.ts

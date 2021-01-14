@@ -1,5 +1,6 @@
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
+import { injectable, inject } from 'tsyringe';
 
 import UsuarioModelo from '../infra/entities/usuario';
 import UsuarioInterfaceRepositorio from '../repositories/Iusuario';
@@ -17,8 +18,12 @@ interface Response {
 	token: string;
 }
 
+@injectable()
 export default class CriarSecao {
-	constructor(private usuarioRepositorio: UsuarioInterfaceRepositorio) {}
+	constructor(
+		@inject('UsuarioRepositorio')
+		private usuarioRepositorio: UsuarioInterfaceRepositorio,
+	) {}
 
 	public async execute({ email, senha }: Request): Promise<Response> {
 		// const secaoRepositorio = getRepository(UsuarioModelo);
