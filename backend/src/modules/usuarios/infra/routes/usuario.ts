@@ -1,33 +1,18 @@
 import { Router } from 'express';
 import multer from 'multer';
-import { container } from 'tsyringe';
-
-import CriarAvatarServico from '@modules/usuarios/services/CriarAvatar';
-import CriarUsuarioServico from '@modules/usuarios/services/CriarUsuario';
 
 import UploadConfiguracao from '@config/upload';
 import VerificarAutenticacaoMiddleware from '@shared/infra/middlewares/verificarAutenticacao';
 
+import AvatarController from '../controllers/avatarController';
+import UsuarioController from '../controllers/usuarioController';
+
 const usuarioRota = Router();
+const usuarioController = new UsuarioController();
+const avatarController = new AvatarController();
 const multerFinal = multer(UploadConfiguracao);
 
-usuarioRota.post('/', async (request, response) => {
-	// RECEBE AS INFORMACOES RECEBIDA
-	const { nome, email, senha } = request.body;
-
-	// CRIA UMA INSTANCIA PARA PODER USTILIZAR O COMANDOS DO ARQUIVO
-	const criarUsuario = container.resolve(CriarUsuarioServico);
-
-	// ENVIA AS INFORMACOES PARA O ARQUIVO INSTANCIADO
-	const usuario = await criarUsuario.execute({
-		nome,
-		email,
-		senha,
-	});
-
-	// ENVIA PARA O USUARIO O RESUTLADO DA EXECUCAO DESTA ROTA
-	return response.json(usuario);
-});
+usuarioRota.post('/', usuarioController.criar);
 
 // QUANDO QUEREMOS ALTERAR SOMENTE UMA INFROMACAO USAMOS patch
 usuarioRota.patch(
@@ -36,17 +21,7 @@ usuarioRota.patch(
 	VerificarAutenticacaoMiddleware,
 	// ATIVA A DEPENCIA TIPO MIDDLEWARE PARA LIDAR COM UPLOAD DE UM ARQUIVO
 	multerFinal.single('imagem'),
-	async (request, response) => {
-		const criarAvatarServico = container.resolve(CriarAvatarServico);
-
-		const usuario = await criarAvatarServico.execute({
-			usuario_id: request.usuario.id,
-			imagemAvatar: request.file.filename,
-		});
-
-		// RETORNAR AS INFROMACOES DO ARQUIVO
-		return response.json([usuario, request.file]);
-	},
+	avatarController.atualizar,
 );
 
 export default usuarioRota;

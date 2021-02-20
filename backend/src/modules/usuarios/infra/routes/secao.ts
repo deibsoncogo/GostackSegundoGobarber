@@ -1,29 +1,10 @@
 import { Router } from 'express';
-import { container } from 'tsyringe';
 
-import CriarSecaoServico from '@modules/usuarios/services/CriarSecao';
+import SecaoController from '../controllers/secaoController';
 
 const secaoRota = Router();
+const secaoController = new SecaoController();
 
-secaoRota.post('/', async (request, response) => {
-	// BUSCA PELO TIPO DE ACAO DO throw (Error)
-	// try {
-	const { email, senha } = request.body;
-
-	const criarSecao = container.resolve(CriarSecaoServico);
-
-	const { usuario, token } = await criarSecao.execute({
-		email,
-		senha,
-	});
-
-	return response.json({ usuario, token });
-	// AO ENCONTRAR O TIPO INFORMADO (err) EXECUTA O COMANDO ABAIXO
-	// } catch (err) {
-	// METODO UTILIZADO SEM UMA CLASSE PARA LIDAR COM ERROS
-	// return response.status(400).json({ error: err.message });
-	// return response.status(err.status).json({ erro: err.mensagem });
-	// }
-});
+secaoRota.post('/', secaoController.criar);
 
 export default secaoRota;

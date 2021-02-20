@@ -1,14 +1,14 @@
-import { parseISO } from 'date-fns';
 import { Router } from 'express';
-import { container } from 'tsyringe';
-
-import CriarAgendamentoServico from '@modules/agendamentos/services/CriarAgendamento';
 
 import VerificarAutenticacaoMiddlewares from '@shared/infra/middlewares/verificarAutenticacao';
+
+import AgendamentoController from '../controllers/agendamentoController';
 
 const agendamentoRota = Router();
 // VINCULA O REPOSITORIO COM A ROTA
 // const agendamentoRepositorio = new AgendamentoRepositorio();
+
+const agendamentoController = new AgendamentoController();
 
 // ESTE METODO E EXECUTADO TODA VEZ QUE OUTRO METODO ABAIXO E CHAMADO
 agendamentoRota.use(VerificarAutenticacaoMiddlewares);
@@ -22,24 +22,6 @@ agendamentoRota.use(VerificarAutenticacaoMiddlewares);
 // 	return response.json(agendamento);
 // });
 
-agendamentoRota.post('/', async (request, response) => {
-	// RECUPERA AS INFORMACOES NO request.body
-	const { profissional_id, data } = request.body;
-
-	// CONVERTE O FORMATO DO HORARIO
-	const converterHorario = parseISO(data);
-
-	// VINCULO DO SERVICO COM A ROTA
-	const criarAgendamento = container.resolve(CriarAgendamentoServico);
-
-	// ENVIA OS DADOS PARA O SERVICO VINCULADO
-	const agendamento = await criarAgendamento.execute({
-		profissional_id,
-		data: converterHorario,
-	});
-
-	// LISTA OS DADOS SALVO ACIMA
-	return response.json(agendamento);
-});
+agendamentoRota.post('/', agendamentoController.criar);
 
 export default agendamentoRota;

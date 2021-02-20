@@ -95,3 +95,12 @@ Para tornar isso possivel temos que utilizar a lib da Microsoft TSYRINGE
 Ao utilizar este metodo também estaremos criando um container onde vai ser ele que vai
 controlar todas as dependências, este arquivo vai ficar neste local
 	src/shared/container/index.ts
+
+--> Usando controllers
+Uma arquitetura MVC usa muito os controllers colocando muita responsabilidade neles
+Mais em um projeto muito grande ele acaba perdendo responsabilidade
+
+Com isso vamos criar uns controllers para cuidar das rotas
+
+Seguindo a arquitetura RESTful podemos criar somente 5 metodos onde são os principais como index,
+show, create, update e delete
